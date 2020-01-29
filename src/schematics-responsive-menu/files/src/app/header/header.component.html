@@ -1,0 +1,52 @@
+<header>
+    <!-- Mobile Header -->
+    <div class="wsmobileheader clearfix ">
+        <a role="link" id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>
+        <span class="smllogo"><img src="<%= logo %>" width="170" alt="<%= project %> Logo" title="<%= project %> Logo" loading="lazy"></span>
+        <a role="link" class="callusbtn ursor">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </a>
+    </div>
+    <!-- Mobile Header -->
+
+    <div class="wsmainfull clearfix dark">
+        <div class="wsmainwp clearfix">
+            <div class="desktoplogo">
+                <a role="link" (click)="clickLink();">
+                    <img src="<%= logo %>" alt="<%= project %> Logo"  title="<%= project %> Logo" loading="lazy">
+                </a>
+            </div>
+            <!--Main Menu HTML Code-->
+            <nav class="wsmenu clearfix dark">
+                <ul class="wsmenu-list">
+                    <li aria-haspopup="true">
+                        <a [routerLink]="'/'">
+                            Option 1 <span class="fa fa-angle-down"></span>
+                        </a>
+                        <div class="wsmegamenu clearfix">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-xs-12 mr-auto">
+                                        <ul class="col-lg-4 col-md-12 col-xs-12 link-list">
+                                            <li>
+                                                <a [routerLink]="'/'" (click)="clickLink();">
+                                                    Suboption
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a role="link">
+                            <i class="fa fa-search "></i>
+                            <span>SEARCH</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>

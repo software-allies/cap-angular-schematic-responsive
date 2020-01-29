@@ -1,0 +1,87 @@
+
+.options-box {
+    display: block;
+    position: fixed;
+    bottom: 1px;
+    right: 0;
+    width: 50%;
+    height: 101px;
+    overflow: hidden;
+
+    background: #f9f9f9;
+    &.rental-box {
+        width: 100%;
+    }
+}
+
+.dark .options-box {
+    background: #3e3e3e;
+}
+
+.options-box.compact-box {
+    width: 80%
+}
+.options-box>.row {
+    padding: 0;
+    margin: 0;
+}
+.options-box>.row>div {
+    padding: 0;
+    margin: 0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    
+    @media only screen and (min-width: 992px) and (max-width:1282px) {
+        display: flex;
+        align-items: center;
+        min-height: 102px;
+    }
+}
+
+.options-box>.row>div>a {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    padding: 36px 15px;
+    width: 100%;
+    font-size: 14px;
+    line-height: normal;
+    text-align: center;
+    color: #777777;
+    background-color: #f9f9f9;
+
+    @media only screen and (min-width: 992px) and (max-width:1282px) {
+        font-size: 10px;
+    }
+}
+.dark .options-box>.row>div>a {
+    color: #d8d8d8;
+    background-color: #3e3e3e;
+}
+.clearnav .options-box>.row>div>a {
+    color: #d8d8d8;
+    background-color: #3e3e3e;
+}
+.options-box>.row>div>a>.fa {
+    color: #e4002b;
+    margin-right: 5px;
+}
+.options-box>.row>div>a>span {
+    position: relative;
+    top: -5px;
+}
+
+@media only screen and (min-width: 992px) {
+    .onlyMobile {
+        display: none;
+        height: 0;
+        visibility: hidden;
+    }
+}
+
+@media only screen and (max-width:992px) {
+    .onlyMobile {
+        display: block;
+        height: auto;
+        visibility: visible;
+    }
+}
