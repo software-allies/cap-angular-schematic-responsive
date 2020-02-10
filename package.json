@@ -1,16 +1,25 @@
 {
-  "name": "schematics-responsive-menu",
-  "version": "0.0.0",
+  "name": "cap-angular-schematic-responsive",
+  "version": "1.0.0",
   "description": "CAP Schematics Responsive Menu",
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "test": "npm run build && jasmine src/**/*_spec.js"
   },
   "keywords": [
-    "schematics"
+    "schematics",
+    "responsive",
+    "template"
   ],
-  "author": "",
+  "author": {
+    "name": "Software Allies",
+    "url": "https://softwareallies.com"
+  },
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/software-allies/cap-angular-schematic-responsive"
+  },
   "schematics": "./src/collection.json",
   "devDependencies": {
     "@angular-devkit/core": "^7.3.9",
