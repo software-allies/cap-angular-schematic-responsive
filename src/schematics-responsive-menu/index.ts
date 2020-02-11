@@ -57,7 +57,9 @@ function updateBodyOfIndexFile(filePath: string): Rule {
       
       const component = getFileContent(tree, filePath);
       tree.overwrite(filePath, component.replace(`<body>`, `<body>${toAddBegin}`));
-      tree.overwrite(filePath, component.replace(`</body>`, `${toAddFinal}</body>`));
+
+      const componentAfter = getFileContent(tree, filePath);
+      tree.overwrite(filePath, componentAfter.replace(`</body>`, `${toAddFinal}</body>`));
     }
 }
 
@@ -73,9 +75,6 @@ function updateIndexFile(path: string): Rule {
       appendHtmlElementToHead(host, path, element);
     });
 
-    /*appendHtmlElementToBody(host, path, '<div class="container-fluid p-0">', 'left');
-
-    appendHtmlElementToBody(host, path, '</div>', 'right');*/
     return host;
   };
 }
@@ -188,7 +187,7 @@ function addDeclarationToNgModule(options: ComponentOptions): Rule {
 }
 
 function addBootstrapSchematic() {;
-    return externalSchematic('cap-angular-schematic-bootstrap', 'ng-add', {});
+    return externalSchematic('cap-angular-schematic-bootstrap', 'ng-add', { version: "4.0.0" });
 }
 
 export function schematicsResponsiveMenu(options: ComponentOptions): Rule {
