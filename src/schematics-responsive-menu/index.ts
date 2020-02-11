@@ -232,8 +232,14 @@ export function schematicsResponsiveMenu(options: ComponentOptions): Rule {
 
     // Get the index path
     const index = project.architect.build.options.index || `src/index.html`;
+    
     // Get the styles.scss file 
-    const styles = `src/styles.scss`;
+    let styles = `src/styles.scss`;
+
+    if (host.read(styles) === null) {
+      styles = `src/styles.css`;
+    }
+
     // Get the app.component file
     const appComponent = `src/app/app.component.html`;
 
