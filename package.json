@@ -1,6 +1,6 @@
 {
   "name": "cap-angular-schematic-responsive",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "CAP Schematics Responsive Menu",
   "scripts": {
     "build": "tsc -p tsconfig.json",
