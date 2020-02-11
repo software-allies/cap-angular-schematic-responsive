@@ -211,16 +211,10 @@ function addBootstrapSchematic() {;
     return externalSchematic('cap-angular-schematic-bootstrap', 'ng-add', { version: "4.0.0" });
 }
 
-
-
-function addComponentSchematic() {;
-    return externalSchematic('@schematics/angular:component', 'ng generate', { name: "home" });
-}
-
 function addHomeRoute(): Rule {
   return (host: Tree) => {
 
-    const filePath = "/src/app/app-routing.module.ts";
+    const filePath = "src/app/app-routing.module.ts";
     const toAdd = 
   `
       { path: '', pathMatch: 'full', loadChildren: './home/home.module#HomeModule' }
@@ -232,8 +226,6 @@ function addHomeRoute(): Rule {
     return host;
   };
 }
-
-
 
 export function schematicsResponsiveMenu(options: ComponentOptions): Rule {
   return (host: Tree, context: FileSystemSchematicContext) => {
@@ -303,7 +295,6 @@ export function schematicsResponsiveMenu(options: ComponentOptions): Rule {
         appendToStylesFile(files.styles),
         addBootstrapCSS(),
         appendToAppComponentFile(files.appComponent),
-        addComponentSchematic(),
         addHomeRoute()
       ])),
     ])(host, context);
