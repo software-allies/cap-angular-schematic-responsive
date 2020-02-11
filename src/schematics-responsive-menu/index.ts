@@ -161,6 +161,27 @@ function addDeclarationToNgModule(options: ComponentOptions): Rule {
     }
     host.commitUpdate(declarationRecorder);
 
+    // Import Home Component and declare
+    if (options) {
+      let source = readIntoSourceFile(host, modulePath);
+      const componentPath = `${options.path}/app/home/home.component`;
+      const relativePath = buildRelativePath(modulePath, componentPath);
+      const classifiedName = strings.classify(`HomeComponent`);
+      const declarationChanges: any = addDeclarationToModule(
+        source,
+        modulePath,
+        classifiedName,
+        relativePath);
+
+      const declarationRecorder = host.beginUpdate(modulePath);
+      for (const change of declarationChanges) {
+        if (change instanceof InsertChange) {
+          declarationRecorder.insertLeft(change.pos, change.toAdd);
+        }
+      }
+      host.commitUpdate(declarationRecorder);
+    }
+
     // Import and include on Providers the load script ScriptService
     if (options) {
         // Need to refresh the AST because we overwrote the file in the host.
@@ -189,6 +210,30 @@ function addDeclarationToNgModule(options: ComponentOptions): Rule {
 function addBootstrapSchematic() {;
     return externalSchematic('cap-angular-schematic-bootstrap', 'ng-add', { version: "4.0.0" });
 }
+
+
+
+function addComponentSchematic() {;
+    return externalSchematic('@schematics/angular:component', 'ng generate', { name: "home" });
+}
+
+function addHomeRoute(): Rule {
+  return (host: Tree) => {
+
+    const filePath = "/src/app/app-routing.module.ts";
+    const toAdd = 
+  `
+      { path: '', pathMatch: 'full', loadChildren: './home/home.module#HomeModule' }
+  `;
+      
+    const component = getFileContent(host, filePath);
+    host.overwrite(filePath, component.replace(`const routes: Routes = [];`, `const routes: Routes = [${toAdd}];`));
+
+    return host;
+  };
+}
+
+
 
 export function schematicsResponsiveMenu(options: ComponentOptions): Rule {
   return (host: Tree, context: FileSystemSchematicContext) => {
@@ -258,6 +303,8 @@ export function schematicsResponsiveMenu(options: ComponentOptions): Rule {
         appendToStylesFile(files.styles),
         addBootstrapCSS(),
         appendToAppComponentFile(files.appComponent),
+        addComponentSchematic(),
+        addHomeRoute()
       ])),
     ])(host, context);
   };
