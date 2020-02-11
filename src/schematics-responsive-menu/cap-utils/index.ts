@@ -7,7 +7,7 @@ import {DefaultTreeDocument, DefaultTreeElement, parse as parseHtml} from 'parse
 export function appendToStartFile(host: Tree, filePath: string, styleRule: string) {
     const fileBuffer = host.read(filePath);
     if (!fileBuffer) {
-        throw new SchematicsException(`Could not read file for path: ${filePath}`);
+        throw new SchematicsException(`Could not read file for path: ${filePath}, SCSS Styles are required on this Application.`);
     }
     const content = fileBuffer.toString();
     if (content.includes(styleRule)) {
@@ -43,12 +43,14 @@ export function appendHtmlElementToBody(host: Tree, htmlFilePath: string, elemen
 
   // We always have access to the source code location here because the `getHtmlBodyTagElement`
   // function explicitly has the `sourceCodeLocationInfo` option enabled.
-  const endTagOffset = bodyTag.sourceCodeLocation!.endTag.startOffset;
-  const startTagOffset = bodyTag.sourceCodeLocation!.startTag.endOffset;
-  const indentationOffset = getChildElementIndentation(bodyTag);
-  const insertion = `${' '.repeat(indentationOffset)}${elementHtml}`;
 
-  let recordedChange: UpdateRecorder;
+  if (bodyTag.sourceCodeLocation!.endTag) {
+    const endTagOffset = bodyTag.sourceCodeLocation!.endTag.startOffset;
+    const startTagOffset = bodyTag.sourceCodeLocation!.startTag.endOffset;
+    const indentationOffset = getChildElementIndentation(bodyTag);
+    const insertion = `${' '.repeat(indentationOffset)}${elementHtml}`;
+
+    let recordedChange: UpdateRecorder;
 
     if (side === 'left') {
         recordedChange = host
@@ -61,6 +63,8 @@ export function appendHtmlElementToBody(host: Tree, htmlFilePath: string, elemen
             .insertRight(endTagOffset, `${insertion}\n`);
         host.commitUpdate(recordedChange);
     }
+  }
+
 }
 
 /** Adds a class to the body of the document. */
@@ -89,7 +93,7 @@ export function addBodyClass(host: Tree, htmlFilePath: string, className: string
         .beginUpdate(htmlFilePath)
         .insertRight(classAttributeLocation.endOffset - 1, ` ${className}`);
       host.commitUpdate(recordedChange);
-    }
+    } 
   } else {
     const recordedChange = host
       .beginUpdate(htmlFilePath)
@@ -112,6 +116,7 @@ function getElementByTagName(tagName: string, htmlContent: string): DefaultTreeE
     const node = nodeQueue.shift() as DefaultTreeElement;
     
     if (node.nodeName.toLowerCase() === tagName) {
+      console.log('node', node);
       return node;
     } else if (node.childNodes) {
       nodeQueue.push(...node.childNodes);

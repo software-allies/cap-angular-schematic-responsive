@@ -11,7 +11,8 @@ import {
   Rule,
   SchematicsException,
   Tree,
-  url
+  url,
+  externalSchematic
  } from '@angular-devkit/schematics';
 import { FileSystemSchematicContext } from '@angular-devkit/schematics/tools';
 import { InsertChange } from '@schematics/angular/utility/change';
@@ -30,13 +31,35 @@ import { appendHtmlElementToHead } from '@angular/cdk/schematics/utils/html-head
   addProviderToModule
  } from './vendored-ast-utils';
 import { 
-  appendHtmlElementToBody, 
+  //appendHtmlElementToBody, 
   appendToStartFile 
 } from './cap-utils';
 import { Schema as ComponentOptions } from './schema';
 import * as ts from 'typescript';
+import { addStyle } from './cap-utils/config';
+import { getFileContent } from '@schematics/angular/utility/test';
 
 
+
+
+function updateBodyOfIndexFile(filePath: string): Rule {
+    return (tree: Tree) => {
+
+      const toAddBegin = 
+      `
+  <div class="container-fluid p-0">
+      `;      
+      
+      const toAddFinal = 
+      `
+  </div>
+      `;
+      
+      const component = getFileContent(tree, filePath);
+      tree.overwrite(filePath, component.replace(`<body>`, `<body>${toAddBegin}`));
+      tree.overwrite(filePath, component.replace(`</body>`, `${toAddFinal}</body>`));
+    }
+}
 
 function updateIndexFile(path: string): Rule {
   return (host: Tree) => {
@@ -45,17 +68,14 @@ function updateIndexFile(path: string): Rule {
       '<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=optional" rel="stylesheet" async defer>',
       '<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=optional" rel="stylesheet" async defer>', 
       '<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" async defer>',
-      '<link rel="stylesheet" href="assets/css/bootstrap.min.css" async defer>',
       '<script src="assets/js/jquery-latest.min.js" async defer></script>',
     ].map((element: string) => {
       appendHtmlElementToHead(host, path, element);
     });
 
-    /** Appends the given element HTML fragment to the `<body>` element of the specified HTML file after open tag. */
-    appendHtmlElementToBody(host, path, '<div class="container-fluid p-0">', 'left');
+    /*appendHtmlElementToBody(host, path, '<div class="container-fluid p-0">', 'left');
 
-    /** Appends the given element HTML fragment to the `<body>` element of the specified HTML file before close tag. */
-    appendHtmlElementToBody(host, path, '</div>', 'right');
+    appendHtmlElementToBody(host, path, '</div>', 'right');*/
     return host;
   };
 }
@@ -68,12 +88,20 @@ function appendToAppComponentFile(path: string): Rule {
   };
 }
 
+function addBootstrapCSS(): Rule {
+  return (host: Tree) => {
+    addStyle(host, './src/assets/webslidemenu/dropdown-effects/fade-down.css');
+    addStyle(host, './src/assets/webslidemenu/webslidemenu.css');
+    return host;
+  };
+}
+
 function appendToStylesFile(path: string): Rule {
   return (host: Tree) => {
     const content = `
       // Webslidemenu imports
-      @import "./assets/webslidemenu/dropdown-effects/fade-down.css";
-      @import "./assets/webslidemenu/webslidemenu.css";
+      // @import "./assets/webslidemenu/dropdown-effects/fade-down.css";
+      // @import "./assets/webslidemenu/webslidemenu.css";
 
       body {
         background-color: #333333;
@@ -96,6 +124,7 @@ function appendToStylesFile(path: string): Rule {
       router-outlet {
         padding-bottom: 80px;
       }
+
     `;
     appendToStartFile(host, path, content);
     return host;
@@ -156,6 +185,10 @@ function addDeclarationToNgModule(options: ComponentOptions): Rule {
     }
     return host;
   };
+}
+
+function addBootstrapSchematic() {;
+    return externalSchematic('cap-angular-schematic-bootstrap', 'ng-add', {});
 }
 
 export function schematicsResponsiveMenu(options: ComponentOptions): Rule {
@@ -221,7 +254,10 @@ export function schematicsResponsiveMenu(options: ComponentOptions): Rule {
         addDeclarationToNgModule(options),
         mergeWith(templateSource),
         updateIndexFile(files.index),
+        updateBodyOfIndexFile(files.index),
+        addBootstrapSchematic(),
         appendToStylesFile(files.styles),
+        addBootstrapCSS(),
         appendToAppComponentFile(files.appComponent),
       ])),
     ])(host, context);
