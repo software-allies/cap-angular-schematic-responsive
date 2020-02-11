@@ -46,14 +46,14 @@ function updateBodyOfIndexFile(filePath: string): Rule {
     return (tree: Tree) => {
 
       const toAddBegin = 
-      `
+`
   <div class="container-fluid p-0">
-      `;      
+`;      
       
       const toAddFinal = 
-      `
+`
   </div>
-      `;
+`;
       
       const component = getFileContent(tree, filePath);
       tree.overwrite(filePath, component.replace(`<body>`, `<body>${toAddBegin}`));
@@ -98,10 +98,6 @@ function addBootstrapCSS(): Rule {
 function appendToStylesFile(path: string): Rule {
   return (host: Tree) => {
     const content = `
-      // Webslidemenu imports
-      // @import "./assets/webslidemenu/dropdown-effects/fade-down.css";
-      // @import "./assets/webslidemenu/webslidemenu.css";
-
       body {
         background-color: #333333;
         color: #f2f2f2;
@@ -217,7 +213,7 @@ function addHomeRoute(): Rule {
     const filePath = "src/app/app-routing.module.ts";
     const toAdd = 
   `
-      { path: '', pathMatch: 'full', loadChildren: './home/home.module#HomeModule' }
+      { path: 'home', pathMatch: 'full', loadChildren: './home/home.module#HomeModule' }
   `;
       
     const component = getFileContent(host, filePath);
