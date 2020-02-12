@@ -242,7 +242,7 @@ function addDeclarationToNgModule(options: ComponentOptions): Rule {
 }
 
 function addBootstrapSchematic() {
-    return externalSchematic('cap-angular-schematic-bootstrap', 'ng-add', { version: "4.0.0" });
+    return externalSchematic('cap-angular-schematic-bootstrap', 'ng-add', { version: "4.0.0", skipWebpackPlugin: true });
 }
 
 function addHomeRoute(): Rule {
@@ -338,7 +338,7 @@ export function schematicsResponsiveMenu(options: ComponentOptions): Rule {
 
     function addBootstrapToPackageJson(): Rule {
       return (host: Tree) => {
-        addPackageToPackageJson(host, 'dependencies', 'cap-angular-schematic-bootstrap', `^0.0.5`);
+        addPackageToPackageJson(host, 'dependencies', 'cap-angular-schematic-bootstrap', `^0.0.6`);
         return host;
       };
     }
