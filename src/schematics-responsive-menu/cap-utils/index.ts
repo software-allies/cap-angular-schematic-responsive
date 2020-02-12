@@ -3,17 +3,27 @@ import {getChildElementIndentation} from '@angular/cdk/schematics/utils/parse5-e
 import {DefaultTreeDocument, DefaultTreeElement, parse as parseHtml} from 'parse5';
 
 
-/** Appends fragment the specified file. */
-export function appendToStartFile(host: Tree, filePath: string, styleRule: string) {
+/** Remove content from specified file. */
+export function removeContentFromFile(host: Tree, filePath: string) {
     const fileBuffer = host.read(filePath);
     if (!fileBuffer) {
-        throw new SchematicsException(`Could not read file for path: ${filePath}, SCSS Styles are required on this Application.`);
+        throw new SchematicsException(`Could not read file for path: ${filePath}.`);
+    }
+    host.overwrite(filePath, '');
+    return true;
+}
+
+/** Appends fragment to the specified file. */
+export function appendToStartFile(host: Tree, filePath: string, fragment: string) {
+    const fileBuffer = host.read(filePath);
+    if (!fileBuffer) {
+        throw new SchematicsException(`Could not read file for path: ${filePath}.`);
     }
     const content = fileBuffer.toString();
-    if (content.includes(styleRule)) {
+    if (content.includes(fragment)) {
         return;
     }
-    const insertion = `${' '.repeat(0)}${styleRule}`;
+    const insertion = `${' '.repeat(0)}${fragment}`;
     let recordedChange: UpdateRecorder;
     recordedChange = host
         .beginUpdate(filePath)

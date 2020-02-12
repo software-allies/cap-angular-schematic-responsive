@@ -12,7 +12,8 @@ import {
   SchematicsException,
   Tree,
   url,
-  externalSchematic
+  externalSchematic,
+  noop
  } from '@angular-devkit/schematics';
 import { FileSystemSchematicContext } from '@angular-devkit/schematics/tools';
 import { InsertChange } from '@schematics/angular/utility/change';
@@ -28,18 +29,18 @@ import { buildDefaultPath } from '@schematics/angular/utility/project';
 import { getProjectFromWorkspace } from '@angular/cdk/schematics/utils/get-project';
 import { appendHtmlElementToHead } from '@angular/cdk/schematics/utils/html-head-element';import { 
   addDeclarationToModule,
-  addProviderToModule
+  addProviderToModule,
+  addImportToModule
  } from './vendored-ast-utils';
 import { 
-  //appendHtmlElementToBody, 
-  appendToStartFile 
+  appendToStartFile,
+  removeContentFromFile
 } from './cap-utils';
 import { Schema as ComponentOptions } from './schema';
 import * as ts from 'typescript';
 import { addStyle } from './cap-utils/config';
 import { getFileContent } from '@schematics/angular/utility/test';
-
-
+import { addPackageToPackageJson } from './cap-utils/package';
 
 
 function updateBodyOfIndexFile(filePath: string): Rule {
@@ -79,10 +80,24 @@ function updateIndexFile(path: string): Rule {
   };
 }
 
-function appendToAppComponentFile(path: string): Rule {
+function removeContentFromAppComponentHtml(filePath: string): Rule {
   return (host: Tree) => {
+    removeContentFromFile(host, filePath);
+    return host;
+  };
+}
+
+function appendToAppComponentFile(path: string, options: ComponentOptions): Rule {
+  return (host: Tree) => {
+
+    if (options.removeAppComponentHtml) {
+      const content = `<router-outlet></router-outlet>`;
+      appendToStartFile(host, path, content);
+    }
+
     const content = `<app-header></app-header>`;
     appendToStartFile(host, path, content);
+
     return host;
   };
 }
@@ -99,8 +114,8 @@ function appendToStylesFile(path: string): Rule {
   return (host: Tree) => {
     const content = `
       body {
-        background-color: #333333;
-        color: #f2f2f2;
+        background-color: #333333 !important;
+        color: #f2f2f2 !important;
       }
 
       app-header {
@@ -126,12 +141,12 @@ function appendToStylesFile(path: string): Rule {
   };
 }
 
-function readIntoSourceFile(host: Tree, modulePath: string) {
-  const text = host.read(modulePath);
+function readIntoSourceFile(host: Tree, filePath: string) {
+  const text = host.read(filePath);
   if (text === null) {
-    throw new SchematicsException(`File ${modulePath} does not exist.`);
+    throw new SchematicsException(`File ${filePath} does not exist.`);
   }
-  return ts.createSourceFile(modulePath, text.toString('utf-8'), ts.ScriptTarget.Latest, true);
+  return ts.createSourceFile(filePath, text.toString('utf-8'), ts.ScriptTarget.Latest, true);
 }
 
 function addDeclarationToNgModule(options: ComponentOptions): Rule {
@@ -156,6 +171,50 @@ function addDeclarationToNgModule(options: ComponentOptions): Rule {
       }
     }
     host.commitUpdate(declarationRecorder);
+
+    // Import and include on Imports the HttpClientModule
+    if (options) {
+        // Need to refresh the AST because we overwrote the file in the host.
+        source = readIntoSourceFile(host, modulePath);
+        const servicePath = `@angular/common/http`;
+        const relativePath = servicePath;
+        const classifiedName = strings.classify(`HttpClientModule`);
+        const providerRecorder = host.beginUpdate(modulePath);
+        const providerChanges: any = addImportToModule(
+            source,
+            modulePath,
+            classifiedName,
+            relativePath);
+
+        for (const change of providerChanges) {
+            if (change instanceof InsertChange) {
+                providerRecorder.insertLeft(change.pos, change.toAdd);
+            }
+        }
+        host.commitUpdate(providerRecorder);
+    }
+    
+    // Import and include on Imports the HomeModule
+    if (options) {
+        // Need to refresh the AST because we overwrote the file in the host.
+        source = readIntoSourceFile(host, modulePath);
+        const componentPath = `${options.path}/app/home/home.module`;
+        const relativePath = buildRelativePath(modulePath, componentPath);
+        const classifiedName = strings.classify(`HomeModule`);
+        const providerRecorder = host.beginUpdate(modulePath);
+        const providerChanges: any = addImportToModule(
+            source,
+            modulePath,
+            classifiedName,
+            relativePath);
+
+        for (const change of providerChanges) {
+            if (change instanceof InsertChange) {
+                providerRecorder.insertLeft(change.pos, change.toAdd);
+            }
+        }
+        host.commitUpdate(providerRecorder);
+    }
 
     // Import and include on Providers the load script ScriptService
     if (options) {
@@ -182,7 +241,7 @@ function addDeclarationToNgModule(options: ComponentOptions): Rule {
   };
 }
 
-function addBootstrapSchematic() {;
+function addBootstrapSchematic() {
     return externalSchematic('cap-angular-schematic-bootstrap', 'ng-add', { version: "4.0.0" });
 }
 
@@ -190,13 +249,24 @@ function addHomeRoute(): Rule {
   return (host: Tree) => {
 
     const filePath = "src/app/app-routing.module.ts";
+    
+    // Add routes to routing
     const toAdd = 
-  `
-      { path: 'home', pathMatch: 'full', loadChildren: './home/home.module#HomeModule' }
-  `;
+`
+    { path: '', pathMatch: 'full', component: HomeComponent },
+    { path: 'home', pathMatch: 'full', component: HomeComponent },
+    { path: '**', redirectTo: '' }
+`;
       
     const component = getFileContent(host, filePath);
     host.overwrite(filePath, component.replace(`const routes: Routes = [];`, `const routes: Routes = [${toAdd}];`));
+
+    // Add import to routing
+    const content = 
+`
+content { HomeComponent } from './home/home.component';
+`;
+    appendToStartFile(host, filePath, content);
 
     return host;
   };
@@ -266,8 +336,16 @@ export function schematicsResponsiveMenu(options: ComponentOptions): Rule {
       })
     ]);
 
+    function addBootstrapToPackageJson(): Rule {
+      return (host: Tree) => {
+        addPackageToPackageJson(host, 'dependencies', 'cap-angular-schematic-bootstrap', `^0.0.5`);
+        return host;
+      };
+    }
+
     return chain([
       branchAndMerge(chain([
+        addBootstrapToPackageJson(),
         addDeclarationToNgModule(options),
         mergeWith(templateSource),
         updateIndexFile(files.index),
@@ -275,7 +353,8 @@ export function schematicsResponsiveMenu(options: ComponentOptions): Rule {
         addBootstrapSchematic(),
         appendToStylesFile(files.styles),
         addBootstrapCSS(),
-        appendToAppComponentFile(files.appComponent),
+        (options.removeAppComponentHtml) ? removeContentFromAppComponentHtml(files.appComponent) :  noop(),
+        appendToAppComponentFile(files.appComponent, options),
         addHomeRoute()
       ])),
     ])(host, context);

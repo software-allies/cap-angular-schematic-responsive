@@ -22,7 +22,18 @@
         "$source": "argv",
         "index": 1
       }
+    },
+    "removeAppComponentHtml": {
+      "type": "boolean",
+      "description": "Remove content from app.component.html",
+      "x-prompt": "Do you want to remove the content for app.component.html?",
+      "default": true,
+      "$default": {
+        "$source": "argv",
+        "index": 2
+      }
     }
+    
   },
   "required": ["project", "logo"]
 }
