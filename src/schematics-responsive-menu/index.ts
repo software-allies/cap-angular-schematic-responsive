@@ -264,7 +264,7 @@ function addHomeRoute(): Rule {
     // Add import to routing
     const content = 
 `
-content { HomeComponent } from './home/home.component';
+import { HomeComponent } from './home/home.component';
 `;
     appendToStartFile(host, filePath, content);
 
