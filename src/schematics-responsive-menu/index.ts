@@ -133,6 +133,8 @@ function appendToStylesFile(path: string): Rule {
 
       router-outlet {
         padding-bottom: 80px;
+        position: relative;
+        top: 103px;
       }
 
     `;
