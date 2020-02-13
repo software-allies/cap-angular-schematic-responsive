@@ -256,8 +256,7 @@ function addHomeRoute(): Rule {
     const toAdd = 
 `
     { path: '', pathMatch: 'full', component: HomeComponent },
-    { path: 'home', pathMatch: 'full', component: HomeComponent },
-    { path: '**', redirectTo: '' }
+    { path: 'home', pathMatch: 'full', component: HomeComponent }
 `;
       
     const component = getFileContent(host, filePath);
