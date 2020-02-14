@@ -2,6 +2,10 @@ import { ScriptService } from '../shared/services/load-scripts.service';
 import { Component, Inject, PLATFORM_ID, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { isPlatformBrowser } from '@angular/common';
+<% if(auth) { %>
+import { AuthService } from 'cap-authorization';
+import { StateService } from 'cap-authorization';
+<% } %>
 
 
 @Component({
@@ -13,6 +17,10 @@ import { isPlatformBrowser } from '@angular/common';
 export class HeaderComponent implements OnInit {
 
   constructor(
+    <% if(auth) { %>
+      public authService: AuthService,
+      public stateService: StateService,
+    <% } %>
       private scriptService: ScriptService,
       @Inject(PLATFORM_ID) private platformId: string,
       @Inject(DOCUMENT) private document: Document

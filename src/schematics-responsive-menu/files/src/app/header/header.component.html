@@ -39,10 +39,30 @@
                             </div>
                         </div>
                     </li>
+                    <% if(auth) { %>
+                    <li *ngIf(!this.stateService.isLogged)>
+                        <a routerLink="/auth/login">
+                            <i class="fa fa-user"></i>
+                            <span>Login</span>
+                        </a>
+                    </li>
+                    <li *ngIf(this.stateService.isLogged)>
+                        <a click="this.authService.signOut()">
+                            <i class="fa fa-user"></i>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+                    <li *ngIf(!this.stateService.isLogged)>
+                        <a routerLink="/auth/register">
+                            <i class="fa fa-user"></i>
+                            <span>Register</span>
+                        </a>
+                    </li>
+                    <% } %>
                     <li>
                         <a role="link">
                             <i class="fa fa-search "></i>
-                            <span>SEARCH</span>
+                            <span>Search</span>
                         </a>
                     </li>
                 </ul>

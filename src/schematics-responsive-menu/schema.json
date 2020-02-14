@@ -32,6 +32,16 @@
         "$source": "argv",
         "index": 2
       }
+    },
+    "auth": {
+      "type": "boolean",
+      "description": "Add routes for Login and Register",
+      "x-prompt": "Do you want integrate with the cap-authorization module?",
+      "default": false,
+      "$default": {
+        "$source": "argv",
+        "index": 3
+      }
     }
   },
   "required": ["project", "logo"]

@@ -27,7 +27,8 @@ import {
 import { parseName } from '@schematics/angular/utility/parse-name';
 import { buildDefaultPath } from '@schematics/angular/utility/project';
 import { getProjectFromWorkspace } from '@angular/cdk/schematics/utils/get-project';
-import { appendHtmlElementToHead } from '@angular/cdk/schematics/utils/html-head-element';import { 
+import { appendHtmlElementToHead } from '@angular/cdk/schematics/utils/html-head-element';
+import { 
   addDeclarationToModule,
   addProviderToModule,
   addImportToModule
@@ -87,16 +88,25 @@ function removeContentFromAppComponentHtml(filePath: string): Rule {
   };
 }
 
-function appendToAppComponentFile(path: string, options: ComponentOptions): Rule {
+function appendToAppComponentFile(filePath: string, options: ComponentOptions): Rule {
   return (host: Tree) => {
-
+    
     if (options.removeAppComponentHtml) {
       const content = `<router-outlet></router-outlet>`;
-      appendToStartFile(host, path, content);
+      appendToStartFile(host, filePath, content);
     }
 
     const content = `<app-header></app-header>`;
-    appendToStartFile(host, path, content);
+    appendToStartFile(host, filePath, content);
+
+    // Add footer to end of file
+    const toAdd = 
+`
+<app-footer></app-footer>
+`;
+      
+    const component = getFileContent(host, filePath);
+    host.overwrite(filePath, component.replace(`<router-outlet></router-outlet>`, `<router-outlet></router-outlet>${toAdd}`));
 
     return host;
   };
@@ -114,8 +124,7 @@ function appendToStylesFile(path: string): Rule {
   return (host: Tree) => {
     const content = `
       body {
-        background-color: #333333 !important;
-        color: #f2f2f2 !important;
+        color: #333333 !important;
       }
 
       app-header {
@@ -132,9 +141,17 @@ function appendToStylesFile(path: string): Rule {
       }
 
       router-outlet {
-        padding-bottom: 80px;
         position: relative;
         top: 103px;
+        min-heigth: 70vh;
+        padding: 80px 0 80px 0;
+      }
+
+      app-footer {
+        height: 103px;
+        display: block;
+        background-color: #333333;
+        color: #f2f2f2;
       }
 
     `;
@@ -174,6 +191,28 @@ function addDeclarationToNgModule(options: ComponentOptions): Rule {
     }
     host.commitUpdate(declarationRecorder);
 
+    // Import and include on Imports the FooterComponent
+    if (options) {
+        // Need to refresh the AST because we overwrote the file in the host.
+      let source = readIntoSourceFile(host, modulePath);
+      const componentPath = `${options.path}/app/footer/footer.component`;
+      const relativePath = buildRelativePath(modulePath, componentPath);
+      const classifiedName = strings.classify(`FooterComponent`);
+      const declarationChanges: any = addDeclarationToModule(
+        source,
+        modulePath,
+        classifiedName,
+        relativePath);
+
+      const declarationRecorder = host.beginUpdate(modulePath);
+      for (const change of declarationChanges) {
+        if (change instanceof InsertChange) {
+          declarationRecorder.insertLeft(change.pos, change.toAdd);
+        }
+      }
+      host.commitUpdate(declarationRecorder);
+    }
+    
     // Import and include on Imports the HttpClientModule
     if (options) {
         // Need to refresh the AST because we overwrote the file in the host.
