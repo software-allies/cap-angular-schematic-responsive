@@ -92,7 +92,12 @@ function appendToAppComponentFile(filePath: string, options: ComponentOptions): 
   return (host: Tree) => {
     
     if (options.removeAppComponentHtml) {
-      const content = `<router-outlet></router-outlet>`;
+      const content = 
+`
+<div id="main">
+  <router-outlet></router-outlet>
+</div>
+`;
       appendToStartFile(host, filePath, content);
     }
 
@@ -140,10 +145,9 @@ function appendToStylesFile(path: string): Rule {
         }
       }
 
-      router-outlet {
+      #main {
         position: relative;
-        top: 103px;
-        min-heigth: 70vh;
+        min-height: 80vh;
         padding: 80px 0 80px 0;
       }
 
@@ -286,6 +290,10 @@ function addBootstrapSchematic() {
     return externalSchematic('cap-angular-schematic-bootstrap', 'ng-add', { version: "4.0.0", skipWebpackPlugin: true });
 }
 
+function addAuthenticationSchematic(options: ComponentOptions) {
+    return externalSchematic('cap-angular-schematic-authentication-forked', 'ng-add', { project: options.});
+}
+
 function addHomeRoute(): Rule {
   return (host: Tree) => {
 
@@ -383,9 +391,18 @@ export function schematicsResponsiveMenu(options: ComponentOptions): Rule {
       };
     }
 
+    
+    function addAuthenticationToPackageJson(): Rule {
+      return (host: Tree) => {
+        addPackageToPackageJson(host, 'dependencies', 'cap-angular-schematic-authentication-forked', `^0.0.6`);
+        return host;
+      };
+    }
+
     return chain([
       branchAndMerge(chain([
         addBootstrapToPackageJson(),
+        addAuthenticationToPackageJson(),
         addDeclarationToNgModule(options),
         mergeWith(templateSource),
         updateIndexFile(files.index),
@@ -394,6 +411,7 @@ export function schematicsResponsiveMenu(options: ComponentOptions): Rule {
         appendToStylesFile(files.styles),
         addBootstrapCSS(),
         (options.removeAppComponentHtml) ? removeContentFromAppComponentHtml(files.appComponent) :  noop(),
+        (options.installAuth) ? addAuthenticationSchematic(options) :  noop(),
         appendToAppComponentFile(files.appComponent, options),
         addHomeRoute()
       ])),

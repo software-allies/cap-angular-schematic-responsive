@@ -3,8 +3,8 @@ import { Component, Inject, PLATFORM_ID, ChangeDetectionStrategy, OnInit } from 
 import { DOCUMENT } from '@angular/common';
 import { isPlatformBrowser } from '@angular/common';
 <% if(auth) { %>
-import { AuthService } from 'cap-authorization';
-import { StateService } from 'cap-authorization';
+import { AuthenticationService } from 'cap-authentication-forked';
+import { StateService } from 'cap-authentication-forked';
 <% } %>
 
 
@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     <% if(auth) { %>
-      public authService: AuthService,
+      public authenticationService: AuthenticationService,
       public stateService: StateService,
     <% } %>
       private scriptService: ScriptService,

@@ -35,12 +35,22 @@
     },
     "auth": {
       "type": "boolean",
-      "description": "Add routes for Login and Register",
-      "x-prompt": "Do you want integrate with the cap-authorization module?",
+      "description": "Add menu options for Login and Register",
+      "x-prompt": "Do you want integrate with the cap-authentication module?",
       "default": false,
       "$default": {
         "$source": "argv",
         "index": 3
+      }
+    },
+    "installAuth": {
+      "type": "boolean",
+      "description": "Install cap-authentication Schematic",
+      "x-prompt": "Do you want to add cap-authentication Schematic?",
+      "default": false,
+      "$default": {
+        "$source": "argv",
+        "index": 4
       }
     }
   },

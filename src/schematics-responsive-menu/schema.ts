@@ -3,6 +3,7 @@ export interface Schema {
     logo: string;
     removeAppComponentHtml: boolean;
     auth: boolean;
+    installAuth: boolean;
     name?: string;
     title?: string;
     path?: string;

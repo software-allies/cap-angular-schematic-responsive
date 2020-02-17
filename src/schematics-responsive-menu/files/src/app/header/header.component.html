@@ -40,22 +40,28 @@
                         </div>
                     </li>
                     <% if(auth) { %>
-                    <li *ngIf(!this.stateService.isLogged)>
+                    <li *ngIf="!this.stateService.state.isLogged">
                         <a routerLink="/auth/login">
                             <i class="fa fa-user"></i>
                             <span>Login</span>
                         </a>
                     </li>
-                    <li *ngIf(this.stateService.isLogged)>
-                        <a click="this.authService.signOut()">
+                    <li *ngIf="this.stateService.state.isLogged">
+                        <a (click)="this.authenticationService.signOut()">
                             <i class="fa fa-user"></i>
                             <span>Logout</span>
                         </a>
                     </li>
-                    <li *ngIf(!this.stateService.isLogged)>
+                    <li *ngIf="!this.stateService.state.isLogged">
                         <a routerLink="/auth/register">
                             <i class="fa fa-user"></i>
                             <span>Register</span>
+                        </a>
+                    </li>
+                    <li *ngIf="this.stateService.state.isLogged">
+                        <a routerLink="/auth/profile">
+                            <i class="fa fa-user"></i>
+                            <span>Profile</span>
                         </a>
                     </li>
                     <% } %>
