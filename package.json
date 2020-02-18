@@ -1,6 +1,6 @@
 {
   "name": "cap-angular-schematic-responsive",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "CAP Schematics Responsive Menu",
   "scripts": {
     "build": "tsc -p tsconfig.json",
@@ -35,7 +35,7 @@
     "@angular/cdk": "^8.2.3",
     "@schematics/angular": "^8.3.23",
     "cap-angular-schematic-bootstrap": "0.0.6",
-    "cap-angular-schematic-authentication-forked": "0.0.2",
+    "cap-angular-schematic-authentication-forked": "0.0.5",
     "schematics-utilities": "^2.0.1"
   }
 }
