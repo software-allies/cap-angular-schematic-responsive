@@ -93,11 +93,9 @@ function appendToAppComponentFile(filePath: string, options: ComponentOptions): 
     
     if (options.removeAppComponentHtml) {
       const content = 
-`
-<div id="main">
+`<div id="main">
   <router-outlet></router-outlet>
-</div>
-`;
+</div>`;
       appendToStartFile(host, filePath, content);
     }
 
@@ -106,9 +104,7 @@ function appendToAppComponentFile(filePath: string, options: ComponentOptions): 
 
     // Add footer to end of file
     const toAdd = 
-`
-<app-footer></app-footer>
-`;
+`<app-footer></app-footer>`;
       
     const component = getFileContent(host, filePath);
     host.overwrite(filePath, `${component}${toAdd}`);
@@ -282,8 +278,7 @@ function addHomeRoute(): Rule {
     const toAdd = 
 `
     { path: '', pathMatch: 'full', component: HomeComponent },
-    { path: 'home', pathMatch: 'full', component: HomeComponent }
-`;
+    { path: 'home', pathMatch: 'full', component: HomeComponent },`;
       
     const component = getFileContent(host, filePath);
     host.overwrite(filePath, component.replace(`const routes: Routes = [`, `const routes: Routes = [${toAdd}`));

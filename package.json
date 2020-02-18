@@ -35,7 +35,7 @@
     "@angular/cdk": "^8.2.3",
     "@schematics/angular": "^8.3.23",
     "cap-angular-schematic-bootstrap": "0.0.6",
-    "cap-angular-schematic-authentication-forked": "0.0.3",
+    "cap-angular-schematic-authentication-forked": "0.0.2",
     "schematics-utilities": "^2.0.1"
   }
 }
