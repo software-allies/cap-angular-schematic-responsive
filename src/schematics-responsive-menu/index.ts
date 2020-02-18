@@ -291,7 +291,7 @@ function addBootstrapSchematic() {
 }
 
 function addAuthenticationSchematic(options: ComponentOptions) {
-    return externalSchematic('cap-angular-schematic-authentication-forked', 'ng-add', { project: options.});
+    return externalSchematic('cap-angular-schematic-authentication-forked', 'ng-add', { project: options.project });
 }
 
 function addHomeRoute(): Rule {
@@ -394,7 +394,7 @@ export function schematicsResponsiveMenu(options: ComponentOptions): Rule {
     
     function addAuthenticationToPackageJson(): Rule {
       return (host: Tree) => {
-        addPackageToPackageJson(host, 'dependencies', 'cap-angular-schematic-authentication-forked', `^0.0.6`);
+        addPackageToPackageJson(host, 'dependencies', 'cap-angular-schematic-authentication-forked', `^0.0.2`);
         return host;
       };
     }
