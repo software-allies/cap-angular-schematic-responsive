@@ -49,13 +49,10 @@ function updateBodyOfIndexFile(filePath: string): Rule {
 
       const toAddBegin = 
 `
-  <div class="container-fluid p-0">
-`;      
+<div class="container-fluid p-0">`;      
       
       const toAddFinal = 
-`
-  </div>
-`;
+`</div>`;
       
       const component = getFileContent(tree, filePath);
       tree.overwrite(filePath, component.replace(`<body>`, `<body>${toAddBegin}`));
@@ -124,16 +121,16 @@ function addBootstrapCSS(): Rule {
 function appendToStylesFile(path: string): Rule {
   return (host: Tree) => {
     const content = `
-      body {
-        color: #333333 !important;
-      }
+  body {
+    color: #333333 !important;
+  }
 
-      #main {
-        position: relative;
-        min-height: 80vh;
-        padding: 80px 0 80px 0;
-      }
-    `;
+  #main {
+    position: relative;
+    min-height: 80vh;
+    padding: 80px 0 80px 0;
+  }
+`;
     appendToStartFile(host, path, content);
     return host;
   };
@@ -286,8 +283,7 @@ function addHomeRoute(): Rule {
     // Add import to routing
     const content = 
 `
-import { HomeComponent } from './home/home.component';
-`;
+import { HomeComponent } from './home/home.component';`;
     appendToStartFile(host, filePath, content);
 
     return host;
@@ -358,25 +354,8 @@ export function schematicsResponsiveMenu(options: ComponentOptions): Rule {
       })
     ]);
 
-    /*function addBootstrapToPackageJson(): Rule {
-      return (host: Tree) => {
-        addPackageToPackageJson(host, 'dependencies', 'cap-angular-schematic-bootstrap', `^0.0.6`);
-        return host;
-      };
-    }
-
-    
-    function addAuthenticationToPackageJson(): Rule {
-      return (host: Tree) => {
-        addPackageToPackageJson(host, 'dependencies', 'cap-angular-schematic-authentication-forked', `^0.0.2`);
-        return host;
-      };
-    }*/
-
     return chain([
       branchAndMerge(chain([
-        /*addBootstrapToPackageJson(),
-        addAuthenticationToPackageJson(),*/
         addDeclarationToNgModule(options),
         mergeWith(templateSource),
         updateIndexFile(files.index),
