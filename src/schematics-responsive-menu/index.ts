@@ -41,7 +41,6 @@ import { Schema as ComponentOptions } from './schema';
 import * as ts from 'typescript';
 import { addStyle } from './cap-utils/config';
 import { getFileContent } from '@schematics/angular/utility/test';
-// import { addPackageToPackageJson } from './cap-utils/package';
 
 
 function updateBodyOfIndexFile(filePath: string): Rule {

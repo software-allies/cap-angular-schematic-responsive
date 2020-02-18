@@ -43,32 +43,32 @@
                     <li *ngIf="!this.stateService.state.isLogged">
                         <a routerLink="/auth/login">
                             <i class="fa fa-user"></i>
-                            <span>Login</span>
+                            Login
                         </a>
                     </li>
                     <li *ngIf="this.stateService.state.isLogged">
                         <a (click)="this.authenticationService.signOut()">
                             <i class="fa fa-user"></i>
-                            <span>Logout</span>
+                            Logout
                         </a>
                     </li>
                     <li *ngIf="!this.stateService.state.isLogged">
                         <a routerLink="/auth/register">
                             <i class="fa fa-user"></i>
-                            <span>Register</span>
+                            Register
                         </a>
                     </li>
                     <li *ngIf="this.stateService.state.isLogged">
                         <a routerLink="/auth/profile">
                             <i class="fa fa-user"></i>
-                            <span>Profile</span>
+                            Profile
                         </a>
                     </li>
                     <% } %>
                     <li>
                         <a role="link">
                             <i class="fa fa-search "></i>
-                            <span>Search</span>
+                            Search
                         </a>
                     </li>
                 </ul>
