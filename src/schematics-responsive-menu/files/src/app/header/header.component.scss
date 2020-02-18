@@ -1,3 +1,15 @@
+header {
+    height: 103px;
+    display: block;
+    @media (min-width: 1200px) {}
+    @media (min-width: 992px) and (max-width: 1199px) {}
+    @media (min-width: 576px) and (max-width: 991px) {
+        height: 54px;
+    }
+    @media (max-width: 575px) {
+        height: 54px;
+    }
+} 
 
 .options-box {
     display: block;
