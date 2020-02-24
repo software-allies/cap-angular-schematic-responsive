@@ -1,11 +1,11 @@
 export interface Schema {
-    project: string
+    title: string
     logo: string;
     removeAppComponentHtml: boolean;
     auth: boolean;
     installAuth: boolean;
+    project?: string;
     name?: string;
-    title?: string;
     path?: string;
     module?: any;
 }

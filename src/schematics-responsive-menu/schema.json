@@ -4,9 +4,9 @@
   "title": "CAP Schematics Responsive Menu",
   "type": "object",
   "properties": {
-    "project": {
+    "title": {
       "type": "string",
-      "description": "App Name",
+      "description": "App Title",
       "x-prompt": "What is the project title for the App?",
       "$default": {
         "$source": "argv",
@@ -17,7 +17,6 @@
       "type": "string",
       "description": "App logo",
       "x-prompt": "What is the logo url for the header menu?",
-      "default": "https://angular.io/assets/images/logos/angular/logo-nav@2x.png",
       "$default": {
         "$source": "argv",
         "index": 1
@@ -27,7 +26,6 @@
       "type": "boolean",
       "description": "Remove content from app.component.html",
       "x-prompt": "Do you want to remove the content for app.component.html?",
-      "default": false,
       "$default": {
         "$source": "argv",
         "index": 2
@@ -37,7 +35,6 @@
       "type": "boolean",
       "description": "Add menu options for Login and Register",
       "x-prompt": "Do you want integrate with the cap-authentication module?",
-      "default": false,
       "$default": {
         "$source": "argv",
         "index": 3
@@ -47,12 +44,11 @@
       "type": "boolean",
       "description": "Install cap-authentication Schematic",
       "x-prompt": "Do you want to add cap-authentication Schematic?",
-      "default": false,
       "$default": {
         "$source": "argv",
         "index": 4
       }
     }
   },
-  "required": ["project", "logo"]
+  "required": ["title", "logo", "removeAppComponentHtml", "auth", "installAuth"]
 }

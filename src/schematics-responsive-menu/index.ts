@@ -41,6 +41,7 @@ import { Schema as ComponentOptions } from './schema';
 import * as ts from 'typescript';
 import { addStyle } from './cap-utils/config';
 import { getFileContent } from '@schematics/angular/utility/test';
+import { getAppName } from './cap-utils/package';
 
 
 function updateBodyOfIndexFile(filePath: string): Rule {
@@ -262,7 +263,7 @@ function addBootstrapSchematic() {
 }
 
 function addAuthenticationSchematic(options: ComponentOptions) {
-    return externalSchematic('cap-angular-schematic-authentication-forked', 'ng-add', { project: options.project });
+    return externalSchematic('cap-angular-schematic-auth-auth0', 'ng-add', { project: options.project });
 }
 
 function addHomeRoute(): Rule {
@@ -307,7 +308,8 @@ export function schematicsResponsiveMenu(options: ComponentOptions): Rule {
     options.name = parsedPath.name;
     options.path = parsedPath.path;
 
-    // Get Index
+    // Get project
+    options.project = getAppName(host);
     if (!options.project) {
       throw new SchematicsException('Option "project" is required.');
     }
