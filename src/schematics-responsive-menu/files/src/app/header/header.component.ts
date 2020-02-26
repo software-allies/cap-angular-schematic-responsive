@@ -3,8 +3,8 @@ import { Component, Inject, PLATFORM_ID, ChangeDetectionStrategy, OnInit } from 
 import { DOCUMENT } from '@angular/common';
 import { isPlatformBrowser } from '@angular/common';
 <% if(auth) { %>
-import { AuthenticationService } from 'cap-authentication-forked';
-import { StateService } from 'cap-authentication-forked';
+import { AuthenticationService } from 'cap-authentication';
+import { StateService } from 'cap-authentication';
 <% } %>
 
 

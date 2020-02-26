@@ -1,6 +1,6 @@
 {
   "name": "cap-angular-schematic-responsive",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "description": "CAP Schematics Responsive Menu",
   "scripts": {
     "build": "tsc -p tsconfig.json",
@@ -15,6 +15,13 @@
     "name": "Software Allies",
     "url": "https://softwareallies.com"
   },
+  "contributors": [
+    { 
+      "email": "cesar_alonso_m_g@hotmail.com",
+      "name": "César Alonso Magaña Gavilanes",
+      "url": "https://github.com/cesar-alonso-magana"
+    }
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
