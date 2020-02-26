@@ -52,7 +52,8 @@ function updateBodyOfIndexFile(filePath: string): Rule {
 <div class="container-fluid p-0">`;      
       
       const toAddFinal = 
-`</div>`;
+`</div>
+`;
       
       const component = getFileContent(tree, filePath);
       tree.overwrite(filePath, component.replace(`<body>`, `<body>${toAddBegin}`));
@@ -276,7 +277,7 @@ function addHomeRoute(): Rule {
 `
     { path: '', pathMatch: 'full', component: HomeComponent },
     { path: 'home', pathMatch: 'full', component: HomeComponent },`;
-      
+
     const component = getFileContent(host, filePath);
     host.overwrite(filePath, component.replace(`const routes: Routes = [`, `const routes: Routes = [${toAdd}`));
 

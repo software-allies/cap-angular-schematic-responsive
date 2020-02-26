@@ -23,6 +23,7 @@
                         <a routerLink="/home">
                             Home <span class="fa fa-angle-down"></span>
                         </a>
+                        <!-- 
                         <div class="wsmegamenu clearfix">
                             <div class="container-fluid">
                                 <div class="row">
@@ -37,8 +38,31 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> 
+                        -->
                     </li>
+                    <% if(sfcore) { %>
+                    <li>
+                        <a routerLink="/account">
+                            Account
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/contact">
+                            Contact
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/lead">
+                            Lead
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/opportunity">
+                            Opportunity
+                        </a>
+                    </li>
+                    <% } %>
                     <% if(auth) { %>
                     <li *ngIf="!this.stateService.state.isLogged">
                         <a routerLink="/auth/login">
@@ -65,12 +89,6 @@
                         </a>
                     </li>
                     <% } %>
-                    <li>
-                        <a role="link">
-                            <i class="fa fa-search "></i>
-                            Search
-                        </a>
-                    </li>
                 </ul>
             </nav>
         </div>

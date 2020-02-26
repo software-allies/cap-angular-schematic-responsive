@@ -1,7 +1,7 @@
 {
   "name": "cap-angular-schematic-responsive",
-  "version": "1.0.22",
-  "description": "CAP Schematics Responsive Menu",
+  "version": "1.0.23",
+  "description": "CAP Schematics Responsive Template",
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "test": "npm run build && jasmine src/**/*_spec.js"
