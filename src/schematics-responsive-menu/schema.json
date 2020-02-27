@@ -40,13 +40,22 @@
         "index": 3
       }
     },
+    "authService": {
+      "type": "string",
+      "description": "Which service for authentication you choose?",
+      "x-prompt": "Which service for authentication you choose?",
+      "$default": {
+        "$source": "argv",
+        "index": 4
+      }
+    },
     "installAuth": {
       "type": "boolean",
       "description": "Install cap-authentication Schematic",
       "x-prompt": "Do you want to add cap-authentication Schematic?",
       "$default": {
         "$source": "argv",
-        "index": 4
+        "index": 5
       }
     },
     "sfcore": {
@@ -55,9 +64,9 @@
       "x-prompt": "Do you want to integrate with cap-sfcore?",
       "$default": {
         "$source": "argv",
-        "index": 5
+        "index": 6
       }
     }
   },
-  "required": ["title", "logo", "removeAppComponentHtml", "auth", "installAuth", "sfcore"]
+  "required": ["title", "logo", "removeAppComponentHtml", "auth", "authService", "installAuth", "sfcore"]
 }
