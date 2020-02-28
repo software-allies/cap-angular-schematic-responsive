@@ -41,7 +41,7 @@ import { Schema as ComponentOptions } from './schema';
 import * as ts from 'typescript';
 import { addStyle } from './cap-utils/config';
 import { getFileContent } from '@schematics/angular/utility/test';
-import { addPackageToPackageJson } from './cap-utils/package';
+import { getAppName } from './cap-utils/package';
 
 
 function updateBodyOfIndexFile(filePath: string): Rule {
@@ -49,12 +49,10 @@ function updateBodyOfIndexFile(filePath: string): Rule {
 
       const toAddBegin = 
 `
-  <div class="container-fluid p-0">
-`;      
+<div class="container-fluid p-0">`;      
       
       const toAddFinal = 
-`
-  </div>
+`</div>
 `;
       
       const component = getFileContent(tree, filePath);
@@ -93,11 +91,9 @@ function appendToAppComponentFile(filePath: string, options: ComponentOptions): 
     
     if (options.removeAppComponentHtml) {
       const content = 
-`
-<div id="main">
+`<div id="main">
   <router-outlet></router-outlet>
-</div>
-`;
+</div>`;
       appendToStartFile(host, filePath, content);
     }
 
@@ -106,12 +102,10 @@ function appendToAppComponentFile(filePath: string, options: ComponentOptions): 
 
     // Add footer to end of file
     const toAdd = 
-`
-<app-footer></app-footer>
-`;
+`<app-footer></app-footer>`;
       
     const component = getFileContent(host, filePath);
-    host.overwrite(filePath, component.replace(`<router-outlet></router-outlet>`, `<router-outlet></router-outlet>${toAdd}`));
+    host.overwrite(filePath, `${component}${toAdd}`);
 
     return host;
   };
@@ -128,37 +122,16 @@ function addBootstrapCSS(): Rule {
 function appendToStylesFile(path: string): Rule {
   return (host: Tree) => {
     const content = `
-      body {
-        color: #333333 !important;
-      }
+  body {
+    color: #333333 !important;
+  }
 
-      app-header {
-        height: 103px;
-        display: block;
-        @media (min-width: 1200px) {}
-        @media (min-width: 992px) and (max-width: 1199px) {}
-        @media (min-width: 576px) and (max-width: 991px) {
-          height: 54px;
-        }
-        @media (max-width: 575px) {
-          height: 54px;
-        }
-      }
-
-      #main {
-        position: relative;
-        min-height: 80vh;
-        padding: 80px 0 80px 0;
-      }
-
-      app-footer {
-        height: 103px;
-        display: block;
-        background-color: #333333;
-        color: #f2f2f2;
-      }
-
-    `;
+  #main {
+    position: relative;
+    min-height: 80vh;
+    padding: 80px 0 80px 0;
+  }
+`;
     appendToStartFile(host, path, content);
     return host;
   };
@@ -291,7 +264,7 @@ function addBootstrapSchematic() {
 }
 
 function addAuthenticationSchematic(options: ComponentOptions) {
-    return externalSchematic('cap-angular-schematic-authentication-forked', 'ng-add', { project: options.});
+    return externalSchematic('cap-angular-schematic-auth-auth0', 'ng-add', { project: options.project });
 }
 
 function addHomeRoute(): Rule {
@@ -303,17 +276,15 @@ function addHomeRoute(): Rule {
     const toAdd = 
 `
     { path: '', pathMatch: 'full', component: HomeComponent },
-    { path: 'home', pathMatch: 'full', component: HomeComponent }
-`;
-      
+    { path: 'home', pathMatch: 'full', component: HomeComponent },`;
+
     const component = getFileContent(host, filePath);
-    host.overwrite(filePath, component.replace(`const routes: Routes = [];`, `const routes: Routes = [${toAdd}];`));
+    host.overwrite(filePath, component.replace(`const routes: Routes = [`, `const routes: Routes = [${toAdd}`));
 
     // Add import to routing
     const content = 
 `
-import { HomeComponent } from './home/home.component';
-`;
+import { HomeComponent } from './home/home.component';`;
     appendToStartFile(host, filePath, content);
 
     return host;
@@ -338,7 +309,8 @@ export function schematicsResponsiveMenu(options: ComponentOptions): Rule {
     options.name = parsedPath.name;
     options.path = parsedPath.path;
 
-    // Get Index
+    // Get project
+    options.project = getAppName(host);
     if (!options.project) {
       throw new SchematicsException('Option "project" is required.');
     }
@@ -384,25 +356,8 @@ export function schematicsResponsiveMenu(options: ComponentOptions): Rule {
       })
     ]);
 
-    function addBootstrapToPackageJson(): Rule {
-      return (host: Tree) => {
-        addPackageToPackageJson(host, 'dependencies', 'cap-angular-schematic-bootstrap', `^0.0.6`);
-        return host;
-      };
-    }
-
-    
-    function addAuthenticationToPackageJson(): Rule {
-      return (host: Tree) => {
-        addPackageToPackageJson(host, 'dependencies', 'cap-angular-schematic-authentication-forked', `^0.0.6`);
-        return host;
-      };
-    }
-
     return chain([
       branchAndMerge(chain([
-        addBootstrapToPackageJson(),
-        addAuthenticationToPackageJson(),
         addDeclarationToNgModule(options),
         mergeWith(templateSource),
         updateIndexFile(files.index),

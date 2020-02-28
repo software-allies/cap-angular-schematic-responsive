@@ -2,9 +2,13 @@ import { ScriptService } from '../shared/services/load-scripts.service';
 import { Component, Inject, PLATFORM_ID, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { isPlatformBrowser } from '@angular/common';
-<% if(auth) { %>
-import { AuthenticationService } from 'cap-authentication-forked';
-import { StateService } from 'cap-authentication-forked';
+<% if(auth && authService === 'auth0') { %>
+import { AuthenticationService } from 'cap-authentication';
+import { StateService } from 'cap-authentication';
+<% } %>
+<% if(auth && authService === 'firebase') { %>
+import { AuthenticationService } from 'cap-authentication-firebase';
+import { StateService } from 'cap-authentication-firebase';
 <% } %>
 
 

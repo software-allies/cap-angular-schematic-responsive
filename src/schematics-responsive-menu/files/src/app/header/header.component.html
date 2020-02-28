@@ -2,7 +2,7 @@
     <!-- Mobile Header -->
     <div class="wsmobileheader clearfix ">
         <a role="link" id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>
-        <span class="smllogo"><img src="<%= logo %>" width="170" alt="<%= project %> Logo" title="<%= project %> Logo" loading="lazy"></span>
+        <span class="smllogo"><img src="<%= logo %>" width="170" alt="<%= title %> Logo" title="<%= title %> Logo" loading="lazy"></span>
         <a role="link" class="callusbtn ursor">
             <i class="fa fa-search" aria-hidden="true"></i>
         </a>
@@ -13,7 +13,7 @@
         <div class="wsmainwp clearfix">
             <div class="desktoplogo">
                 <a routerLink="/">
-                    <img src="<%= logo %>" alt="<%= project %> Logo"  title="<%= project %> Logo" loading="lazy">
+                    <img src="<%= logo %>" alt="<%= title %> Logo"  title="<%= title %> Logo" loading="lazy">
                 </a>
             </div>
             <!--Main Menu HTML Code-->
@@ -23,6 +23,7 @@
                         <a routerLink="/home">
                             Home <span class="fa fa-angle-down"></span>
                         </a>
+                        <!-- 
                         <div class="wsmegamenu clearfix">
                             <div class="container-fluid">
                                 <div class="row">
@@ -37,40 +38,57 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> 
+                        -->
                     </li>
+                    <% if(sfcore) { %>
+                    <li>
+                        <a routerLink="/account">
+                            Account
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/contact">
+                            Contact
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/lead">
+                            Lead
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/opportunity">
+                            Opportunity
+                        </a>
+                    </li>
+                    <% } %>
                     <% if(auth) { %>
                     <li *ngIf="!this.stateService.state.isLogged">
                         <a routerLink="/auth/login">
                             <i class="fa fa-user"></i>
-                            <span>Login</span>
+                            Login
                         </a>
                     </li>
                     <li *ngIf="this.stateService.state.isLogged">
                         <a (click)="this.authenticationService.signOut()">
                             <i class="fa fa-user"></i>
-                            <span>Logout</span>
+                            Logout
                         </a>
                     </li>
                     <li *ngIf="!this.stateService.state.isLogged">
                         <a routerLink="/auth/register">
                             <i class="fa fa-user"></i>
-                            <span>Register</span>
+                            Register
                         </a>
                     </li>
                     <li *ngIf="this.stateService.state.isLogged">
                         <a routerLink="/auth/profile">
                             <i class="fa fa-user"></i>
-                            <span>Profile</span>
+                            Profile
                         </a>
                     </li>
                     <% } %>
-                    <li>
-                        <a role="link">
-                            <i class="fa fa-search "></i>
-                            <span>Search</span>
-                        </a>
-                    </li>
                 </ul>
             </nav>
         </div>

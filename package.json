@@ -1,7 +1,7 @@
 {
   "name": "cap-angular-schematic-responsive",
-  "version": "1.0.13",
-  "description": "CAP Schematics Responsive Menu",
+  "version": "1.0.24",
+  "description": "CAP Schematics Responsive Template",
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "test": "npm run build && jasmine src/**/*_spec.js"
@@ -15,6 +15,13 @@
     "name": "Software Allies",
     "url": "https://softwareallies.com"
   },
+  "contributors": [
+    { 
+      "email": "cesar_alonso_m_g@hotmail.com",
+      "name": "César Alonso Magaña Gavilanes",
+      "url": "https://github.com/cesar-alonso-magana"
+    }
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -35,6 +42,7 @@
     "@angular/cdk": "^8.2.3",
     "@schematics/angular": "^8.3.23",
     "cap-angular-schematic-bootstrap": "0.0.6",
+    "cap-angular-schematic-authentication-forked": "0.1.0",
     "schematics-utilities": "^2.0.1"
   }
 }
