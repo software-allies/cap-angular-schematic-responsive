@@ -51,13 +51,9 @@ app
     |-- home/
 	|-- modules/
 	|-- shared/
-	    |-- component.html
-        |-- component.scss
-        |-- component.spec.ts
-        |-- component.ts
-        |-- module.ts  
-        |-- server.module.ts
-        |-- routing.module.ts
+	    |-- app.component.html
+        |-- app.module.ts  
+        |-- app-routing.module.ts
 ```
 
 ## Usage
