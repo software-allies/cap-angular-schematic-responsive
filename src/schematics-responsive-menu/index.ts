@@ -312,7 +312,7 @@ function addDeclarationToNgModule(options: ComponentOptions): Rule {
     if (options) {
       // Need to refresh the AST because we overwrote the file in the host.
       source = readIntoSourceFile(host, modulePath);
-      const servicePath = `${options.path}/app/shared/services/loading-screen.interceptors.service`;
+      const servicePath = `${options.path}/app/shared/services/loading-screen.interceptors`;
       const relativePath = buildRelativePath(modulePath, servicePath);
       const classifiedName = strings.classify(`LoadingScreenInterceptor`);
       const providerRecorder = host.beginUpdate(modulePath);
