@@ -94,6 +94,8 @@ assets
             |-- white-red.css
         |-- dropdown-effects
             |-- fade-down.css
+    |-- images/
+        |-- angular-logo.png
 ```
 
 ## Usage
