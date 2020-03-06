@@ -352,10 +352,10 @@ function addAuthenticationSchematic(options: ComponentOptions) {
     return externalSchematic('cap-angular-schematic-auth-auth0', 'ng-add', { project: options.project });
 }
 
-function addHomeRoute(): Rule {
+function addHomeRoute(options: ComponentOptions): Rule {
   return (host: Tree) => {
 
-    const filePath = "src/app/app-routing.module.ts";
+    const filePath = `${options.path}/app/app-routing.module.ts`;
     
     // Add routes to routing
     const toAdd = 
@@ -388,11 +388,13 @@ export function schematicsResponsiveMenu(options: ComponentOptions): Rule {
     if (options.path === undefined) {
       options.path = buildDefaultPath(project);
     }
-    options.module = findModule(host, options.path, 'app' + MODULE_EXT, ROUTING_MODULE_EXT);
+    
     options.name = '';
     const parsedPath = parseName(options.path!, options.name);
     options.name = parsedPath.name;
     options.path = parsedPath.path;
+    
+    options.module = findModule(host, options.path, 'app' + MODULE_EXT, ROUTING_MODULE_EXT);
 
     // Get project
     options.project = (options.project) ? options.project : getAppName(host);
@@ -453,7 +455,7 @@ export function schematicsResponsiveMenu(options: ComponentOptions): Rule {
         (options.removeAppComponentHtml) ? removeContentFromAppComponentHtml(files.appComponent) :  noop(),
         (options.installAuth) ? addAuthenticationSchematic(options) :  noop(),
         appendToAppComponentFile(files.appComponent, options),
-        addHomeRoute()
+        addHomeRoute(options)
       ])),
     ])(host, context);
   };

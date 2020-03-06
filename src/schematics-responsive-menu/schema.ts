@@ -1,5 +1,4 @@
 export interface Schema {
-    title: string
     logo: string;
     removeAppComponentHtml: boolean;
     auth: boolean;
