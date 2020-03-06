@@ -1,7 +1,8 @@
-import { ScriptService } from '../shared/services/load-scripts.service';
 import { Component, Inject, PLATFORM_ID, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { isPlatformBrowser } from '@angular/common';
+import { ModalService } from '../shared/components/cap-components/modal/modal.service';
+import { ScriptService } from '../shared/services/load-scripts.service';
 <% if(auth && authService === 'auth0') { %>
 import { AuthenticationService } from 'cap-authentication';
 import { StateService } from 'cap-authentication';
@@ -20,17 +21,16 @@ import { StateService } from 'cap-authentication-firebase';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(
+  constructor (
     <% if(auth) { %>
       public authenticationService: AuthenticationService,
       public stateService: StateService,
     <% } %>
       private scriptService: ScriptService,
       @Inject(PLATFORM_ID) private platformId: string,
-      @Inject(DOCUMENT) private document: Document
-  ) {
-
-  }
+      @Inject(DOCUMENT) private document: Document,
+      public modalService: ModalService
+  ) { }
 
   ngOnInit() {
     this.addMenuScript();

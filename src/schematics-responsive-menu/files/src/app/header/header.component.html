@@ -3,7 +3,7 @@
     <div class="wsmobileheader clearfix ">
         <a role="link" id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>
         <span class="smllogo"><img src="<%= logo %>" width="170" alt="<%= title %> Logo" title="<%= title %> Logo" loading="lazy"></span>
-        <a role="link" class="callusbtn ursor">
+        <a role="link" class="callusbtn cursor" (click)="this.modalService.open('searchModal')">
             <i class="fa fa-search" aria-hidden="true"></i>
         </a>
     </div>

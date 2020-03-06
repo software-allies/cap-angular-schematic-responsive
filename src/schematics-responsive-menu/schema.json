@@ -34,7 +34,7 @@
     "auth": {
       "type": "boolean",
       "description": "Add menu options for Login and Register",
-      "x-prompt": "Do you want integrate with the cap-authentication module?",
+      "x-prompt": "Would you like to add auth functionalities to the responsive menu?",
       "$default": {
         "$source": "argv",
         "index": 3
@@ -52,7 +52,7 @@
     "installAuth": {
       "type": "boolean",
       "description": "Install cap-authentication Schematic",
-      "x-prompt": "Do you want to add cap-authentication Schematic?",
+      "x-prompt": "Do you want to install cap-angular-schematic-auth-auth0 Schematic?",
       "$default": {
         "$source": "argv",
         "index": 5
