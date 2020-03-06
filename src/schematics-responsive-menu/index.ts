@@ -379,6 +379,12 @@ import { HomeComponent } from './home/home.component';`;
 export function schematicsResponsiveMenu(options: ComponentOptions): Rule {
   return (host: Tree, context: FileSystemSchematicContext) => {
 
+    // Get project
+    options.project = (options.project) ? options.project : getAppName(host);
+    if (!options.project) {
+      throw new SchematicsException('Option "project" is required.');
+    }
+
     const workspace = getWorkspace(host);
     const project = getProjectFromWorkspace(workspace, options.project);
     if (!project) {
@@ -389,18 +395,12 @@ export function schematicsResponsiveMenu(options: ComponentOptions): Rule {
       options.path = buildDefaultPath(project);
     }
     
+    options.module = findModule(host, options.path, 'app' + MODULE_EXT, ROUTING_MODULE_EXT);
     options.name = '';
     const parsedPath = parseName(options.path!, options.name);
     options.name = parsedPath.name;
     options.path = parsedPath.path;
     
-    options.module = findModule(host, options.path, 'app' + MODULE_EXT, ROUTING_MODULE_EXT);
-
-    // Get project
-    options.project = (options.project) ? options.project : getAppName(host);
-    if (!options.project) {
-      throw new SchematicsException('Option "project" is required.');
-    }
 
     const projectType: string = project.projectType || project.projects[options.project].projectType;
     if (projectType !== 'application') {
