@@ -1,6 +1,6 @@
 {
   "name": "cap-angular-schematic-responsive",
-  "version": "1.0.30",
+  "version": "1.0.31",
   "description": "CAP Schematics Responsive Template",
   "scripts": {
     "build": "tsc -p tsconfig.json",
@@ -36,13 +36,13 @@
     "@types/parse5": "^5.0.2",
     "jasmine": "^3.0.0",
     "parse5": "^5.1.1",
-    "typescript": "^3.2.4",
-    "cap-angular-schematic-bootstrap": "^0.0.6",
-    "cap-angular-schematic-auth-auth0": "^1.1.5"
+    "typescript": "^3.2.4"
   },
   "dependencies": {
     "@angular/cdk": "^8.2.3",
     "@schematics/angular": "^8.3.23",
-    "schematics-utilities": "^2.0.1"
+    "schematics-utilities": "^2.0.1",
+    "cap-angular-schematic-bootstrap": "^0.0.6",
+    "cap-angular-schematic-auth-auth0": "^1.1.5"
   }
 }
