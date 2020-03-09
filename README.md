@@ -38,12 +38,11 @@ The schematic will add an `angular.json`
 The schematic will be configurated after you answer the following questions.
 
 * What is the project title for the App? : < string >
-* What is the logo url for the header menu? : < logo-url >
 * Do you want to remove the content for app.component.html? : < Y/N >
-* Do you want integrate with the cap-authentication module? : < Y/N >
+* Would you like to add cap-authentication functionallity to the menu? : < Y/N >
 * Which service for authentication you choose? : < auth0 / firebase >
 * Do you want to add cap-authentication Schematic? : < Y/N >
-* Do you want to integrate with cap-sfcore? : < Y/N >
+* Do you want to integrate with cap-sfcore module?? : < Y/N >
 
 ​
 The Schematic will create a responsive plate scaffold application with the next features:
@@ -52,12 +51,12 @@ The Schematic will create a responsive plate scaffold application with the next 
 - Responsive Menu.
 - Modal Component/Service.
 - Loading Screen Interceptor/Animation.
-- Header and Fotter components.
-- Integration with cap-angular-schematic-auth-auth0 (Autentication menu links).
-- Integration with cap-angular-schematic-sfcore (Salesforce Components menu links).
 - SEO metatags service.
 - REST API request service.
 - Cache Request Interceptor.
+- Header and Fotter components.
+- Integration with cap-angular-schematic-auth-auth0 (Autentication menu links).
+- Integration with cap-angular-schematic-sfcore (Salesforce Components menu links).
 
 Touched files:
 
@@ -81,7 +80,7 @@ app
     |-- app-routing.module.ts
     |-- angular.json
     |-- package.json
-	|-- modules/
+    |-- modules/
         |-- cap-responsive/
             |-- services/
                 |-- load-scripts.service.ts
