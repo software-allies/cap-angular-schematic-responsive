@@ -30,12 +30,12 @@ import { getProjectFromWorkspace } from '@angular/cdk/schematics/utils/get-proje
 import { appendHtmlElementToHead } from '@angular/cdk/schematics/utils/html-head-element';
 import { 
   addDeclarationToModule,
-  addProviderToModule,
   addImportToModule
  } from './vendored-ast-utils';
 import { 
   appendToStartFile,
-  removeContentFromFile
+  removeContentFromFile,
+  addEnvironmentVar
 } from './cap-utils';
 import { Schema as ComponentOptions } from './schema';
 import * as ts from 'typescript';
@@ -103,7 +103,7 @@ function appendToAppComponentFile(filePath: string, options: ComponentOptions): 
     // Add footer to end of file
     const toAdd = 
 `<app-footer></app-footer>
-<app-sa-loading-screen></app-sa-loading-screen>
+<app-loading-screen></app-loading-screen>
 <app-modal #searchModal id="searchModal">
   <div>
     <h2 class="text-center">Search content...</h2>
@@ -196,28 +196,6 @@ function addDeclarationToNgModule(options: ComponentOptions): Rule {
       host.commitUpdate(declarationRecorder);
     }
     
-    // Import and include on Imports the HttpClientModule
-    if (options) {
-        // Need to refresh the AST because we overwrote the file in the host.
-        source = readIntoSourceFile(host, modulePath);
-        const servicePath = `@angular/common/http`;
-        const relativePath = servicePath;
-        const classifiedName = strings.classify(`HttpClientModule`);
-        const providerRecorder = host.beginUpdate(modulePath);
-        const providerChanges: any = addImportToModule(
-            source,
-            modulePath,
-            classifiedName,
-            relativePath);
-
-        for (const change of providerChanges) {
-            if (change instanceof InsertChange) {
-                providerRecorder.insertLeft(change.pos, change.toAdd);
-            }
-        }
-        host.commitUpdate(providerRecorder);
-    }
-    
     // Import and include on Imports the HomeModule
     if (options) {
         // Need to refresh the AST because we overwrote the file in the host.
@@ -244,9 +222,9 @@ function addDeclarationToNgModule(options: ComponentOptions): Rule {
     if (options) {
       // Need to refresh the AST because we overwrote the file in the host.
       source = readIntoSourceFile(host, modulePath);
-      const componentPath = `${options.path}/app/shared/components/shared-components.module`;
+      const componentPath = `${options.path}/app/modules/cap-responsive/cap-responsive.module`;
       const relativePath = buildRelativePath(modulePath, componentPath);
-      const classifiedName = strings.classify(`SharedComponentsModule`);
+      const classifiedName = strings.classify(`CapResponsiveModule`);
       const providerRecorder = host.beginUpdate(modulePath);
       const providerChanges: any = addImportToModule(
           source,
@@ -257,84 +235,6 @@ function addDeclarationToNgModule(options: ComponentOptions): Rule {
       for (const change of providerChanges) {
           if (change instanceof InsertChange) {
               providerRecorder.insertLeft(change.pos, change.toAdd);
-          }
-      }
-      host.commitUpdate(providerRecorder);
-    }
-
-    // Import and include on Providers the load script ScriptService
-    if (options) {
-        // Need to refresh the AST because we overwrote the file in the host.
-        source = readIntoSourceFile(host, modulePath);
-        const servicePath = `${options.path}/app/shared/services/load-scripts.service`;
-        const relativePath = buildRelativePath(modulePath, servicePath);
-        const classifiedName = strings.classify(`ScriptService`);
-        const providerRecorder = host.beginUpdate(modulePath);
-        const providerChanges: any = addProviderToModule(
-            source,
-            modulePath,
-            classifiedName,
-            relativePath);
-
-        for (const change of providerChanges) {
-            if (change instanceof InsertChange) {
-                providerRecorder.insertLeft(change.pos, change.toAdd);
-            }
-        }
-        host.commitUpdate(providerRecorder);
-    }
-
-    // Import and include on Providers the LoadingScreenInterceptor interceptor
-    if (options) {
-      // Need to refresh the AST because we overwrote the file in the host.
-      source = readIntoSourceFile(host, modulePath);
-      const servicePath = `@angular/common/http`;
-      const relativePath = servicePath;
-      const classifiedName = `HTTP_INTERCEPTORS`;
-      const providerRecorder = host.beginUpdate(modulePath);
-      const providerChanges: any = addProviderToModule(
-          source,
-          modulePath,
-          classifiedName,
-          relativePath);
-
-      for (const change of providerChanges) {
-          if (change instanceof InsertChange) {
-            if (change.toAdd !== ',\n    HTTP_INTERCEPTORS') {
-              providerRecorder.insertLeft(change.pos, change.toAdd);
-            }
-          }
-      }
-      host.commitUpdate(providerRecorder);
-    }
-
-    // Import and include on Providers the LoadingScreenInterceptor interceptor
-    if (options) {
-      // Need to refresh the AST because we overwrote the file in the host.
-      source = readIntoSourceFile(host, modulePath);
-      const servicePath = `${options.path}/app/shared/services/loading-screen.interceptors`;
-      const relativePath = buildRelativePath(modulePath, servicePath);
-      const classifiedName = strings.classify(`LoadingScreenInterceptor`);
-      const providerRecorder = host.beginUpdate(modulePath);
-      const providerChanges: any = addProviderToModule(
-          source,
-          modulePath,
-          classifiedName,
-          relativePath);
-
-      for (const change of providerChanges) {
-          if (change instanceof InsertChange) {
-            if (change.toAdd === ',\n    LoadingScreenInterceptor') {
-
-              change.toAdd = `,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: LoadingScreenInterceptor,
-      multi: true
-    }
-`;
-            }
-            providerRecorder.insertLeft(change.pos, change.toAdd);
           }
       }
       host.commitUpdate(providerRecorder);
@@ -374,6 +274,13 @@ import { HomeComponent } from './home/home.component';`;
 
     return host;
   };
+}
+
+function addToEnvironments(options: ComponentOptions): Rule {
+    return (host: Tree) => {
+        addEnvironmentVar(host, '', options.path || '/src', 'apiUrl', 'http://localhost:4000/api/');
+        addEnvironmentVar(host, 'prod', options.path || '/src', 'apiUrl', 'http://mydomain.com/api/');
+    }
 }
 
 export function schematicsResponsiveMenu(options: ComponentOptions): Rule {
@@ -446,6 +353,7 @@ export function schematicsResponsiveMenu(options: ComponentOptions): Rule {
     return chain([
       branchAndMerge(chain([
         addDeclarationToNgModule(options),
+        addToEnvironments(options),
         mergeWith(templateSource),
         updateIndexFile(files.index),
         updateBodyOfIndexFile(files.index),

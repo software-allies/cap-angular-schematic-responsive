@@ -1,19 +1,19 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { SaLoadingScreenService } from './sa-loading-screen.service';
+import { LoadingScreenService } from './loading-screen.service';
 import { debounceTime } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-sa-loading-screen',
-  templateUrl: './sa-loading-screen.component.html',
-  styleUrls: ['./sa-loading-screen.component.scss']
+  selector: 'app-loading-screen',
+  templateUrl: './loading-screen.component.html',
+  styleUrls: ['./loading-screen.component.scss']
 })
-export class SaLoadingScreenComponent implements OnInit, OnDestroy {
+export class LoadingScreenComponent implements OnInit, OnDestroy {
 
   loading = false;
   loadingSubscription: Subscription;
 
-  constructor(private loadingScreenService: SaLoadingScreenService) {
+  constructor(private loadingScreenService: LoadingScreenService) {
   }
 
   ngOnInit() {

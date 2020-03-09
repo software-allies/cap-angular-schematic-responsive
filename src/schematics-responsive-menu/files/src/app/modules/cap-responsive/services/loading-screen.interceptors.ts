@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { SaLoadingScreenService } from "../components/cap-components/sa-loading-screen/sa-loading-screen.service";
 import { finalize } from "rxjs/operators";
+import { LoadingScreenService } from "../components/loading-screen/loading-screen.service";
 
 
 @Injectable({
@@ -17,7 +17,7 @@ export class LoadingScreenInterceptor implements HttpInterceptor {
     '/not-found',
   ];
 
-  constructor(private loadingScreenService: SaLoadingScreenService) {
+  constructor(private loadingScreenService: LoadingScreenService) {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

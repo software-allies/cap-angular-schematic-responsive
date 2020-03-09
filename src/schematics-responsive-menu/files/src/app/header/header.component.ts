@@ -1,8 +1,8 @@
 import { Component, Inject, PLATFORM_ID, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { isPlatformBrowser } from '@angular/common';
-import { ModalService } from '../shared/components/cap-components/modal/modal.service';
-import { ScriptService } from '../shared/services/load-scripts.service';
+import { ModalService } from '../modules/cap-responsive/components/modal/modal.service';
+import { LoadScriptService } from '../modules/cap-responsive/services/load-scripts.service';
 <% if(auth && authService === 'auth0') { %>
 import { AuthenticationService } from 'cap-authentication';
 import { StateService } from 'cap-authentication';
@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
       public authenticationService: AuthenticationService,
       public stateService: StateService,
     <% } %>
-      private scriptService: ScriptService,
+      private scriptService: LoadScriptService,
       @Inject(PLATFORM_ID) private platformId: string,
       @Inject(DOCUMENT) private document: Document,
       public modalService: ModalService

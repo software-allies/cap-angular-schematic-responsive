@@ -14,7 +14,7 @@ const ScriptStore: Scripts[] = [
 @Injectable({
     providedIn: 'root'
 })
-export class ScriptService {
+export class LoadScriptService {
 
     private scripts: any = {};
 

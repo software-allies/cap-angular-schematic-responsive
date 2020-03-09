@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class SaLoadingScreenService {
+export class LoadingScreenService {
   private _loading: boolean = false;
   loadingStatus: Subject<any> = new Subject();
 
