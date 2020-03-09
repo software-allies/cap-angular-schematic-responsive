@@ -283,7 +283,7 @@ function addToEnvironments(options: ComponentOptions): Rule {
     }
 }
 
-export function schematicsResponsiveMenu(options: ComponentOptions): Rule {
+export function schematicResponsive(options: ComponentOptions): Rule {
   return (host: Tree, context: FileSystemSchematicContext) => {
 
     // Get project

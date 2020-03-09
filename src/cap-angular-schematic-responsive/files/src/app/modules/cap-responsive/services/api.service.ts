@@ -9,7 +9,6 @@ import { environment } from '../../../../environments/environment';
     providedIn: 'root'
 })
 export class ApiService {
-    private actionUrl: string;
     private httpOptions: any;
     private apiUrl: string;
 
@@ -18,17 +17,15 @@ export class ApiService {
     ) {
         this.httpOptions = {
             headers: new HttpHeaders({ 
-                'Content-Type': 'application/json',
-                'Authorization': 'Token token=' + environment.apiToken
+                'Content-Type': 'application/json'
             }),
             observe: "response"
         };
         this.apiUrl = `${environment.apiUrl}`;
     }
 
-    get(): Observable<any> {
-        const _url = `${this.apiUrl}endpoint`;
-        return this._http.get<any>(_url, this.httpOptions)
+    get(url: string): Observable<any> {
+        return this._http.get<any>(url, this.httpOptions)
         .pipe(
             map((response: any) => response.body),
             tap((response: any) => {
@@ -38,9 +35,8 @@ export class ApiService {
         );
     }
     
-    post() : Observable<any> { 
-        const _url = `${this.apiUrl}endpoint`;
-        return this._http.post<HttpResponse<any>>(_url, {}, this.httpOptions)
+    post(url: string, data: any) : Observable<any> { 
+        return this._http.post<HttpResponse<any>>(url, data, this.httpOptions)
         .pipe(
             map(response => response),
             tap((response: HttpResponse<any>) => {
@@ -50,8 +46,8 @@ export class ApiService {
         );
     }
 
-    deleteById(id: string) : Observable<any> { 
-        const _url = `${this.apiUrl}endpoint/${id}`;
+    deleteById(url: string, id: string) : Observable<any> { 
+        const _url = `${url}/${id}`;
         return this._http.delete<HttpResponse<any>>(_url, this.httpOptions)
         .pipe(
             map(response => response),

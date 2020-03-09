@@ -1,15 +1,15 @@
 {
   "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
-    "schematics-responsive-menu": {
+    "cap-angular-schematic-responsive": {
       "description": "A Responsive Menu Schematic",
-      "factory": "./schematics-responsive-menu/index#schematicsResponsiveMenu",
-      "schema": "./schematics-responsive-menu/schema.json"
+      "factory": "./cap-angular-schematic-responsive/index#schematicResponsive",
+      "schema": "./cap-angular-schematic-responsive/schema.json"
     },
     "ng-add": {
       "description": "Add schematic",
       "factory": "./ng-add/index",
-      "schema": "./schematics-responsive-menu/schema.json"
+      "schema": "./cap-angular-schematic-responsive/schema.json"
     }
   }
 }

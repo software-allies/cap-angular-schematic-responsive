@@ -48,51 +48,68 @@ The schematic will be configurated after you answer the following questions.
 ​
 The Schematic will create a responsive plate scaffold application with the next features:
 
-- Bootstrap 4.0.0 Wrapper
-- Responsive Menu
-- Modal Component/Service
-- Loading Screen Interceptor/Animation
-- Header and Fotter components
-- Integration with cap-angular-schematic-auth-auth0 (Autentication menu links)
-- Integration with cap-angular-schematic-sfcore (Salesforce Components menu links)
+- Bootstrap 4.0.0 Wrapper.
+- Responsive Menu.
+- Modal Component/Service.
+- Loading Screen Interceptor/Animation.
+- Header and Fotter components.
+- Integration with cap-angular-schematic-auth-auth0 (Autentication menu links).
+- Integration with cap-angular-schematic-sfcore (Salesforce Components menu links).
+- SEO metatags service.
+- REST API request service.
+- Cache Request Interceptor.
 
 Touched files:
 
 ```
 app
     |-- footer/
+        |-- footer.component.html
+        |-- footer.component.scss
+        |-- footer.component.ts
     |-- header/
+        |-- header.component.html
+        |-- header.component.scss
+        |-- header.component.ts
     |-- home/
-	|-- modules/
+        |-- home.component.html
+        |-- home.component.scss
+        |-- home.component.ts
+        |-- home.module.ts
 	|-- app.component.html
     |-- app.module.ts  
     |-- app-routing.module.ts
     |-- angular.json
     |-- package.json
-	|-- shared/
-	    |-- services/
-            |-- load-scripts.service.ts
-	        |-- loading-screen.interceptor.ts
-	    |-- components/
-            |-- cap-components/
+	|-- modules/
+        |-- cap-responsive/
+            |-- services/
+                |-- load-scripts.service.ts
+                |-- loading-screen.interceptor.ts
+                |-- seo-service.ts
+                |-- api.service.ts
+                |-- cache.interceptor.ts
+            |-- components/
                 |-- modal/
                     |-- modal.component.ts
                     |-- modal.service.ts
-                |-- sa-loading-screen/
-                    |-- sa-loading-screen.component.html
-                    |-- sa-loading-screen.component.scss
-                    |-- sa-loading-screen.component.ts
-                    |-- sa-loading-screen.service.ts
-            |-- shared-components.module.ts
+                |-- loading-screen/
+                    |-- loading-screen.component.html
+                    |-- loading-screen.component.scss
+                    |-- loading-screen.component.ts
+                    |-- loading-screen.service.ts
+            |-- cap-responsive.module.ts
 assets
+    |-- images/
+        |-- angular-logo.png
     |-- js/
         |-- jquery-latest.min.js (95790 bytes)
-    |-- webslidemenu
+    |-- webslidemenu/
         |-- webslidemenu.css
         |-- webslidemenu.js (6852 bytes)
-        |-- color-skins
+        |-- color-skins/
             |-- white-red.css
-        |-- dropdown-effects
+        |-- dropdown-effects/
             |-- fade-down.css
 ```
 
@@ -103,13 +120,13 @@ angular 8
 [Schematic](https://www.schematics.com/)
 
 ## Version 
-1.0.25
+1.0.30
 
 ## Authors
 Software Allies - [Software Allies](https://github.com/software-allies)
 ​
 ### Contributor 
-César Alonso Magaña Gavilanes -[cesaralonso](https://github.com/cesaralonso)
+César Alonso Magaña Gavilanes - [cesaralonso](https://github.com/cesaralonso)
 
 ## License
 MIT © [Software Allies](https://github.com/software-allies/cap-angular-schematic-responsive)
