@@ -248,10 +248,6 @@ function addBootstrapSchematic() {
     return externalSchematic('cap-angular-schematic-bootstrap', 'ng-add', { version: "4.0.0", skipWebpackPlugin: true });
 }
 
-function addAuthenticationSchematic(options: ComponentOptions) {
-    return externalSchematic('cap-angular-schematic-auth-auth0', 'ng-add', { project: options.project });
-}
-
 function addHomeRoute(options: ComponentOptions): Rule {
   return (host: Tree) => {
 
@@ -361,7 +357,6 @@ export function schematicResponsive(options: ComponentOptions): Rule {
         appendToStylesFile(files.styles),
         addBootstrapCSS(),
         (options.removeAppComponentHtml) ? removeContentFromAppComponentHtml(files.appComponent) :  noop(),
-        (options.installAuth) ? addAuthenticationSchematic(options) :  noop(),
         appendToAppComponentFile(files.appComponent, options),
         addHomeRoute(options)
       ])),

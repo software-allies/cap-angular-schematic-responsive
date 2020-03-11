@@ -42,22 +42,22 @@
                         -->
                     </li>
                     <% if(sfcore) { %>
-                    <li>
+                    <li *ngIf="this.stateService.state.isLogged">
                         <a routerLink="/account">
                             Account
                         </a>
                     </li>
-                    <li>
+                    <li *ngIf="this.stateService.state.isLogged">
                         <a routerLink="/contact">
                             Contact
                         </a>
                     </li>
-                    <li>
+                    <li *ngIf="this.stateService.state.isLogged">
                         <a routerLink="/lead">
                             Lead
                         </a>
                     </li>
-                    <li>
+                    <li *ngIf="this.stateService.state.isLogged">
                         <a routerLink="/opportunity">
                             Opportunity
                         </a>

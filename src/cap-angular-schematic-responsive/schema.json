@@ -41,24 +41,15 @@
         "index": 3
       }
     },
-    "installAuth": {
-      "type": "boolean",
-      "description": "Install cap-authentication Schematic",
-      "x-prompt": "Do you want to install cap-angular-schematic-auth-auth0 Schematic?",
-      "$default": {
-        "$source": "argv",
-        "index": 4
-      }
-    },
     "sfcore": {
       "type": "boolean",
       "description": "Add menu options for Salesforce pages",
       "x-prompt": "Do you want to integrate with cap-sfcore module?",
       "$default": {
         "$source": "argv",
-        "index": 5
+        "index": 4
       }
     }
   },
-  "required": ["title", "removeAppComponentHtml", "auth", "authService", "installAuth", "sfcore"]
+  "required": ["title", "removeAppComponentHtml", "auth", "authService", "sfcore"]
 }
