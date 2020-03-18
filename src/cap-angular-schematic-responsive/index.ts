@@ -117,7 +117,7 @@ function appendToAppComponentFile(filePath: string, options: ComponentOptions): 
   };
 }
 
-function addBootstrapCSS(): Rule {
+function addStyles(): Rule {
   return (host: Tree) => {
     addStyle(host, './src/assets/webslidemenu/dropdown-effects/fade-down.css');
     addStyle(host, './src/assets/webslidemenu/webslidemenu.css');
@@ -355,7 +355,7 @@ export function schematicResponsive(options: ComponentOptions): Rule {
         updateBodyOfIndexFile(files.index),
         addBootstrapSchematic(),
         appendToStylesFile(files.styles),
-        addBootstrapCSS(),
+        addStyles(),
         (options.removeAppComponentHtml) ? removeContentFromAppComponentHtml(files.appComponent) :  noop(),
         appendToAppComponentFile(files.appComponent, options),
         addHomeRoute(options)
