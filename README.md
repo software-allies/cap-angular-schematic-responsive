@@ -57,6 +57,8 @@ The Schematic will create a responsive plate scaffold application with the next 
 - Header and Fotter components.
 - Integration with cap-angular-schematic-auth-auth0 (Autentication menu links).
 - Integration with cap-angular-schematic-sfcore (Salesforce Components menu links).
+- Pipes for url encode and string decode.
+- Common Service with useful common functions.
 
 Touched files:
 
@@ -88,6 +90,7 @@ app
                 |-- seo-service.ts
                 |-- api.service.ts
                 |-- cache.interceptor.ts
+                |-- common.service.ts
             |-- components/
                 |-- modal/
                     |-- modal.component.ts
@@ -97,15 +100,16 @@ app
                     |-- loading-screen.component.scss
                     |-- loading-screen.component.ts
                     |-- loading-screen.service.ts
+            |-- pipes/
+                    |-- encode-uri.pipe.ts
+                    |-- str-decode.pipe.ts
             |-- cap-responsive.module.ts
 assets
     |-- images/
         |-- angular-logo.png
-    |-- js/
-        |-- jquery-latest.min.js (95790 bytes)
     |-- webslidemenu/
         |-- webslidemenu.css
-        |-- webslidemenu.js (6852 bytes)
+        |-- webslidemenu.js
         |-- color-skins/
             |-- white-red.css
         |-- dropdown-effects/

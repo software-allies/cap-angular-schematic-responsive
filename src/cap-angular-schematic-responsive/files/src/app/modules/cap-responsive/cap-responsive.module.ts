@@ -10,11 +10,16 @@ import { LoadScriptService } from './services/load-scripts.service';
 import { SeoService } from './services/seo.service';
 import { ApiService } from './services/api.service';
 import { CacheInterceptor } from './services/cache.interceptor';
+import { CommonService } from './services/common.service';
+import { StrReplacePipe } from './pipes/str-replace.pipe';
+import { EncodeURIPipe } from './pipes/encode-uri.pipe';
 
 @NgModule({
     declarations: [
         ModalComponent,
-        LoadingScreenComponent
+        LoadingScreenComponent,
+        EncodeURIPipe,
+        StrReplacePipe
     ],
     imports: [
         CommonModule,
