@@ -1,3 +1,5 @@
+@import '../../assets/scss/variables.scss';
+
 header {
     height: 103px;
     display: block;
@@ -20,14 +22,14 @@ header {
     height: 101px;
     overflow: hidden;
 
-    background: #f9f9f9;
+    background: $main-bg;
     &.rental-box {
         width: 100%;
     }
 }
 
 .dark .options-box {
-    background: #3e3e3e;
+    background: $main-color;
 }
 
 .options-box.compact-box {
@@ -59,7 +61,7 @@ header {
     line-height: normal;
     text-align: center;
     color: #777777;
-    background-color: #f9f9f9;
+    background-color: $main-bg;
 
     @media only screen and (min-width: 992px) and (max-width:1282px) {
         font-size: 10px;
@@ -67,14 +69,14 @@ header {
 }
 .dark .options-box>.row>div>a {
     color: #d8d8d8;
-    background-color: #3e3e3e;
+    background-color: $main-color;
 }
 .clearnav .options-box>.row>div>a {
     color: #d8d8d8;
-    background-color: #3e3e3e;
+    background-color: $main-color;
 }
 .options-box>.row>div>a>.fa {
-    color: #e4002b;
+    color: $main-color;
     margin-right: 5px;
 }
 .options-box>.row>div>a>span {

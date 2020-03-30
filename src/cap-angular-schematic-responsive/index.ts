@@ -127,15 +127,88 @@ function addStyles(): Rule {
 function appendToStylesFile(path: string): Rule {
   return (host: Tree) => {
     const content = `
-  body {
-    color: #333333 !important;
-  }
+@import url(http://fonts.googleapis.com/css?family=Lato:400,900);
+@import './assets/scss/variables.scss';
 
-  #main {
-    position: relative;
-    min-height: 80vh;
-    padding: 80px 0 80px 0;
+
+body {
+  font-family: 'Lato', verdana, sans-serif;
+  text-align: center;
+  background: $main-bg;
+  color: $main-color;
+}
+
+a {
+  text-decoration: none;
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+}
+
+header {
+  &.title {
+    padding: 60px 0;
+    width: 100%;
+    background-color: $main-bg;
   }
+  h1, h2, h3 {
+    text-align: center;
+    color: $main-color;
+  }
+}
+
+section {
+  min-height: 100vh;
+  overflow: hidden;
+  width: 100%;
+  background-color: white;
+  transition: margin-left 4s ease-in-out 1s;
+  padding: 20px 20px;
+}
+
+.fullscreen-bg {
+  height: 100vh;
+  overflow: hidden;
+  width: 100%;
+  margin-top: -104px;
+  background-color: $main-color;
+  background: url('assets/images/bg-video.jpg') center center / cover no-repeat $main-color;
+  .fullscreen-bg-video {
+    position: relative;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+    max-width: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .fullscreen-bg {
+    background: url('assets/images/bg-video.jpg') center center / cover no-repeat $main-color;
+    margin-top: -55px;
+  }
+}
+
+.cover-home {
+  max-width: 100%;
+}
+
+.cover {
+  background-color: rgba($color: $main-color, $alpha: 0.3);
+  background-size: cover;
+  color: white;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  padding-top: 100px;
+  .cover-caption {
+    width: 100%;
+  }
+}
+
 `;
     appendToStartFile(host, path, content);
     return host;

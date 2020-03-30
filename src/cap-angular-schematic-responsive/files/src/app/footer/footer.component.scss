@@ -1,6 +1,8 @@
+@import '../../assets/scss/variables.scss';
+    
 footer {
     height: 103px;
     display: block;
-    background-color: #333333;
+    background-color: $main-color;
     color: #f2f2f2;
 }
