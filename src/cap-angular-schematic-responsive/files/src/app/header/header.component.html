@@ -20,7 +20,7 @@
             <nav class="wsmenu clearfix dark">
                 <ul class="wsmenu-list">
                     <li aria-haspopup="true">
-                        <a routerLink="/home">
+                        <a routerLink="/home" (click)="clickLink();">
                             Home <span class="fa fa-angle-down"></span>
                         </a>
                         <!-- 
@@ -43,56 +43,56 @@
                     </li>
                     <% if(sfcore) { %>
                     <li *ngIf="this.stateService.state.isLogged">
-                        <a routerLink="/account">
+                        <a routerLink="/account" (click)="clickLink();">
                             Account
                         </a>
                     </li>
                     <li *ngIf="this.stateService.state.isLogged">
-                        <a routerLink="/contact">
+                        <a routerLink="/contact" (click)="clickLink();">
                             Contact
                         </a>
                     </li>
                     <li *ngIf="this.stateService.state.isLogged">
-                        <a routerLink="/lead">
+                        <a routerLink="/lead" (click)="clickLink();">
                             Lead
                         </a>
                     </li>
                     <li *ngIf="this.stateService.state.isLogged">
-                        <a routerLink="/opportunity">
+                        <a routerLink="/opportunity" (click)="clickLink();">
                             Opportunity
                         </a>
                     </li>
                     <% } %>
                     <% if(auth) { %>
                     <li *ngIf="!this.stateService.state.isLogged">
-                        <a routerLink="/auth/login">
+                        <a routerLink="/auth/login" (click)="clickLink();">
                             <i class="fa fa-user"></i>
                             Login
                         </a>
                     </li>
                     <li *ngIf="this.stateService.state.isLogged">
-                        <a (click)="this.authenticationService.signOut()">
+                        <a (click)="this.authenticationService.signOut()" (click)="clickLink();">
                             <i class="fa fa-user"></i>
                             Logout
                         </a>
                     </li>
                     <li *ngIf="!this.stateService.state.isLogged">
-                        <a routerLink="/auth/register">
+                        <a routerLink="/auth/register" (click)="clickLink();">
                             <i class="fa fa-user"></i>
                             Register
                         </a>
                     </li>
                     <li *ngIf="this.stateService.state.isLogged">
-                        <a routerLink="/auth/profile">
+                        <a routerLink="/auth/profile" (click)="clickLink();">
                             <i class="fa fa-user"></i>
                             Profile
                         </a>
                     </li>
                     <% } %>
                     <li>
-                        <a role="link" class="cursor" (click)="this.modalService.open('searchModal');">
+                        <a role="link" class="cursor" (click)="clickLink(); this.modalService.open('searchModal');">
                             <i class="fa fa-search "></i>
-                            SEARCH
+                            Search
                         </a>
                     </li>
                 </ul>

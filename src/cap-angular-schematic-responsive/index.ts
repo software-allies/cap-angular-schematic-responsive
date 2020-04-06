@@ -35,7 +35,8 @@ import {
 import { 
   appendToStartFile,
   removeContentFromFile,
-  addEnvironmentVar
+  addEnvironmentVar,
+  addIdToElement
 } from './cap-utils';
 import { Schema as ComponentOptions } from './schema';
 import * as ts from 'typescript';
@@ -351,6 +352,12 @@ function addToEnvironments(options: ComponentOptions): Rule {
     }
 }
 
+function addIdAppToBody(htmlFilePath: string): Rule {
+    return (host: Tree) => {
+      addIdToElement(host, htmlFilePath, 'app', 'body');
+    }
+}
+
 export function schematicResponsive(options: ComponentOptions): Rule {
   return (host: Tree, context: FileSystemSchematicContext) => {
 
@@ -430,7 +437,8 @@ export function schematicResponsive(options: ComponentOptions): Rule {
         addStyles(),
         (options.removeAppComponentHtml) ? removeContentFromAppComponentHtml(files.appComponent) :  noop(),
         appendToAppComponentFile(files.appComponent, options),
-        addHomeRoute(options)
+        addHomeRoute(options),
+        addIdAppToBody(files.index)
       ])),
     ])(host, context);
   };

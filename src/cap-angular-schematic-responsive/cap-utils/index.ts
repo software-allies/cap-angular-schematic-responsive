@@ -153,3 +153,39 @@ export function addEnvironmentVar(host: Tree, env: string, appPath: string, key:
   ${key}: '${value}',`;
   host.overwrite(environmentFilePath, sourceFile.replace('export const environment = {', `export const environment = {${keyValue}` ));
 }
+
+
+/** Adds a id to a element */
+export function addIdToElement(host: Tree, htmlFilePath: string, idName: string, tagName: string): void {
+  const htmlFileBuffer = host.read(htmlFilePath);
+
+  if (!htmlFileBuffer) {
+    throw new SchematicsException(`Could not read file for path: ${htmlFilePath}`);
+  }
+
+  const htmlContent = htmlFileBuffer.toString();
+  const _element = getElementByTagName(tagName, htmlContent);
+
+  if (!_element) {
+    throw Error(`Could not find ${tagName} element in HTML file: ${htmlFileBuffer}`);
+  }
+
+  const attribute = _element.attrs.find(attribute => attribute.name === 'id');
+
+  if (attribute) {
+    const hasAttr = attribute.value.split(' ').map(part => part.trim()).includes(idName);
+
+    if (!hasAttr) {
+      const attributeLocation = _element.sourceCodeLocation!.attrs.id;
+      const recordedChange = host
+        .beginUpdate(htmlFilePath)
+        .insertRight(attributeLocation.endOffset - 1, ` ${idName}`);
+      host.commitUpdate(recordedChange);
+    } 
+  } else {
+    const recordedChange = host
+      .beginUpdate(htmlFilePath)
+      .insertRight(_element.sourceCodeLocation!.startTag.endOffset - 1, ` id="${idName}"`);
+    host.commitUpdate(recordedChange);
+  }
+}
