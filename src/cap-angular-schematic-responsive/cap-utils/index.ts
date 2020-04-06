@@ -1,6 +1,6 @@
 import {SchematicsException, Tree, UpdateRecorder} from '@angular-devkit/schematics';
 import {getChildElementIndentation} from '@angular/cdk/schematics/utils/parse5-element';
-import {DefaultTreeDocument, DefaultTreeElement, parse as parseHtml} from 'parse5';
+import {DefaultTreeDocument, DefaultTreeElement, parse as parseHtml } from 'parse5';
 import { getFileContent } from '@schematics/angular/utility/test';
 
 
@@ -154,8 +154,14 @@ export function addEnvironmentVar(host: Tree, env: string, appPath: string, key:
   host.overwrite(environmentFilePath, sourceFile.replace('export const environment = {', `export const environment = {${keyValue}` ));
 }
 
-
-/** Adds a id to a element */
+/**
+ * Add a id to a element on a html file 
+ * @param host Tree
+ * @param htmlFilePath Html file path
+ * @param idName Name of the id to be added
+ * @param tagName Html tag name to append the id
+ * @return void
+*/
 export function addIdToElement(host: Tree, htmlFilePath: string, idName: string, tagName: string): void {
   const htmlFileBuffer = host.read(htmlFilePath);
 
@@ -172,20 +178,20 @@ export function addIdToElement(host: Tree, htmlFilePath: string, idName: string,
 
   const attribute = _element.attrs.find(attribute => attribute.name === 'id');
 
-  if (attribute) {
+  if (attribute && _element.sourceCodeLocation) {
     const hasAttr = attribute.value.split(' ').map(part => part.trim()).includes(idName);
 
     if (!hasAttr) {
-      const attributeLocation = _element.sourceCodeLocation!.attrs.id;
+      const attributeLocation = _element.sourceCodeLocation.attrs.id;
       const recordedChange = host
         .beginUpdate(htmlFilePath)
         .insertRight(attributeLocation.endOffset - 1, ` ${idName}`);
       host.commitUpdate(recordedChange);
     } 
-  } else {
+  } else if(_element.sourceCodeLocation) {
     const recordedChange = host
       .beginUpdate(htmlFilePath)
-      .insertRight(_element.sourceCodeLocation!.startTag.endOffset - 1, ` id="${idName}"`);
+      .insertRight(_element.sourceCodeLocation.startTag.endOffset - 1, ` id="${idName}"`);
     host.commitUpdate(recordedChange);
   }
 }
