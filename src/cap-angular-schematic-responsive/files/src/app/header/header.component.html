@@ -3,7 +3,7 @@
     <div class="wsmobileheader clearfix ">
         <a role="link" id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>
         <span class="smllogo"><img src="assets/images/angular-logo.png" width="170" alt="<%= title %> Logo" title="<%= title %> Logo" loading="lazy"></span>
-        <a role="link" class="callusbtn cursor" (click)="this.modalService.open('searchModal')">
+        <a role="link" class="callusbtn cursor" (click)="clickLink(); this.modalService.open('searchModal');">
             <i class="fa fa-search" aria-hidden="true"></i>
         </a>
     </div>
@@ -17,7 +17,7 @@
                 </a>
             </div>
             <!--Main Menu HTML Code-->
-            <nav class="wsmenu clearfix dark">
+            <nav id="nav" class="wsmenu clearfix dark">
                 <ul class="wsmenu-list">
                     <li aria-haspopup="true">
                         <a routerLink="/home" (click)="clickLink();">

@@ -1,6 +1,6 @@
 {
   "name": "cap-angular-schematic-responsive",
-  "version": "1.0.40",
+  "version": "1.0.43",
   "description": "CAP Schematics Responsive Template",
   "scripts": {
     "build": "tsc -p tsconfig.json",

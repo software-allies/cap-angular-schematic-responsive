@@ -127,7 +127,6 @@ function getElementByTagName(tagName: string, htmlContent: string): DefaultTreeE
     const node = nodeQueue.shift() as DefaultTreeElement;
     
     if (node.nodeName.toLowerCase() === tagName) {
-      console.log('node', node);
       return node;
     } else if (node.childNodes) {
       nodeQueue.push(...node.childNodes);
