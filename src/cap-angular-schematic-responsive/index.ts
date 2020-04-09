@@ -36,7 +36,7 @@ import {
   appendToStartFile,
   removeContentFromFile,
   addEnvironmentVar,
-  addIdToElement
+  // addIdToElement
 } from './cap-utils';
 import { Schema as ComponentOptions } from './schema';
 import * as ts from 'typescript';
@@ -57,7 +57,7 @@ function updateBodyOfIndexFile(filePath: string): Rule {
 `;
       
       const component = getFileContent(tree, filePath);
-      tree.overwrite(filePath, component.replace(`<body>`, `<body>${toAddBegin}`));
+      tree.overwrite(filePath, component.replace(`<body>`, `<body id="app">${toAddBegin}`));
 
       const componentAfter = getFileContent(tree, filePath);
       tree.overwrite(filePath, componentAfter.replace(`</body>`, `${toAddFinal}</body>`));
@@ -352,11 +352,11 @@ function addToEnvironments(options: ComponentOptions): Rule {
     }
 }
 
-function addIdAppToBody(htmlFilePath: string): Rule {
+/*function addIdAppToBody(htmlFilePath: string): Rule {
     return (host: Tree) => {
       addIdToElement(host, htmlFilePath, 'app', 'body');
     }
-}
+}*/
 
 export function schematicResponsive(options: ComponentOptions): Rule {
   return (host: Tree, context: FileSystemSchematicContext) => {
@@ -437,8 +437,8 @@ export function schematicResponsive(options: ComponentOptions): Rule {
         addStyles(),
         (options.removeAppComponentHtml) ? removeContentFromAppComponentHtml(files.appComponent) :  noop(),
         appendToAppComponentFile(files.appComponent, options),
-        addHomeRoute(options),
-        addIdAppToBody(files.index)
+        addHomeRoute(options)
+        /*addIdAppToBody(files.index)*/
       ])),
     ])(host, context);
   };
