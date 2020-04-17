@@ -132,6 +132,14 @@ function appendToStylesFile(path: string): Rule {
 @import './assets/scss/variables.scss';
 
 
+/*
+*
+* ==========================================
+* GENERAL
+* ==========================================
+*
+*/
+
 body {
   font-family: 'Lato', verdana, sans-serif;
   text-align: center;
@@ -165,6 +173,14 @@ section {
   transition: margin-left 4s ease-in-out 1s;
   padding: 20px 20px;
 }
+
+/*
+*
+* ==========================================
+* HOME
+* ==========================================
+*
+*/
 
 .fullscreen-bg {
   height: 100vh;
@@ -208,6 +224,41 @@ section {
   .cover-caption {
     width: 100%;
   }
+}
+
+/*
+*
+* ==========================================
+* FORMS CONTAINER
+* ==========================================
+*
+*/
+
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box > div {
+  height: max-content !important;
+  border-radius: 5px !important;
+  border: 1px solid #333 !important;
+  background-color: $main-color;
+  padding: 35px !important;
+  width: 500px !important;
+  margin: 0 !important;
+  color: $main-font-color !important;
+}
+
+.box form {
+  text-align: left;
+}
+
+.box .list-group-item {
+  background-color: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.125) !important;
 }
 
 `;

@@ -28,9 +28,6 @@ export class HomeComponent implements OnInit {
       description: 'Home SEO Description'
     };
     this.seoService.generateTags(tags);
-
-    // Example request to REST API
-    this.exampleItems$ = this.apiService.get('http://dummy.restapiexample.com/api/v1/employees');
   }
 
 }

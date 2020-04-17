@@ -49,22 +49,4 @@
         </ul>
     </div>
   </div>
-  <header class="title mt-5">
-    <h2>Api REST consumption example</h2>
-  </header>
-  <div class="row">
-    <div class="col">
-      <div class="row mt-5" *ngIf="exampleItems$ | async as items">
-        <div class="col" *ngFor="let item  of items.data">
-          <div  class="card bg-light mb-3" style="max-width: 18rem;">
-            <div class="card-header">{{item.employee_age}}</div>
-            <div class="card-body">
-              <h5 class="card-title">{{item.employee_name}}</h5>
-              <p class="card-text">{{item.employee_salary | currency:'US'}}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
