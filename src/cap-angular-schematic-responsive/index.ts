@@ -248,7 +248,7 @@ section {
   padding: 35px !important;
   width: 500px !important;
   margin: 0 !important;
-  color: $main-font-color !important;
+  color: $light-color !important;
 }
 
 .box form {
