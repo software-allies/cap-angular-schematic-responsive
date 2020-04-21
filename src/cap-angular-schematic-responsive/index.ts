@@ -369,7 +369,7 @@ function addDeclarationToNgModule(options: ComponentOptions): Rule {
 }
 
 function addBootstrapSchematic() {
-    return externalSchematic('cap-angular-schematic-bootstrap', 'ng-add', { version: "4.0.0", skipWebpackPlugin: true });
+    return externalSchematic('cap-angular-schematic-bootstrap@latest', 'ng-add', { version: "4.0.0", skipWebpackPlugin: true });
 }
 
 function addHomeRoute(options: ComponentOptions): Rule {
