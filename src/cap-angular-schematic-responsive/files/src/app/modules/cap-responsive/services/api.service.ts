@@ -25,7 +25,7 @@ export class ApiService {
     }
 
     get(url: string): Observable<any> {
-        return this._http.get<any>(url, this.httpOptions)
+        return this._http.get<any>(`${this.apiUrl}${url}`, this.httpOptions)
         .pipe(
             map((response: any) => response.body),
             tap((response: any) => {
@@ -36,7 +36,7 @@ export class ApiService {
     }
     
     post(url: string, data: any) : Observable<any> { 
-        return this._http.post<HttpResponse<any>>(url, data, this.httpOptions)
+        return this._http.post<HttpResponse<any>>(`${this.apiUrl}${url}`, data, this.httpOptions)
         .pipe(
             map(response => response),
             tap((response: HttpResponse<any>) => {
@@ -46,9 +46,8 @@ export class ApiService {
         );
     }
 
-    deleteById(url: string, id: string) : Observable<any> { 
-        const _url = `${url}/${id}`;
-        return this._http.delete<HttpResponse<any>>(_url, this.httpOptions)
+    deleteById(url: string, id: string) : Observable<any> {
+        return this._http.delete<HttpResponse<any>>(`${this.apiUrl}${url}/${id}`, this.httpOptions)
         .pipe(
             map(response => response),
             tap((response: HttpResponse<any>) => {

@@ -28,7 +28,8 @@ import { EncodeURIPipe } from './pipes/encode-uri.pipe';
     exports: [
         ModalComponent,
         LoadingScreenComponent,
-        HttpClientModule
+        EncodeURIPipe,
+        StrReplacePipe
     ],
     entryComponents: [
         ModalComponent

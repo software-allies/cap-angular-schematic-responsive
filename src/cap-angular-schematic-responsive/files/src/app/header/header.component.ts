@@ -3,6 +3,8 @@ import { DOCUMENT } from '@angular/common';
 import { isPlatformBrowser } from '@angular/common';
 import { ModalService } from '../modules/cap-responsive/components/modal/modal.service';
 import { LoadScriptService } from '../modules/cap-responsive/services/load-scripts.service';
+import { Subscription } from 'rxjs';
+import { Router, NavigationEnd, Event } from '@angular/router';
 <% if(auth && authService === 'auth0') { %>
 import { AuthenticationService } from 'cap-authentication';
 import { StateService } from 'cap-authentication';
@@ -21,6 +23,10 @@ import { StateService } from 'cap-authentication-firebase';
 })
 export class HeaderComponent implements OnInit {
 
+  routerSubscription: Subscription;
+  isTheHome = true;
+
+
   constructor (
     <% if(auth) { %>
       public authenticationService: AuthenticationService,
@@ -29,11 +35,27 @@ export class HeaderComponent implements OnInit {
       private scriptService: LoadScriptService,
       @Inject(PLATFORM_ID) private platformId: string,
       @Inject(DOCUMENT) private document: Document,
-      public modalService: ModalService
-  ) { }
+      public modalService: ModalService,
+      private router: Router
+  ) {
+      
+    // Check if the route is the root for set the dark menu style
+    this.routerSubscription = router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        this.activeRoute = event.url;
+        this.isTheHome = this.commonService.isTheHome = (event.url === '/' || event.url === '/newsletter-sign-up' || event.url === '/artwork-form')
+      }
+    });
+  }
 
   ngOnInit() {
     this.addMenuScript();
+  }
+  
+  ngOnDestroy() {
+    if (this.routerSubscription) {
+      this.routerSubscription.unsubscribe();
+    }
   }
 
   addMenuScript() {
