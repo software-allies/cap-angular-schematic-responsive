@@ -38,12 +38,10 @@ export class HeaderComponent implements OnInit {
       public modalService: ModalService,
       private router: Router
   ) {
-      
     // Check if the route is the root for set the dark menu style
     this.routerSubscription = router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
-        this.activeRoute = event.url;
-        this.isTheHome = this.commonService.isTheHome = (event.url === '/' || event.url === '/newsletter-sign-up' || event.url === '/artwork-form')
+        this.isTheHome = (event.url === '/')
       }
     });
   }
