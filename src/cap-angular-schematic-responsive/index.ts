@@ -31,17 +31,18 @@ import { appendHtmlElementToHead } from '@angular/cdk/schematics/utils/html-head
 import { 
   addDeclarationToModule,
   addImportToModule
- } from './vendored-ast-utils';
+} from './vendored-ast-utils';
+import { Schema as ComponentOptions } from './schema';
+import * as ts from 'typescript';
+import { getFileContent } from '@schematics/angular/utility/test';
 import { 
   appendToStartFile,
   removeContentFromFile,
-  addEnvironmentVar,
+  addEnvironmentVar
+  // addToNgModule
   // addIdToElement
 } from './cap-utils';
-import { Schema as ComponentOptions } from './schema';
-import * as ts from 'typescript';
 import { addStyle } from './cap-utils/config';
-import { getFileContent } from '@schematics/angular/utility/test';
 import { getAppName } from './cap-utils/package';
 
 
@@ -120,7 +121,7 @@ function appendToAppComponentFile(filePath: string, options: ComponentOptions): 
 function addStyles(): Rule {
   return (host: Tree) => {
     addStyle(host, './src/assets/webslidemenu/dropdown-effects/fade-down.css');
-    addStyle(host, './src/assets/webslidemenu/webslidemenu.scss');
+    addStyle(host, './src/assets/webslidemenu/webslidemenu.css');
     return host;
   };
 }
@@ -315,25 +316,39 @@ section {
 */
 
 .btn-primary {
-  background-color: $color1 !important;
+  background-color: $primary !important;
+  border-color: $primary !important;
 }
 
 .btn-secondary {
-  background-color: $color2 !important;
+  background-color: $secondary !important;
+  border-color: $secondary !important;
+}
+
+.btn-default {
+  background-color: $default !important;
+  border-color: $default !important;
 }
 
 .btn-success {
-  background-color: $color3 !important;
+  background-color: $success !important;
+  border-color: $success !important;
 }
 
 .btn-info {
-  background-color: $color4 !important;
+  background-color: $info !important;
+  border-color: $info !important;
 }
 
 .btn-danger {
-  background-color: $color5 !important;
+  background-color: $danger !important;
+  border-color: $danger !important;
 }
 
+.btn-warning {
+  background-color: $warning !important;
+  border-color: $warning !important;
+}
 `;
     appendToStartFile(host, path, content);
     return host;
@@ -347,6 +362,35 @@ function readIntoSourceFile(host: Tree, filePath: string) {
   }
   return ts.createSourceFile(filePath, text.toString('utf-8'), ts.ScriptTarget.Latest, true);
 }
+
+/*function addDeclarationToNgModule(options: ComponentOptions): Rule {
+  return (host: Tree) => {
+    addToNgModule(host, options, [
+      {
+        name: 'HeaderComponent',
+        path: '/app/header/header.component',
+        type: 'component'
+      },
+      {
+        name: 'FooterComponent',
+        path: '/app/footer/footer.component',
+        type: 'component'
+      },
+      {
+        name: 'HomeModule',
+        path: '/app/home/home.module',
+        type: 'module'
+      },
+      {
+        name: 'CapResponsiveModule',
+        path: '/app/modules/cap-responsive/cap-responsive.module',
+        type: 'module'
+      }
+    ])
+    return host;
+  };
+}*/
+
 
 function addDeclarationToNgModule(options: ComponentOptions): Rule {
   return (host: Tree) => {
@@ -472,7 +516,9 @@ import { HomeComponent } from './home/home.component';`;
 function addToEnvironments(options: ComponentOptions): Rule {
     return (host: Tree) => {
         addEnvironmentVar(host, '', options.path || '/src', 'apiUrl', 'http://localhost:4000/api/');
-        addEnvironmentVar(host, 'prod', options.path || '/src', 'apiUrl', 'http://mydomain.com/api/');
+        addEnvironmentVar(host, '', options.path || '/src', 'sfApiUrl', '');
+        addEnvironmentVar(host, 'prod', options.path || '/src', 'apiUrl', 'http://apiurl.com/api/');
+        addEnvironmentVar(host, 'prod', options.path || '/src', 'sfApiUrl', '');
     }
 }
 
@@ -492,7 +538,7 @@ export function schematicResponsive(options: ComponentOptions): Rule {
     }
 
     const workspace = getWorkspace(host);
-    const project = getProjectFromWorkspace(workspace, options.project);
+    const project: any = getProjectFromWorkspace(workspace, options.project);
     if (!project) {
       throw new SchematicsException(`Project is not defined in this workspace.`);
     }

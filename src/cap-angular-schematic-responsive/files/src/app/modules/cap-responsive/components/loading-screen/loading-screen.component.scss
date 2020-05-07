@@ -1,7 +1,9 @@
-$color-red: red;
-$color-purple: purple;
-$color-blue: darkblue;
-$color-cyan: cyan;
+@import '../../../../../assets/scss/variables.scss';
+
+$color-red: $color1;
+$color-purple: $color2;
+$color-blue: $color3;
+$color-cyan: $color4;
   
 .container {
     position: fixed;

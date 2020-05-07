@@ -1,3 +1,4 @@
+import { environment } from './../../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpRequest, HttpHandler, HttpInterceptor, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
@@ -19,7 +20,7 @@ export class CacheInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     // continue request if not cacheable.
-    if (!this.canCache(request)) {
+    if (this.cantCache(request)) {
       return next.handle(request);
     }
 
@@ -56,9 +57,9 @@ export class CacheInterceptor implements HttpInterceptor {
     );
   }
 
-  canCache(req: HttpRequest<any>): boolean {
+  cantCache(req: HttpRequest<any>): boolean {
     // only cache if URL includes...
-    // return (req.url.includes('categories'));
-    return true;
+    return (req.url.includes(environment.sfApiUrl));
+    // return true;
   }
 }
