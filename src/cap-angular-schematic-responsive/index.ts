@@ -69,8 +69,7 @@ function updateIndexFile(path: string): Rule {
   return (host: Tree) => {
     /** Appends the given element HTML fragment to the `<head>` element of the specified HTML file. */
     [
-      '<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=optional" rel="stylesheet" async defer>',
-      '<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=optional" rel="stylesheet" async defer>', 
+      '<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=optional|Roboto:300,400,500&display=optional" rel="stylesheet" async defer>', 
       '<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" async defer>'
     ].map((element: string) => {
       appendHtmlElementToHead(host, path, element);
@@ -121,7 +120,7 @@ function appendToAppComponentFile(filePath: string, options: ComponentOptions): 
 function addStyles(): Rule {
   return (host: Tree) => {
     addStyle(host, './src/assets/webslidemenu/dropdown-effects/fade-down.css');
-    addStyle(host, './src/assets/webslidemenu/webslidemenu.css');
+    addStyle(host, './src/assets/webslidemenu/webslidemenu.scss');
     return host;
   };
 }
@@ -129,9 +128,7 @@ function addStyles(): Rule {
 function appendToStylesFile(path: string): Rule {
   return (host: Tree) => {
     const content = `
-@import url(http://fonts.googleapis.com/css?family=Lato:400,900);
 @import './assets/scss/variables.scss';
-
 
 /*
 *
@@ -142,7 +139,7 @@ function appendToStylesFile(path: string): Rule {
 */
 
 body {
-  font-family: 'Lato', verdana, sans-serif;
+  font-family: 'Open Sans', verdana, sans-serif;
   text-align: center;
   background: $main-bg;
   color: $main-color;
