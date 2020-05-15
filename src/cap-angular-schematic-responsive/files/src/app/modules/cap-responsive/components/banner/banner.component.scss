@@ -1,0 +1,28 @@
+@import './../../../../../assets/scss/variables.scss';
+
+header {
+  &.title {
+    width: 100%;
+    background-color: $dark-color;
+    overflow:hidden;
+    div {
+        transition:all .4s ease-in-out;
+        div {
+            padding: 80px 0;
+            background-color: rgba($color: black, $alpha: 0.4);
+            background-size: cover;
+            color: white;
+            text-align: center;
+            width: 100%;
+            h1, h2, h3 {
+                text-align: center;
+                color: white !important;
+            }
+        }
+        &:hover {
+            -webkit-transform:scale(1.1);
+            transform:scale(1.1);
+        }
+    }
+  }
+}

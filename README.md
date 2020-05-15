@@ -1,5 +1,5 @@
 # cap-angular-schematic-responsive  [![NPM version](https://badge.fury.io/js/CAP.svg)](https://npmjs.org/package/CAP) [![Build Status](https://travis-ci.org/Elena%20M.%20Sarabia/CAP.svg?branch=master)](https://travis-ci.org/Elena%20M.%20Sarabia/CAP) [![Generic badge](https://img.shields.io/badge/CAP-Active-<COLOR>.svg)](https://shields.io/)
- This repository is a basic Schematic implementation that serves as a starting point to create and publish Schematics to NPM. 
+ The Schematic will create a responsive plate scaffold application with many useful features, modules and useful function to starta project.
  
 # Getting Started
  These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
@@ -59,6 +59,8 @@ The Schematic will create a responsive plate scaffold application with the next 
 - Integration with cap-angular-schematic-sfcore (Salesforce Components menu links).
 - Pipes for url encode and string decode.
 - Common Service with useful common functions.
+- Banner and Breadcrumbs components.
+- Custom Elememnts implementation, a image lazy defer screen custom element included.
 
 Touched files:
 
@@ -91,7 +93,10 @@ app
                 |-- api.service.ts
                 |-- cache.interceptor.ts
                 |-- common.service.ts
+            |-- custom-elements/
             |-- components/
+                |-- banner/
+                |-- breadcrumbs/
                 |-- modal/
                     |-- modal.component.ts
                     |-- modal.service.ts
@@ -108,7 +113,7 @@ assets
     |-- images/
         |-- angular-logo.png
     |-- webslidemenu/
-        |-- webslidemenu.css
+        |-- webslidemenu.scss
         |-- webslidemenu.js
         |-- color-skins/
             |-- white-red.css
@@ -116,14 +121,81 @@ assets
             |-- fade-down.css
 ```
 
+# How to implement the img-lazy custom element
+This custom element is useful to increment the Performance of a application because use the defer offscreen hability, is compatible with SSR and very useful for SEO, the images are wrapped in a figure element and the description in a figure-caption element also.
+
+* In a SSR application:
+
+
+```
+import { ImgLazyComponent } from './shared/custom-elements/img-lazy/img-lazy.component';
+import { PLATFORM_ID, Inject, Injector } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+...
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  constructor(
+    private injector: Injector,
+    @Inject(PLATFORM_ID) private platformId: string) {
+      const { createCustomElement } = require('@angular/elements');
+      if (isPlatformBrowser(this.platformId)) {
+        // Register Custom Elements and Web Components
+        const elements: any[] = [
+          [ImgLazyComponent, 'img-lazy-element']
+        ];        
+        for (const [component, name] of elements) {
+          const el = createCustomElement(component, { injector: this.injector });
+          customElements.define(name, el);
+        }
+    }
+  }
+}
+
+```
+
+* In a non SSR aplication:
+
+```
+import { ImgLazyComponent } from './shared/custom-elements/img-lazy/img-lazy.component';
+import { createCustomElement } from '@angular/elements';
+...
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  constructor() {
+    // Register Custom Elements and Web Components
+    const elements: any[] = [
+        [ImgLazyComponent, 'img-lazy-element']
+    ];        
+    for (const [component, name] of elements) {
+        const el = createCustomElement(component, { injector: this.injector });
+        customElements.define(name, el);
+    }
+  }
+}
+
+```
+
+
+
+
 ## Usage
-angular 8
+angular 9
 
 ## Built With
 [Schematic](https://www.schematics.com/)
 
 ## Version 
-1.0.31
+1.1.3
 
 ## Authors
 Software Allies - [Software Allies](https://github.com/software-allies)
@@ -133,3 +205,4 @@ César Alonso Magaña Gavilanes - [cesaralonso](https://github.com/cesaralonso)
 
 ## License
 MIT © [Software Allies](https://github.com/software-allies/cap-angular-schematic-responsive)
+

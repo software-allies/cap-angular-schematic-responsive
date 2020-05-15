@@ -44,7 +44,11 @@ import {
 } from './cap-utils';
 import { addStyle } from './cap-utils/config';
 import { getAppName } from './cap-utils/package';
-
+import {
+  addPackageJsonDependency,
+  NodeDependency,
+  NodeDependencyType
+} from 'schematics-utilities';
 
 function updateBodyOfIndexFile(filePath: string): Rule {
     return (tree: Tree) => {
@@ -525,6 +529,19 @@ function addToEnvironments(options: ComponentOptions): Rule {
     }
 }*/
 
+function addPackageJsonDependencies(): Rule {
+    return (host: Tree, context: FileSystemSchematicContext) => {
+        const dependencies: NodeDependency[] = [
+            { type: NodeDependencyType.Default, version: '^9.1.6', name: '@angular/elements' },
+        ];
+        dependencies.forEach(dependency => {
+            addPackageJsonDependency(host, dependency);
+            context.logger.log('info', `✅️ Added "${dependency.name}" into ${dependency.type}`);
+        });
+        return host;
+    };
+}
+
 export function schematicResponsive(options: ComponentOptions): Rule {
   return (host: Tree, context: FileSystemSchematicContext) => {
 
@@ -604,7 +621,8 @@ export function schematicResponsive(options: ComponentOptions): Rule {
         addStyles(),
         (options.removeAppComponentHtml) ? removeContentFromAppComponentHtml(files.appComponent) :  noop(),
         appendToAppComponentFile(files.appComponent, options),
-        addHomeRoute(options)
+        addHomeRoute(options),
+        addPackageJsonDependencies()
         /*addIdAppToBody(files.index)*/
       ])),
     ])(host, context);
