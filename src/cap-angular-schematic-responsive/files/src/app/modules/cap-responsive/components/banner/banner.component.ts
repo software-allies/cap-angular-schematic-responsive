@@ -1,6 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Component, OnInit, Input, PLATFORM_ID, Inject } from '@angular/core';
-import { DeviceDetectorService } from 'ngx-device-detector';
+import { Component, OnInit, Input} from '@angular/core';
 
 
 
@@ -16,21 +15,6 @@ export class BannerComponent implements OnInit {
 
   @Input()
   background: string;
-
-  deviceChecked = false;
-
-  constructor(@Inject(PLATFORM_ID) private platformId: string, private deviceService: DeviceDetectorService) {
-    if (isPlatformBrowser(this.platformId)) {
-      const isMobile = this.deviceService.isMobile();
-      console.log('isMobile', isMobile);
-      if (isMobile) {
-        this.background = this.background + '_s';
-        this.deviceChecked = true;
-      } else {
-        this.deviceChecked = true;
-      }
-    }
-  }
 
   ngOnInit(): void {
   }
