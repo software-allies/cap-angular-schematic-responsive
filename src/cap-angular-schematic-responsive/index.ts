@@ -44,11 +44,11 @@ import {
 } from './cap-utils';
 import { addStyle } from './cap-utils/config';
 import { getAppName } from './cap-utils/package';
-import {
+/*import {
   addPackageJsonDependency,
   NodeDependency,
   NodeDependencyType
-} from 'schematics-utilities';
+} from 'schematics-utilities';*/
 
 function updateBodyOfIndexFile(filePath: string): Rule {
     return (tree: Tree) => {
