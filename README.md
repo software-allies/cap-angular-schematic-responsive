@@ -1,17 +1,10 @@
 # cap-angular-schematic-responsive  [![NPM version](https://badge.fury.io/js/CAP.svg)](https://npmjs.org/package/CAP) [![Build Status](https://travis-ci.org/Elena%20M.%20Sarabia/CAP.svg?branch=master)](https://travis-ci.org/Elena%20M.%20Sarabia/CAP) [![Generic badge](https://img.shields.io/badge/CAP-Active-<COLOR>.svg)](https://shields.io/)
- The Schematic will create a responsive plate scaffold application with many useful features, modules and useful function to starta project.
+ The Schematic will create a responsive plate scaffold application with many useful features, modules and useful function to start a project.
  
-# Getting Started
- These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ## Prerequisites
-* Have an Angular app 
-install  npm 6.13.7 
-```	
-nmp install 
-```
+* Have an Angular app
 * [Node](https://nodejs.org/en/download/current) 10.6 to the current. 
-
 
 ## Installation
 To run the schematic, execute the following command.
@@ -23,17 +16,27 @@ The schematic will add an `angular.json`
 
 ```
 "styles": [
-"src/styles.scss",
 {
-"input": "./node_modules/bootstrap/dist/css/bootstrap.css"
+    "input": "./node_modules/bootstrap/dist/css/bootstrap.css"
 },
 {
-"input": "./src/assets/webslidemenu/dropdown-effects/fade-down.css"
+    "input": "./src/assets/webslidemenu/dropdown-effects/fade-down.css"
 },
 {
-"input": "./src/assets/webslidemenu/webslidemenu.css"
+    "input": "./src/assets/webslidemenu/webslidemenu.scss"
 }
-], 
+],
+"scripts": [
+{
+    "input": "./node_modules/jquery/dist/jquery.min.js"
+},
+{
+    "input": "./node_modules/popper.js/dist/umd/popper.min.js"
+},
+{
+    "input": "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+}
+]
 ```
 The schematic will be configurated after you answer the following questions.
 
@@ -202,7 +205,7 @@ export class AppComponent {
 ```
 
 ## Update the main.ts file
-For wait for Web Components are ready are neccesary the next configuration:
+For wait for Web Components are ready are required the next configuration:
 
 ```
 import { enableProdMode } from '@angular/core';
