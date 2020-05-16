@@ -121,14 +121,30 @@ assets
             |-- fade-down.css
 ```
 
-# How to implement the img-lazy custom element
+
+## How implement Banner Component
+```
+<app-banner [title]="'Connected Apps Plattform'" [background]="'https://ep01.epimg.net/elpais/imagenes/2019/10/30/album/1572424649_614672_1572453030_noticia_normal.jpg'"></app-banner>
+     
+```
+
+## How implement Breadcrumbs Component
+```
+<app-breadcrumbs [links]="{home: '/', publications: '/publications'}"></app-breadcrumbs>
+     
+```
+
+
+# Custom Elements
+
+## How to register img-lazy component as a custom element
 This custom element is useful to increment the Performance of a application because use the defer offscreen hability, is compatible with SSR and very useful for SEO, the images are wrapped in a figure element and the description in a figure-caption element also.
 
 * In a SSR application:
 
 
 ```
-import { ImgLazyComponent } from './shared/custom-elements/img-lazy/img-lazy.component';
+import { ImgLazyComponent } from './modules/cap-responsive/custom-elements/img-lazy/img-lazy.component';
 import { PLATFORM_ID, Inject, Injector } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 ...
@@ -161,7 +177,7 @@ export class AppComponent {
 * In a non SSR aplication:
 
 ```
-import { ImgLazyComponent } from './shared/custom-elements/img-lazy/img-lazy.component';
+import { ImgLazyComponent } from './modules/cap-responsive/custom-elements/img-lazy/img-lazy.component';
 import { createCustomElement } from '@angular/elements';
 ...
 
@@ -185,6 +201,56 @@ export class AppComponent {
 
 ```
 
+## Update the main.ts file
+For wait for Web Components are ready are neccesary the next configuration:
+
+```
+import { enableProdMode } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
+import { AppModule } from './app/app.module';
+import { environment } from './environments/environment';
+
+
+declare global {
+  interface Window {
+    WebComponents: {
+      ready: boolean;
+    };
+  }
+}
+
+if (environment.production) {
+  enableProdMode();
+}
+
+function bootstrapModule() {
+  platformBrowserDynamic().bootstrapModule(AppModule)
+    .catch(err => console.log(err));
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (window.WebComponents.ready) {
+    // Web Components are ready
+    bootstrapModule();
+  } else {
+    // Wait for polyfills to load
+    window.addEventListener('WebComponentsReady', bootstrapModule);
+  }
+});
+
+```
+
+## How implement img-lazy-element in a template
+```
+  <div class="row">
+      <div class="col-lg-3 col-md-4 col-6" *ngFor="let item of items">
+          <a routerLink="/items/{{item.id}}" title="{{item.name}}">
+              <img-lazy-element [src]="item.logo.file.url" [alt]="item.logo.file.title"></img-lazy-element>
+          </a>
+      </div>
+  </div>
+```
 
 
 
@@ -195,7 +261,7 @@ angular 9
 [Schematic](https://www.schematics.com/)
 
 ## Version 
-1.1.3
+1.1.5
 
 ## Authors
 Software Allies - [Software Allies](https://github.com/software-allies)

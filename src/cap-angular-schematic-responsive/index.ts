@@ -73,8 +73,9 @@ function updateIndexFile(path: string): Rule {
   return (host: Tree) => {
     /** Appends the given element HTML fragment to the `<head>` element of the specified HTML file. */
     [
-      '<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=optional|Roboto:300,400,500&display=optional" rel="stylesheet" async defer>', 
-      '<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" async defer>'
+      '<link media="screen href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap|Roboto:300,400,500&display=swap" rel="stylesheet" async defer>', 
+      '<link media="screen href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" async defer>',
+      '<script src="assets/webcomponentsjs/webcomponents-loader.js"></script>'
     ].map((element: string) => {
       appendHtmlElementToHead(host, path, element);
     });
@@ -155,16 +156,9 @@ a {
   -webkit-text-decoration-skip: objects;
 }
 
-header {
-  &.title {
-    padding: 60px 0;
-    width: 100%;
-    background-color: $main-bg;
-  }
-  h1, h2, h3 {
-    text-align: center;
-    color: $main-color;
-  }
+h1, h2, h3 {
+  text-align: center;
+  color: $main-color;
 }
 
 section {
@@ -490,6 +484,10 @@ function addBootstrapSchematic() {
     return externalSchematic('cap-angular-schematic-bootstrap', 'ng-add', { version: "4.0.0", skipWebpackPlugin: true });
 }
 
+function addElementsSchematic() {
+    return externalSchematic('@angular/elements', 'ng-add', {});
+}
+
 function addHomeRoute(options: ComponentOptions): Rule {
   return (host: Tree) => {
 
@@ -528,19 +526,6 @@ function addToEnvironments(options: ComponentOptions): Rule {
       addIdToElement(host, htmlFilePath, 'app', 'body');
     }
 }*/
-
-function addPackageJsonDependencies(): Rule {
-    return (host: Tree, context: FileSystemSchematicContext) => {
-        const dependencies: NodeDependency[] = [
-            { type: NodeDependencyType.Default, version: '^9.1.6', name: '@angular/elements' },
-        ];
-        dependencies.forEach(dependency => {
-            addPackageJsonDependency(host, dependency);
-            context.logger.log('info', `✅️ Added "${dependency.name}" into ${dependency.type}`);
-        });
-        return host;
-    };
-}
 
 export function schematicResponsive(options: ComponentOptions): Rule {
   return (host: Tree, context: FileSystemSchematicContext) => {
@@ -617,12 +602,12 @@ export function schematicResponsive(options: ComponentOptions): Rule {
         updateIndexFile(files.index),
         updateBodyOfIndexFile(files.index),
         addBootstrapSchematic(),
+        addElementsSchematic(),
         appendToStylesFile(files.styles),
         addStyles(),
         (options.removeAppComponentHtml) ? removeContentFromAppComponentHtml(files.appComponent) :  noop(),
         appendToAppComponentFile(files.appComponent, options),
-        addHomeRoute(options),
-        addPackageJsonDependencies()
+        addHomeRoute(options)
         /*addIdAppToBody(files.index)*/
       ])),
     ])(host, context);
