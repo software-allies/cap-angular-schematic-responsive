@@ -75,7 +75,26 @@ function updateIndexFile(path: string): Rule {
     [
       '<link media="screen href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap|Roboto:300,400,500&display=swap" rel="stylesheet" async defer>', 
       '<link media="screen href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" async defer>',
-      '<script src="assets/webcomponentsjs/webcomponents-loader.js"></script>'
+      '<script src="assets/webcomponentsjs/webcomponents-loader.js"></script>',
+      '',
+      '<!-- Facebook metas -->',
+      '<meta property="fb:app_id" content="0123456789876543210">',
+      '<meta property="og:url" content="https://mysite.com">',
+      '<meta property="og:title" content="Page to share title">',
+      '<meta property="og:description" content="Page to share description">',
+      '<meta property="og:image" content="http://mysite.com/assets/image.jpg">',
+      '<meta property="og:image:alt" content="Image description">',
+      '<meta property="og:image:height" content="">',
+      '<meta property="og:image:width" content="">',
+      '<meta property="og:type" content="website">',
+      '<meta property="og:site_name" content="mysite.com">',
+      '',
+      '<!-- Twitter metas -->',
+      '<meta name="twitter:title" content="Page to share title">',
+      '<meta name="twitter:image" content="http://mysite.com/assets/image.jpg">',
+      '<meta name="twitter:image:alt" content="Image description">',
+      '<meta name="twitter:description" content="Page to share description">',
+      '<meta name="twitter:card" content="summary">'
     ].map((element: string) => {
       appendHtmlElementToHead(host, path, element);
     });
