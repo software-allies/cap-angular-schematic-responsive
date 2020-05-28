@@ -9,7 +9,6 @@ import { ModalService } from './components/modal/modal.service';
 import { LoadScriptService } from './services/load-scripts.service';
 import { SeoService } from './services/seo.service';
 import { ApiService } from './services/api.service';
-import { CacheInterceptor } from './services/cache.interceptor';
 import { CommonService } from './services/common.service';
 import { StrReplacePipe } from './pipes/str-replace.pipe';
 import { EncodeURIPipe } from './pipes/encode-uri.pipe';
@@ -56,12 +55,7 @@ import { BannerComponent } from './components/banner/banner.component';
             provide: HTTP_INTERCEPTORS,
             useClass: LoadingScreenInterceptor,
             multi: true
-        },
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: CacheInterceptor,
-            multi: true
-        },
+        }
     ]
 })
 export class CapResponsiveModule { }
