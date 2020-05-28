@@ -1,6 +1,6 @@
 {
   "name": "cap-angular-schematic-responsive",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "CAP Schematics Responsive Template",
   "scripts": {
     "build": "tsc -p tsconfig.json",
@@ -19,7 +19,7 @@
     {
       "email": "cesar_alonso_m_g@hotmail.com",
       "name": "César Alonso Magaña Gavilanes",
-      "url": "https://github.com/cesar-alonso-magana"
+      "url": "https://github.com/cesaralonso"
     }
   ],
   "license": "MIT",
