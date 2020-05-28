@@ -255,16 +255,114 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 ```
 
+# SEO Service
 
+
+## Update Title and Description metas
+
+Use generateTags method of SeoService to update the main SEO metatags.
+
+Example of implementation:
+
+``` 
+    import { SeoService } from './../modules/cap-responsive/services/seo.service';
+
+    ...
+
+    constructor(private seoService: SeoService) {}
+
+    ...
+
+    ngOnInit() {
+        const tags = {
+        title: 'SEO Title text',
+        description: 'SEO Description text'
+        };
+        this.seoService.generateTags(tags);
+    }
+
+```
+
+## Facebook and Twitter Share Metas
+This schematic put all metas Opengraph and Twitter on index.html.
+
+Use setSocialMediaTags method of SeoService to to update these metatags.
+
+### Metas included on index:
+
+```
+  <!-- Facebook metas -->
+  <meta property="fb:app_id" content="0123456789876543210">
+  <meta property="og:url" content="https://mysite.com">
+  <meta property="og:title" content="Page to share title">
+  <meta property="og:description" content="Page to share description">
+  <meta property="og:image" content="http://mysite.com/assets/image.jpg">
+  <meta property="og:image:alt" content="Image description">
+  <meta property="og:image:height" content="">
+  <meta property="og:image:width" content="">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mysite.com">
+
+  <!-- Twitter metas -->
+  <meta name="twitter:title" content="Page to share title">
+  <meta name="twitter:image" content="http://mysite.com/assets/image.jpg">
+  <meta name="twitter:image:alt" content="Image description">
+  <meta name="twitter:description" content="Page to share description">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:domain" content="mysite.com">
+```
+
+### Method Params:
+
+```
+
+    import { SeoService } from './../modules/cap-responsive/services/seo.service';
+
+    ...
+
+    constructor(private seoService: SeoService) {}
+
+    ...
+
+    this.seoService.setSocialMediaTags(
+        'https://mysite.com', // url: string, 
+        'Page to share title', // title: string, 
+        'Page to share description', // description: string, 
+        'http://mysite.com/assets/image.jpg', // image: string, 
+        'website', // type: string,
+        'Mysite.com', // siteNameMeta: string,
+        '300', // imageHeigh: string, 
+        '500', // imageWidth: string,
+        'summary', // twitterCardMeta: string, 
+        'mysite.com', // twitterDomainMeta: string
+    );
+```
+
+## Set Canonical link tag
+
+Use setCanonicalURL method of SeoService to set the canonical url of a page.
+
+Example of implementation:
+
+``` 
+    import { SeoService } from './../modules/cap-responsive/services/seo.service';
+    import { Router } from '@angular/router';
+
+    ...
+
+    constructor(private seoService: SeoService, private router: Router) {}
+
+    ...
+
+    this.seoService.setCanonicalURL(this.router.url);
+
+```
 
 ## Usage
 angular 9
 
 ## Built With
 [Schematic](https://www.schematics.com/)
-
-## Version 
-1.1.5
 
 ## Authors
 Software Allies - [Software Allies](https://github.com/software-allies)
