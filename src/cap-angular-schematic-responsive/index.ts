@@ -1,115 +1,98 @@
 import { strings } from '@angular-devkit/core';
-import { 
-  apply,
-  template,
-  branchAndMerge,
+import {
+  move,
+  url,
+  Tree,
+  Rule,
+  noop,
   chain,
+  apply,
   forEach,
+  template,
   FileEntry,
   mergeWith,
-  move,
-  Rule,
-  SchematicsException,
-  Tree,
-  url,
+  branchAndMerge,
   externalSchematic,
-  noop
- } from '@angular-devkit/schematics';
+  SchematicsException,
+  SchematicContext
+} from '@angular-devkit/schematics';
 import { FileSystemSchematicContext } from '@angular-devkit/schematics/tools';
-import { InsertChange } from '@schematics/angular/utility/change';
 import { getWorkspace } from '@schematics/angular/utility/config';
 import {
-  buildRelativePath, 
-  findModule, 
-  MODULE_EXT, 
+  findModule,
+  MODULE_EXT,
   ROUTING_MODULE_EXT
 } from '@schematics/angular/utility/find-module';
 import { parseName } from '@schematics/angular/utility/parse-name';
 import { buildDefaultPath } from '@schematics/angular/utility/project';
 import { getProjectFromWorkspace } from '@angular/cdk/schematics/utils/get-project';
-import { appendHtmlElementToHead } from '@angular/cdk/schematics/utils/html-head-element';
-import { 
-  addDeclarationToModule,
-  addImportToModule
- } from './vendored-ast-utils';
-import { 
-  appendToStartFile,
-  removeContentFromFile,
-  addEnvironmentVar,
-  // addIdToElement
-} from './cap-utils';
+
 import { Schema as ComponentOptions } from './schema';
-import * as ts from 'typescript';
-import { addStyle } from './cap-utils/config';
 import { getFileContent } from '@schematics/angular/utility/test';
 import { getAppName } from './cap-utils/package';
+import { NodeDependencyType } from 'schematics-utilities';
+import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 
+// import * as cap_utilities from 'cap-utilities';
+import * as cap_utilities from '../../../cap-utilities/dist/index';
 
 function updateBodyOfIndexFile(filePath: string): Rule {
-    return (tree: Tree) => {
+  return (tree: Tree) => {
 
-      const toAddBegin = 
-`
-<div class="container-fluid p-0">`;      
-      
-      const toAddFinal = 
-`</div>
+    const toAddBegin =
+      `
+<div class="container-fluid p-0">`;
+
+    const toAddFinal =
+      `</div>
 `;
-      
-      const component = getFileContent(tree, filePath);
-      tree.overwrite(filePath, component.replace(`<body>`, `<body id="app">${toAddBegin}`));
 
-      const componentAfter = getFileContent(tree, filePath);
-      tree.overwrite(filePath, componentAfter.replace(`</body>`, `${toAddFinal}</body>`));
-    }
+    const component = getFileContent(tree, filePath);
+    tree.overwrite(filePath, component.replace(`<body>`, `<body id="app">${toAddBegin}`));
+
+    const componentAfter = getFileContent(tree, filePath);
+    tree.overwrite(filePath, componentAfter.replace(`</body>`, `${toAddFinal}</body>`));
+  }
 }
 
 function updateIndexFile(path: string): Rule {
-  return (host: Tree) => {
+  return (host: Tree) =>
     /** Appends the given element HTML fragment to the `<head>` element of the specified HTML file. */
-    [
+    cap_utilities.addLinkStyleToHTMLHead(host, [
       '<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=optional" rel="stylesheet" async defer>',
-      '<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=optional" rel="stylesheet" async defer>', 
+      '<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=optional" rel="stylesheet" async defer>',
       '<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" async defer>'
-    ].map((element: string) => {
-      appendHtmlElementToHead(host, path, element);
-    });
-
-    return host;
-  };
+    ], path);
 }
 
 function removeContentFromAppComponentHtml(filePath: string): Rule {
-  return (host: Tree) => {
-    removeContentFromFile(host, filePath);
-    return host;
-  };
+  return (host: Tree) => cap_utilities.removeContentFromFile(host, filePath);
 }
 
 function appendToAppComponentFile(filePath: string, options: ComponentOptions): Rule {
   return (host: Tree) => {
-    
+
     if (options.removeAppComponentHtml) {
-      const content = 
-`<div id="main">
+      const content =
+        `<div id="main">
   <router-outlet></router-outlet>
 </div>`;
-      appendToStartFile(host, filePath, content);
+      cap_utilities.appendToStartFile(host, filePath, content);
     }
 
     const content = `<app-header></app-header>`;
-    appendToStartFile(host, filePath, content);
+    cap_utilities.appendToStartFile(host, filePath, content);
 
     // Add footer to end of file
-    const toAdd = 
-`<app-footer></app-footer>
+    const toAdd =
+      `<app-footer></app-footer>
 <app-loading-screen></app-loading-screen>
 <app-modal #searchModal id="searchModal">
   <div>
     <h2 class="text-center">Search content...</h2>
   </div>
 </app-modal>`;
-      
+
     const component = getFileContent(host, filePath);
     host.overwrite(filePath, `${component}${toAdd}`);
 
@@ -119,8 +102,11 @@ function appendToAppComponentFile(filePath: string, options: ComponentOptions): 
 
 function addStyles(): Rule {
   return (host: Tree) => {
-    addStyle(host, './src/assets/webslidemenu/dropdown-effects/fade-down.css');
-    addStyle(host, './src/assets/webslidemenu/webslidemenu.scss');
+    cap_utilities.addStylesToAngularJSON(host,
+      [
+        './src/assets/webslidemenu/dropdown-effects/fade-down.css',
+        './src/assets/webslidemenu/webslidemenu.scss'
+      ])
     return host;
   };
 }
@@ -335,124 +321,58 @@ section {
 }
 
 `;
-    appendToStartFile(host, path, content);
+    cap_utilities.appendToStartFile(host, path, content);
     return host;
   };
 }
 
-function readIntoSourceFile(host: Tree, filePath: string) {
-  const text = host.read(filePath);
-  if (text === null) {
-    throw new SchematicsException(`File ${filePath} does not exist.`);
-  }
-  return ts.createSourceFile(filePath, text.toString('utf-8'), ts.ScriptTarget.Latest, true);
-}
-
 function addDeclarationToNgModule(options: ComponentOptions): Rule {
   return (host: Tree) => {
-    
-    const modulePath = options.module;
-    // Import Header Component and declare
-    let source = readIntoSourceFile(host, modulePath);
-    const componentPath = `${options.path}/app/header/header.component`;
-    const relativePath = buildRelativePath(modulePath, componentPath);
-    const classifiedName = strings.classify(`HeaderComponent`);
-    const declarationChanges: any = addDeclarationToModule(
-      source,
-      modulePath,
-      classifiedName,
-      relativePath);
+    cap_utilities.addToAngularJSONArchitectBudgets(host, {
+      type: 'anyComponentStyle',
+      maximumWarning: '40kb',
+      maximumError: '50kb'
+    }
+    );
 
-    const declarationRecorder = host.beginUpdate(modulePath);
-    for (const change of declarationChanges) {
-      if (change instanceof InsertChange) {
-        declarationRecorder.insertLeft(change.pos, change.toAdd);
+    cap_utilities.addToNgModule(host, options, [
+      {
+        name: 'HeaderComponent',
+        path: `app/header/header.component`,
+        type: 'component'
+      },
+      {
+        name: 'FooterComponent',
+        path: `app/footer/footer.component`,
+        type: 'component'
+      },
+      {
+        name: 'HomeModule',
+        path: `app/home/home.module`,
+        type: 'module'
+      },
+      {
+        name: 'CapResponsiveModule',
+        path: `app/modules/cap-responsive/cap-responsive.module`,
+        type: 'module'
       }
-    }
-    host.commitUpdate(declarationRecorder);
-
-    // Import and include on Imports the FooterComponent
-    if (options) {
-        // Need to refresh the AST because we overwrote the file in the host.
-      let source = readIntoSourceFile(host, modulePath);
-      const componentPath = `${options.path}/app/footer/footer.component`;
-      const relativePath = buildRelativePath(modulePath, componentPath);
-      const classifiedName = strings.classify(`FooterComponent`);
-      const declarationChanges: any = addDeclarationToModule(
-        source,
-        modulePath,
-        classifiedName,
-        relativePath);
-
-      const declarationRecorder = host.beginUpdate(modulePath);
-      for (const change of declarationChanges) {
-        if (change instanceof InsertChange) {
-          declarationRecorder.insertLeft(change.pos, change.toAdd);
-        }
-      }
-      host.commitUpdate(declarationRecorder);
-    }
-    
-    // Import and include on Imports the HomeModule
-    if (options) {
-        // Need to refresh the AST because we overwrote the file in the host.
-        source = readIntoSourceFile(host, modulePath);
-        const componentPath = `${options.path}/app/home/home.module`;
-        const relativePath = buildRelativePath(modulePath, componentPath);
-        const classifiedName = strings.classify(`HomeModule`);
-        const providerRecorder = host.beginUpdate(modulePath);
-        const providerChanges: any = addImportToModule(
-            source,
-            modulePath,
-            classifiedName,
-            relativePath);
-
-        for (const change of providerChanges) {
-            if (change instanceof InsertChange) {
-                providerRecorder.insertLeft(change.pos, change.toAdd);
-            }
-        }
-        host.commitUpdate(providerRecorder);
-    }
-
-    // Import and include on Imports the SharedComponentsModule
-    if (options) {
-      // Need to refresh the AST because we overwrote the file in the host.
-      source = readIntoSourceFile(host, modulePath);
-      const componentPath = `${options.path}/app/modules/cap-responsive/cap-responsive.module`;
-      const relativePath = buildRelativePath(modulePath, componentPath);
-      const classifiedName = strings.classify(`CapResponsiveModule`);
-      const providerRecorder = host.beginUpdate(modulePath);
-      const providerChanges: any = addImportToModule(
-          source,
-          modulePath,
-          classifiedName,
-          relativePath);
-
-      for (const change of providerChanges) {
-          if (change instanceof InsertChange) {
-              providerRecorder.insertLeft(change.pos, change.toAdd);
-          }
-      }
-      host.commitUpdate(providerRecorder);
-    }
-
+    ])
     return host;
   };
 }
 
 function addBootstrapSchematic() {
-    return externalSchematic('cap-angular-schematic-bootstrap', 'ng-add', { version: "4.0.0", skipWebpackPlugin: true });
+  return externalSchematic('cap-angular-schematic-bootstrap', 'ng-add', { version: "4.0.0", skipWebpackPlugin: true });
 }
 
 function addHomeRoute(options: ComponentOptions): Rule {
   return (host: Tree) => {
 
     const filePath = `${options.path}/app/app-routing.module.ts`;
-    
+
     // Add routes to routing
-    const toAdd = 
-`
+    const toAdd =
+      `
     { path: '', pathMatch: 'full', component: HomeComponent },
     { path: 'home', pathMatch: 'full', component: HomeComponent },`;
 
@@ -460,30 +380,49 @@ function addHomeRoute(options: ComponentOptions): Rule {
     host.overwrite(filePath, component.replace(`const routes: Routes = [`, `const routes: Routes = [${toAdd}`));
 
     // Add import to routing
-    const content = 
-`
+    const content =
+      `
 import { HomeComponent } from './home/home.component';`;
-    appendToStartFile(host, filePath, content);
+    cap_utilities.appendToStartFile(host, filePath, content);
 
     return host;
   };
 }
 
 function addToEnvironments(options: ComponentOptions): Rule {
-    return (host: Tree) => {
-        addEnvironmentVar(host, '', options.path || '/src', 'apiUrl', 'http://localhost:4000/api/');
-        addEnvironmentVar(host, 'prod', options.path || '/src', 'apiUrl', 'http://mydomain.com/api/');
-    }
+  return (host: Tree) => {
+    cap_utilities.addEnvironmentVar(host, [
+      {
+        env: '',
+        appPath: options.path || '/src',
+        key: 'apiUrl',
+        value: 'http://localhost:4000/api/'
+      },
+      {
+        env: 'prod',
+        appPath: options.path || '/src',
+        key: 'apiUrl',
+        value: 'http://mydomain.com/api/'
+      }
+    ])
+  }
 }
 
-/*function addIdAppToBody(htmlFilePath: string): Rule {
-    return (host: Tree) => {
-      addIdToElement(host, htmlFilePath, 'app', 'body');
-    }
-}*/
+export function addPackageJsonDependencies(): Rule {
+  return (host: Tree) => cap_utilities.addPackageToPackageJson(host, NodeDependencyType.Default, 'cap-angular-schematic-bootstrap', '^0.0.9')
+}
+
+export function installPackageJsonDependencies(): Rule {
+  return (host: Tree, context: SchematicContext) => {
+    context.addTask(new NodePackageInstallTask());
+    context.logger.log('info', `🔍 Installing packages...`);
+    return host;
+  };
+}
 
 export function schematicResponsive(options: ComponentOptions): Rule {
   return (host: Tree, context: FileSystemSchematicContext) => {
+
 
     // Get project
     options.project = (options.project) ? options.project : getAppName(host);
@@ -500,13 +439,13 @@ export function schematicResponsive(options: ComponentOptions): Rule {
     if (options.path === undefined) {
       options.path = buildDefaultPath(project);
     }
-    
+
     options.module = findModule(host, options.path, 'app' + MODULE_EXT, ROUTING_MODULE_EXT);
     options.name = '';
     const parsedPath = parseName(options.path!, options.name);
     options.name = parsedPath.name;
     options.path = parsedPath.path;
-    
+
 
     const projectType: string = project.projectType || project.projects[options.project].projectType;
     if (projectType !== 'application') {
@@ -515,7 +454,7 @@ export function schematicResponsive(options: ComponentOptions): Rule {
 
     // Get the index path
     const index = project.architect.build.options.index || `src/index.html`;
-    
+
     // Get the styles.scss file 
     let styles = `src/styles.scss`;
 
@@ -559,7 +498,7 @@ export function schematicResponsive(options: ComponentOptions): Rule {
         addBootstrapSchematic(),
         appendToStylesFile(files.styles),
         addStyles(),
-        (options.removeAppComponentHtml) ? removeContentFromAppComponentHtml(files.appComponent) :  noop(),
+        (options.removeAppComponentHtml) ? removeContentFromAppComponentHtml(files.appComponent) : noop(),
         appendToAppComponentFile(files.appComponent, options),
         addHomeRoute(options)
         /*addIdAppToBody(files.index)*/

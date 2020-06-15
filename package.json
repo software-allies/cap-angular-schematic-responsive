@@ -36,12 +36,13 @@
     "@types/parse5": "^5.0.2",
     "jasmine": "^3.0.0",
     "parse5": "5.1.0",
-    "typescript": "^3.2.4"
+    "typescript": "^3.9.5"
   },
   "dependencies": {
     "@angular/cdk": "^8.2.3",
     "@schematics/angular": "^8.3.23",
-    "schematics-utilities": "^2.0.1",
-    "cap-angular-schematic-bootstrap": "^0.0.9"
+    "cap-angular-schematic-bootstrap": "^0.0.9",
+    "cap-utilities": "0.0.8",
+    "schematics-utilities": "^2.0.1"
   }
 }
