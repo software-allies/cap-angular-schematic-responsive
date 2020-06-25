@@ -534,9 +534,9 @@ import { HomeComponent } from './home/home.component';`;
 function addToEnvironments(options: ComponentOptions): Rule {
     return (host: Tree) => {
         addEnvironmentVar(host, '', options.path || '/src', 'apiUrl', 'http://localhost:4000/api/');
-        addEnvironmentVar(host, '', options.path || '/src', 'sfApiUrl', '');
         addEnvironmentVar(host, 'prod', options.path || '/src', 'apiUrl', 'http://apiurl.com/api/');
-        addEnvironmentVar(host, 'prod', options.path || '/src', 'sfApiUrl', '');
+        // addEnvironmentVar(host, '', options.path || '/src', 'sfApiUrl', '');
+        // addEnvironmentVar(host, 'prod', options.path || '/src', 'sfApiUrl', '');
     }
 }
 
