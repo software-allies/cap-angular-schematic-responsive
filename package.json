@@ -1,6 +1,6 @@
 {
   "name": "cap-angular-schematic-responsive",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "CAP Schematics Responsive Template",
   "scripts": {
     "build": "tsc -p tsconfig.json",
@@ -15,14 +15,9 @@
     "name": "Software Allies",
     "url": "https://softwareallies.com"
   },
-  "contributors": [
-    {
-      "email": "cesar_alonso_m_g@hotmail.com",
-      "name": "César Alonso Magaña Gavilanes",
-      "url": "https://github.com/cesaralonso"
-    }
-  ],
+  "contributors": [],
   "license": "MIT",
+  "homepage": "https://www.softwareallies.com/",
   "repository": {
     "type": "git",
     "url": "https://github.com/software-allies/cap-angular-schematic-responsive"
