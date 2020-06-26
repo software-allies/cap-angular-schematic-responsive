@@ -244,42 +244,6 @@ section {
 /*
 *
 * ==========================================
-* FORMS CONTAINER
-* ==========================================
-*
-*/
-
-.box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.box > div {
-  height: max-content !important;
-  border-radius: 5px !important;
-  border: 1px solid #333 !important;
-  background-color: $main-color;
-  padding: 35px !important;
-  width: 500px !important;
-  margin: 0 !important;
-  color: $light-color !important;
-}
-
-.box form {
-  text-align: left;
-}
-
-.box .list-group-item {
-  background-color: transparent !important;
-  border: none !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.125) !important;
-}
-
-
-/*
-*
-* ==========================================
 * CIRCLE BUTTONS
 * ==========================================
 *
@@ -318,50 +282,6 @@ section {
   height: 70px;
   line-height: 70px;
   font-size: 1.3rem;
-}
-
-
-/*
-*
-* ==========================================
-* BUTTONS OVERRIDE
-* ==========================================
-*
-*/
-
-.btn-primary {
-  background-color: $primary !important;
-  border-color: $primary !important;
-}
-
-.btn-secondary {
-  background-color: $secondary !important;
-  border-color: $secondary !important;
-}
-
-.btn-default {
-  background-color: $default !important;
-  border-color: $default !important;
-}
-
-.btn-success {
-  background-color: $success !important;
-  border-color: $success !important;
-}
-
-.btn-info {
-  background-color: $info !important;
-  border-color: $info !important;
-}
-
-.btn-danger {
-  background-color: $danger !important;
-  border-color: $danger !important;
-}
-
-.btn-warning {
-  background-color: $warning !important;
-  border-color: $warning !important;
 }
 `;
     appendToStartFile(host, path, content);
