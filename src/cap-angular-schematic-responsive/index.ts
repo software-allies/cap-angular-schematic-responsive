@@ -27,14 +27,16 @@ import { parseName } from '@schematics/angular/utility/parse-name';
 import { buildDefaultPath } from '@schematics/angular/utility/project';
 import { getProjectFromWorkspace } from '@angular/cdk/schematics/utils/get-project';
 
-import { Schema as ComponentOptions } from './schema';
-import { getFileContent } from '@schematics/angular/utility/test';
-import { getAppName } from './cap-utils/package';
 import { NodeDependencyType } from 'schematics-utilities';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 
 // import * as cap_utilities from 'cap-utilities';
 import * as cap_utilities from '../../../cap-utilities/dist/index';
+import { Schema as ComponentOptions } from './schema';
+import { getFileContent } from '@schematics/angular/utility/test';
+
+import { getAppName } from './cap-utils/package';
+
 
 function updateBodyOfIndexFile(filePath: string): Rule {
   return (tree: Tree) => {
@@ -59,9 +61,28 @@ function updateIndexFile(path: string): Rule {
   return (host: Tree) =>
     /** Appends the given element HTML fragment to the `<head>` element of the specified HTML file. */
     cap_utilities.addLinkStyleToHTMLHead(host, [
-      '<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=optional" rel="stylesheet" async defer>',
-      '<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=optional" rel="stylesheet" async defer>',
-      '<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" async defer>'
+      '<link media="screen href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap|Roboto:300,400,500&display=swap" rel="stylesheet" async defer>', 
+      '<link media="screen href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" async defer>',
+      '<script src="assets/webcomponentsjs/webcomponents-loader.js"></script>',
+      '',
+      '<!-- Facebook metas -->',
+      '<meta property="fb:app_id" content="0123456789876543210">',
+      '<meta property="og:url" content="https://mysite.com">',
+      '<meta property="og:title" content="Page to share title">',
+      '<meta property="og:description" content="Page to share description">',
+      '<meta property="og:image" content="http://mysite.com/assets/image.jpg">',
+      '<meta property="og:image:alt" content="Image description">',
+      '<meta property="og:image:height" content="">',
+      '<meta property="og:image:width" content="">',
+      '<meta property="og:type" content="website">',
+      '<meta property="og:site_name" content="mysite.com">',
+      '',
+      '<!-- Twitter metas -->',
+      '<meta name="twitter:title" content="Page to share title">',
+      '<meta name="twitter:image" content="http://mysite.com/assets/image.jpg">',
+      '<meta name="twitter:image:alt" content="Image description">',
+      '<meta name="twitter:description" content="Page to share description">',
+      '<meta name="twitter:card" content="summary">'
     ], path);
 }
 
@@ -114,9 +135,7 @@ function addStyles(): Rule {
 function appendToStylesFile(path: string): Rule {
   return (host: Tree) => {
     const content = `
-@import url(http://fonts.googleapis.com/css?family=Lato:400,900);
 @import './assets/scss/variables.scss';
-
 
 /*
 *
@@ -127,7 +146,7 @@ function appendToStylesFile(path: string): Rule {
 */
 
 body {
-  font-family: 'Lato', verdana, sans-serif;
+  font-family: 'Open Sans', verdana, sans-serif;
   text-align: center;
   background: $main-bg;
   color: $main-color;
@@ -139,16 +158,9 @@ a {
   -webkit-text-decoration-skip: objects;
 }
 
-header {
-  &.title {
-    padding: 60px 0;
-    width: 100%;
-    background-color: $main-bg;
-  }
-  h1, h2, h3 {
-    text-align: center;
-    color: $main-color;
-  }
+h1, h2, h3 {
+  text-align: center;
+  color: $main-color;
 }
 
 section {
@@ -215,42 +227,6 @@ section {
 /*
 *
 * ==========================================
-* FORMS CONTAINER
-* ==========================================
-*
-*/
-
-.box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.box > div {
-  height: max-content !important;
-  border-radius: 5px !important;
-  border: 1px solid #333 !important;
-  background-color: $main-color;
-  padding: 35px !important;
-  width: 500px !important;
-  margin: 0 !important;
-  color: $light-color !important;
-}
-
-.box form {
-  text-align: left;
-}
-
-.box .list-group-item {
-  background-color: transparent !important;
-  border: none !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.125) !important;
-}
-
-
-/*
-*
-* ==========================================
 * CIRCLE BUTTONS
 * ==========================================
 *
@@ -290,41 +266,48 @@ section {
   line-height: 70px;
   font-size: 1.3rem;
 }
-
-
-/*
-*
-* ==========================================
-* BUTTONS OVERRIDE
-* ==========================================
-*
-*/
-
-.btn-primary {
-  background-color: $color1 !important;
-}
-
-.btn-secondary {
-  background-color: $color2 !important;
-}
-
-.btn-success {
-  background-color: $color3 !important;
-}
-
-.btn-info {
-  background-color: $color4 !important;
-}
-
-.btn-danger {
-  background-color: $color5 !important;
-}
-
 `;
     cap_utilities.appendToStartFile(host, path, content);
     return host;
   };
 }
+
+// function readIntoSourceFile(host: Tree, filePath: string) {
+//   const text = host.read(filePath);
+//   if (text === null) {
+//     throw new SchematicsException(`File ${filePath} does not exist.`);
+//   }
+//   return ts.createSourceFile(filePath, text.toString('utf-8'), ts.ScriptTarget.Latest, true);
+// }
+
+/*function addDeclarationToNgModule(options: ComponentOptions): Rule {
+  return (host: Tree) => {
+    addToNgModule(host, options, [
+      {
+        name: 'HeaderComponent',
+        path: '/app/header/header.component',
+        type: 'component'
+      },
+      {
+        name: 'FooterComponent',
+        path: '/app/footer/footer.component',
+        type: 'component'
+      },
+      {
+        name: 'HomeModule',
+        path: '/app/home/home.module',
+        type: 'module'
+      },
+      {
+        name: 'CapResponsiveModule',
+        path: '/app/modules/cap-responsive/cap-responsive.module',
+        type: 'module'
+      }
+    ])
+    return host;
+  };
+}*/
+
 
 function addDeclarationToNgModule(options: ComponentOptions): Rule {
   return (host: Tree) => {
@@ -365,6 +348,10 @@ function addBootstrapSchematic() {
   return externalSchematic('cap-angular-schematic-bootstrap', 'ng-add', { version: "4.0.0", skipWebpackPlugin: true });
 }
 
+function addElementsSchematic() {
+    return externalSchematic('@angular/elements', 'ng-add', {});
+}
+
 function addHomeRoute(options: ComponentOptions): Rule {
   return (host: Tree) => {
 
@@ -402,14 +389,21 @@ function addToEnvironments(options: ComponentOptions): Rule {
         env: 'prod',
         appPath: options.path || '/src',
         key: 'apiUrl',
-        value: 'http://mydomain.com/api/'
+        value: 'http://apiurl.com/api/'
       }
     ])
   }
 }
 
 export function addPackageJsonDependencies(): Rule {
-  return (host: Tree) => cap_utilities.addPackageToPackageJson(host, NodeDependencyType.Default, 'cap-angular-schematic-bootstrap', '^0.0.9')
+  return (host: Tree) => cap_utilities.addPackageToPackageJson(host, [
+    {
+      type: NodeDependencyType.Default,
+      pkg: 'cap-angular-schematic-bootstrap',
+      version: '^0.0.9'
+    },
+  ])
+  // return (host: Tree) => cap_utilities.addPackageToPackageJson(host, NodeDependencyType.Default, 'cap-angular-schematic-bootstrap', '^0.0.9')
 }
 
 export function installPackageJsonDependencies(): Rule {
@@ -431,7 +425,7 @@ export function schematicResponsive(options: ComponentOptions): Rule {
     }
 
     const workspace = getWorkspace(host);
-    const project = getProjectFromWorkspace(workspace, options.project);
+    const project: any = getProjectFromWorkspace(workspace, options.project);
     if (!project) {
       throw new SchematicsException(`Project is not defined in this workspace.`);
     }
@@ -490,12 +484,15 @@ export function schematicResponsive(options: ComponentOptions): Rule {
 
     return chain([
       branchAndMerge(chain([
+        // addPackageJsonDependencies(),
+        // installPackageJsonDependencies(),
         addDeclarationToNgModule(options),
         addToEnvironments(options),
         mergeWith(templateSource),
         updateIndexFile(files.index),
         updateBodyOfIndexFile(files.index),
         addBootstrapSchematic(),
+        addElementsSchematic(),
         appendToStylesFile(files.styles),
         addStyles(),
         (options.removeAppComponentHtml) ? removeContentFromAppComponentHtml(files.appComponent) : noop(),

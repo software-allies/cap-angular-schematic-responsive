@@ -1,11 +1,28 @@
-$main-color: #0A274F;
-$main-bg: #ECECEC;
-$main-font-color: #0A274F;
-$main-bg-translucid: rgba(11, 111, 255, 0.8);
-$light-color: #ECECEC;
-$color1: rgba(11, 111, 255, 1);
-$color2: rgba(11, 111, 255, 1);
-$color3: rgba(11, 111, 255, 1);
-$color4: rgba(11, 111, 255, 1);
-$color5: rgba(11, 111, 255, 1);
-$color6: rgba(11, 111, 255, 1);
+/*** Palete ***/
+$color1: #000;
+$color2: rgba(168, 123, 255, 1);
+$color3: rgba(237, 207, 254, 1);
+$color4: rgba(255, 152, 128, 1);
+$color5: rgba(223, 254, 235, 1);
+$color6: #4f0b02;
+$color7: #9CC4FF;
+$color8: #CBFF21;
+
+/*** Main colors ***/
+$main-color: $color1;
+$main-font-color: $color1;
+$main-bg: $color5;
+$main-bg-translucid: rgba(10, 39, 79, 0.8);
+
+/*** Main colors ***/
+$light-color: $color5;
+$dark-color: $color1;
+
+/*** For Bootstrap override ***/
+$primary: $color1;
+$success: $color8;
+$secondary: $color7;
+$default: $color3;
+$info: $color2;
+$warning: $color4;
+$danger: $color6;

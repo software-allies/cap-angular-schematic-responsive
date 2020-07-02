@@ -1,6 +1,6 @@
 {
   "name": "cap-angular-schematic-responsive",
-  "version": "1.0.53",
+  "version": "1.1.10",
   "description": "CAP Schematics Responsive Template",
   "scripts": {
     "build": "tsc -p tsconfig.json",
@@ -15,34 +15,30 @@
     "name": "Software Allies",
     "url": "https://softwareallies.com"
   },
-  "contributors": [
-    {
-      "email": "cesar_alonso_m_g@hotmail.com",
-      "name": "César Alonso Magaña Gavilanes",
-      "url": "https://github.com/cesar-alonso-magana"
-    }
-  ],
+  "contributors": [],
   "license": "MIT",
+  "homepage": "https://www.softwareallies.com/",
   "repository": {
     "type": "git",
     "url": "https://github.com/software-allies/cap-angular-schematic-responsive"
   },
   "schematics": "./src/collection.json",
   "devDependencies": {
-    "@angular-devkit/core": "^7.3.9",
-    "@angular-devkit/schematics": "^7.3.9",
-    "@types/jasmine": "^3.0.0",
-    "@types/node": "^8.0.31",
+    "@angular-devkit/core": "^9.1.4",
+    "@angular-devkit/schematics": "^9.1.4",
+    "typescript": "~3.8.2",
+    "@types/node": "^12.11.1",
+    "@types/jasmine": "~3.5.0",
+    "jasmine": "^3.5.0",
     "@types/parse5": "^5.0.2",
-    "jasmine": "^3.0.0",
-    "parse5": "5.1.0",
-    "typescript": "^3.9.5"
+    "parse5": "5.1.0"
   },
   "dependencies": {
     "@angular/cdk": "^8.2.3",
     "@schematics/angular": "^8.3.23",
     "cap-angular-schematic-bootstrap": "^0.0.9",
     "cap-utilities": "0.0.8",
+    "@angular/elements": "^9.1.1",
     "schematics-utilities": "^2.0.1"
   }
 }

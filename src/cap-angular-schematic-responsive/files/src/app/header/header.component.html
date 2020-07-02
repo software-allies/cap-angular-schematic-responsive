@@ -2,14 +2,16 @@
     <!-- Mobile Header -->
     <div class="wsmobileheader clearfix ">
         <a role="link" id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>
-        <span class="smllogo"><img src="assets/images/angular-logo.png" width="170" alt="<%= title %> Logo" title="<%= title %> Logo" loading="lazy"></span>
+        <a routerLink="/">
+            <span class="smllogo"><img src="assets/images/angular-logo.png" width="170" alt="<%= title %> Logo" title="<%= title %> Logo" loading="lazy"></span>
+        </a>
         <a role="link" class="callusbtn cursor" (click)="clickLink(); this.modalService.open('searchModal');">
             <i class="fa fa-search" aria-hidden="true"></i>
         </a>
     </div>
     <!-- Mobile Header -->
 
-    <div class="wsmainfull clearfix dark">
+    <div class="wsmainfull clearfix" [ngClass]="isTheHome ? 'dark clearnav' : ''">
         <div class="wsmainwp clearfix">
             <div class="desktoplogo">
                 <a routerLink="/">

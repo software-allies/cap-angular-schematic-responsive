@@ -1,0 +1,13 @@
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+          <ol>
+            <li *ngFor="let link of breadcrumbs; let i = index">
+              <a [routerLink]="link.target" *ngIf="i + 1 !== breadcrumbs.length" title="{{link.label}}"> {{link.label | uppercase}} </a>
+              <span *ngIf="i + 1 === breadcrumbs.length"> {{link.label | uppercase}} </span>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section><!-- End Breadcrumbs -->

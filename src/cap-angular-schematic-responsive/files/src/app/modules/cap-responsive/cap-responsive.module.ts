@@ -9,27 +9,34 @@ import { ModalService } from './components/modal/modal.service';
 import { LoadScriptService } from './services/load-scripts.service';
 import { SeoService } from './services/seo.service';
 import { ApiService } from './services/api.service';
-import { CacheInterceptor } from './services/cache.interceptor';
 import { CommonService } from './services/common.service';
 import { StrReplacePipe } from './pipes/str-replace.pipe';
 import { EncodeURIPipe } from './pipes/encode-uri.pipe';
+import { CustomElementsModule } from './custom-elements/custom-elements-module';
+import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
+import { BannerComponent } from './components/banner/banner.component';
 
 @NgModule({
     declarations: [
         ModalComponent,
         LoadingScreenComponent,
         EncodeURIPipe,
-        StrReplacePipe
+        StrReplacePipe,
+        BreadcrumbsComponent, 
+        BannerComponent
     ],
     imports: [
         CommonModule,
-        HttpClientModule
+        HttpClientModule,
+        CustomElementsModule
     ],
     exports: [
         ModalComponent,
         LoadingScreenComponent,
         EncodeURIPipe,
-        StrReplacePipe
+        StrReplacePipe,
+        BreadcrumbsComponent, 
+        BannerComponent
     ],
     entryComponents: [
         ModalComponent
@@ -48,12 +55,9 @@ import { EncodeURIPipe } from './pipes/encode-uri.pipe';
             provide: HTTP_INTERCEPTORS,
             useClass: LoadingScreenInterceptor,
             multi: true
-        },
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: CacheInterceptor,
-            multi: true
-        },
+        }
     ]
 })
 export class CapResponsiveModule { }
+
+
