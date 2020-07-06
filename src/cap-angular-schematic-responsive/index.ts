@@ -30,8 +30,7 @@ import { getProjectFromWorkspace } from '@angular/cdk/schematics/utils/get-proje
 import { NodeDependencyType } from 'schematics-utilities';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 
-// import * as cap_utilities from 'cap-utilities';
-import * as cap_utilities from '../../../cap-utilities/dist/index';
+import * as cap_utilities from 'cap-utilities';
 import { Schema as ComponentOptions } from './schema';
 import { getFileContent } from '@schematics/angular/utility/test';
 
