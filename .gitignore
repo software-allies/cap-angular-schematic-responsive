@@ -16,3 +16,8 @@ yarn-error.log*
 # Mac OSX Finder files.
 **/.DS_Store
 .DS_Store
+
+
+# Do not ignore this file
+!src/**/webcomponents-loader.js
+!src/**/webslidemenu.js
