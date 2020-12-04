@@ -60,8 +60,8 @@ function updateIndexFile(path: string): Rule {
   return (host: Tree) =>
     /** Appends the given element HTML fragment to the `<head>` element of the specified HTML file. */
     cap_utilities.addLinkStyleToHTMLHead(host, [
-      '<link media="screen href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap|Roboto:300,400,500&display=swap" rel="stylesheet" async defer>', 
-      '<link media="screen href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" async defer>',
+      '<link media="screen" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap|Roboto:300,400,500&display=swap" rel="stylesheet" async defer>', 
+      '<link media="screen" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" async defer>',
       '<script src="assets/webcomponentsjs/webcomponents-loader.js"></script>',
       '',
       '<!-- Facebook metas -->',
@@ -100,12 +100,12 @@ function appendToAppComponentFile(filePath: string, options: ComponentOptions): 
       cap_utilities.appendToStartFile(host, filePath, content);
     }
 
-    const content = `<app-header></app-header>`;
+    const content = `<!-- <app-header></app-header> -->`;
     cap_utilities.appendToStartFile(host, filePath, content);
 
     // Add footer to end of file
     const toAdd =
-      `<app-footer></app-footer>
+      `<!-- <app-footer></app-footer> -->
 <app-loading-screen></app-loading-screen>
 <app-modal #searchModal id="searchModal">
   <div>
