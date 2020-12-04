@@ -23,19 +23,17 @@
     </div>
   </div>
 </div> -->
-<div class="jumbotron">
+
+<!-- <div class="jumbotron">
   <h1 class="display-4">Home</h1>
-</div>
+</div> -->
 <!-- <app-banner [title]="'Connected Apps Plattform'"></app-banner> -->
 <!-- <app-breadcrumbs [links]="{home: '/'}"></app-breadcrumbs> -->
 
-<section>
+<!-- <section>
   <div class="container">
     <div class="row">
       <div class="col">
-
-        <!-- ******************  Authentication  ****************** -->
-        <!-- ******************  Authentication  ****************** -->
         <div class="custom-card card">
           <div class="card-body">
             <h3 class="card-title">CAP AUTHENTICATION</h3>
@@ -125,11 +123,6 @@
               </div>
           </div>
         </div>
-        <!-- ******************  Authentication  ****************** -->
-        <!-- ******************  Authentication  ****************** -->
-
-        <!-- ******************  AmazonWebServi  ****************** -->
-        <!-- ******************  AmazonWebServi  ****************** -->
         <div class="custom-card card">
           <div class="card-body">
             <h3 class="card-title">CAP STORAGE</h3>
@@ -175,11 +168,6 @@
             </div>
           </div>
         </div>
-        <!-- ******************  AmazonWebServi  ****************** -->
-        <!-- ******************  AmazonWebServi  ****************** -->
-
-        <!-- ******************  SalesForceCore  ****************** -->
-        <!-- ******************  SalesForceCore  ****************** -->
         <div class="custom-card card">
           <div class="card-body">
             <h3 class="card-title">CAP SALESFORCE</h3>
@@ -266,12 +254,6 @@
             </div>
           </div>
         </div>
-        <!-- ******************  SalesForceCore  ****************** -->
-        <!-- ******************  SalesForceCore  ****************** -->
-
-        <!-- ******************  AngularAplication  ****************** -->
-        <!-- ******************  AngularAplication  ****************** -->
-
         <div class="custom-card card">
           <div class="card-body">
             <h3 class="card-title">CAP ANGULAR</h3>
@@ -283,7 +265,6 @@
                 <div class="col-md-8">
                   <div class="card-body">
                     <h5 class="card-title">SERVER SIDE RENDERING (SSR)</h5>
-                    <!-- Is a technique for supporting a more diverse set of web devices, part of RESS (responsive web design with server-side components) -->
                     <div class="row">
                       <div class="col-md">
                         <ul style="text-align: justify;">
@@ -327,11 +308,58 @@
             </div>
           </div>
         </div>
-
-        <!-- ******************  AngularAplication  ****************** -->
-        <!-- ******************  AngularAplication  ****************** -->
-
       </div>
     </div>
   </div>
-</section>
+</section> -->
+<div>
+  <div
+    [ngStyle]="{'background-image':'url(http://images.ctfassets.net/0ip1gcyxbfvh/4dgP2U7BeMuk0icguS4qGw/c2ff8aef879de3a59f286df00b80b52d/contentful-team-example.jpeg)'}"
+    class="top-section-home"
+  >
+    <div class="dark-background">
+      <div class="container">
+        <h2>CONNECT APP PLATFORM</h2>
+      </div>
+    </div>
+  </div>
+  <div class="whats-is-new">
+    <p>WHAT IS CAP?</p>
+  </div>
+  <div class="cap-modules">
+   <div class="module" *ngFor="let module of modules">
+      <p class="title">{{module}}</p>
+      <p class="description">Rapidly integrate authentication and authorization for web, mobile, and legacy applications so you can focus on your core business.</p>
+   </div>
+  </div>
+
+  <div
+    [ngStyle]="{'background-image':'url(http://images.ctfassets.net/0ip1gcyxbfvh/4dgP2U7BeMuk0icguS4qGw/c2ff8aef879de3a59f286df00b80b52d/contentful-team-example.jpeg)'}"
+    class="how-does-it-work"
+  >
+    <div class="dark-background">
+      <div class="container">
+        <h2 class="mb-3 mt-3">HOW DOES IT WORK?</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipiscing elit inceptos, duis purus volutpat felis eget consequat interdum. Sed dapibus pulvinar hendrerit feugiat tincidunt posuere class neque, habitasse ac velit senectus justo lectus habitant quisque, donec primis natoque morbi ridiculus congue platea. Vulputate ultricies aenean diam posuere taciti dis lacus aptent euismod felis, commodo tortor ut ultrices sodales dignissim placerat ullamcorper leo, mauris nibh eros cras magnis egestas vivamus turpis consequat.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="whats-is-new">
+    <p>WHAT'S NEXT?</p>
+  </div>
+
+  <div class="technologies">
+    <div class="imagenes">
+      <img src="../../assets/images/react.png" alt="">
+    </div>
+    <div class="imagenes">
+      <img src="../../assets/images/lb4.png" alt="">
+    </div>
+    <div class="imagenes">
+      <img src="../../assets//images/aws.png" alt="">
+    </div>
+  </div>
+</div>
