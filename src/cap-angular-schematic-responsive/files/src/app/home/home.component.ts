@@ -11,6 +11,13 @@ import { ApiService } from './../modules/cap-responsive/services/api.service';
 })
 export class HomeComponent implements OnInit {
 
+  modules = [
+    'Authentication',
+    'Storage',
+    'Salesforce',
+    'Angular'
+  ]
+
   constructor(
     private seoService: SeoService,
     private apiService: ApiService
