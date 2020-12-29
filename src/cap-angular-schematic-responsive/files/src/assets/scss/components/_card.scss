@@ -1,0 +1,70 @@
+.card {
+  perspective: 150rem;
+  -moz-perspective: 150rem;
+  position: relative;
+  height: 35rem;
+
+  &__side {
+    height: 50rem;
+    transition: all 0.8s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    backface-visibility: hidden;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
+    height: 30rem;
+    &--front {
+      background-image: linear-gradient(to right bottom, $color-blue-transparent, $color-blue-dark-transparent),
+        url(https://cdn.pixabay.com/photo/2019/07/14/16/27/pen-4337521_1280.jpg);
+      background-size: cover;
+      // background-color: $color-black;
+    }
+    &--back {
+      background-image: linear-gradient(to right bottom, $color-primary-light, $color-secondary-dark);
+      transform: rotateY(180deg);
+    }
+  }
+
+  &:hover &__side--front,
+  &:active &__side--front,
+  &:focus &__side--front {
+    transform: rotateY(-180deg);
+  }
+  &:hover &__side--back,
+  &:active &__side--back,
+  &:focus &__side--back {
+    transform: rotateY(0);
+  }
+
+  &__heading {
+    font-size: 2.8rem;
+    font-weight: 300;
+    color: $color-white;
+    position: absolute;
+    top: 17rem;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__icon {
+    position: absolute;
+    top: 12rem;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5rem;
+    color: $color-white;
+  }
+
+  &__content {
+    font-size: 1.5rem;
+    color: $color-white;
+    padding: 3rem 1.5rem;
+    text-align: center;
+    @include responsive(table-port) {
+      font-size: 2rem;
+    }
+  }
+}

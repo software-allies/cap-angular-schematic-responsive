@@ -75,6 +75,11 @@ function updateIndexFile(path: string): Rule {
     [
       '<link media="screen href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap|Roboto:300,400,500&display=swap" rel="stylesheet" async defer>', 
       '<link media="screen href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" async defer>',
+      '<link media="screen" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap|Roboto:300,400,500&display=swap" rel="stylesheet" async defer>',
+      '<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">',
+      '<link rel="preconnect" href="https://fonts.gstatic.com">',
+      '<link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">',
+      '<link media="screen" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" async defer>',
       '<script src="assets/webcomponentsjs/webcomponents-loader.js"></script>',
       '',
       '<!-- Facebook metas -->',
@@ -151,139 +156,7 @@ function addStyles(): Rule {
 
 function appendToStylesFile(path: string): Rule {
   return (host: Tree) => {
-    const content = `
-@import './assets/scss/variables.scss';
-
-/*
-*
-* ==========================================
-* GENERAL
-* ==========================================
-*
-*/
-
-body {
-  font-family: 'Open Sans', verdana, sans-serif;
-  text-align: center;
-  background: $main-bg;
-  color: $main-color;
-}
-
-a {
-  text-decoration: none;
-  background-color: transparent;
-  -webkit-text-decoration-skip: objects;
-}
-
-h1, h2, h3 {
-  text-align: center;
-  color: $main-color;
-}
-
-section {
-  min-height: 100vh;
-  overflow: hidden;
-  width: 100%;
-  background-color: white;
-  transition: margin-left 4s ease-in-out 1s;
-  padding: 20px 20px;
-}
-
-/*
-*
-* ==========================================
-* HOME
-* ==========================================
-*
-*/
-
-.fullscreen-bg {
-  height: 100vh;
-  overflow: hidden;
-  width: 100%;
-  margin-top: -104px;
-  background-color: $main-color;
-  background: url('assets/images/bg-video.jpg') center center / cover no-repeat $main-color;
-  .fullscreen-bg-video {
-    position: relative;
-    right: 0;
-    bottom: 0;
-    min-width: 100%; 
-    min-height: 100%;
-    max-width: none;
-  }
-}
-
-@media (max-width: 767px) {
-  .fullscreen-bg {
-    background: url('assets/images/bg-video.jpg') center center / cover no-repeat $main-color;
-    margin-top: -55px;
-  }
-}
-
-.cover-home {
-  max-width: 100%;
-}
-
-.cover {
-  background-color: rgba($color: $main-color, $alpha: 0.3);
-  background-size: cover;
-  color: white;
-  text-align: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100%;
-  padding-top: 100px;
-  .cover-caption {
-    width: 100%;
-  }
-}
-
-/*
-*
-* ==========================================
-* CIRCLE BUTTONS
-* ==========================================
-*
-*/
-
-.btn-circle {
-  width: 45px;
-  height: 45px;
-  line-height: 45px;
-  text-align: center;
-  padding: 0;
-  border-radius: 50%;
-}
-
-.btn-circle i {
-  position: relative;
-  top: -1px;
-}
-
-.btn-circle-sm {
-  width: 35px;
-  height: 35px;
-  line-height: 35px;
-  font-size: 0.9rem;
-}
-
-.btn-circle-lg {
-  width: 55px;
-  height: 55px;
-  line-height: 55px;
-  font-size: 1.1rem;
-}
-
-.btn-circle-xl {
-  width: 70px;
-  height: 70px;
-  line-height: 70px;
-  font-size: 1.3rem;
-}
-`;
+    const content = `@import './assets/scss/main.scss'; `;
     appendToStartFile(host, path, content);
     return host;
   };
@@ -419,9 +292,9 @@ function addDeclarationToNgModule(options: ComponentOptions): Rule {
   };
 }
 
-function addBootstrapSchematic() {
-    return externalSchematic('cap-angular-schematic-bootstrap', 'ng-add', { version: "4.0.0", skipWebpackPlugin: true });
-}
+// function addBootstrapSchematic() {
+//     return externalSchematic('cap-angular-schematic-bootstrap', 'ng-add', { version: "4.0.0", skipWebpackPlugin: true });
+// }
 
 function addElementsSchematic() {
     return externalSchematic('@angular/elements', 'ng-add', {});
@@ -540,7 +413,7 @@ export function schematicResponsive(options: ComponentOptions): Rule {
         mergeWith(templateSource),
         updateIndexFile(files.index),
         updateBodyOfIndexFile(files.index),
-        addBootstrapSchematic(),
+        // addBootstrapSchematic(),
         addElementsSchematic(),
         appendToStylesFile(files.styles),
         addStyles(),
