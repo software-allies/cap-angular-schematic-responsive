@@ -10,15 +10,17 @@ $color-black-light: #00000073;
 
 $color-blue-dark: #024376;
 
-$color-white-dark: #c7c5c5;
+$color-white-dark: #ffffff;
 $color-white: #fff;
+$color-white-light: rgba(255, 253, 253, 0.767);
 $color-gray: rgb(219, 208, 208);
 $color-gray-dark: rgb(167, 161, 161);
 $color-error: rgb(163, 45, 45);
+$color-gray-12: rgb(233, 227, 227);
+
 // GRID
 
 $grid-width: 114rem;
 $gutter-vertical: 8rem;
 $gutter-vertical-small: 6rem;
 $gutter-horizontal: 6rem
-

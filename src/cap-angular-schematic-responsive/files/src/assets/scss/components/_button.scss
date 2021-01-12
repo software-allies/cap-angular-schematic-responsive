@@ -15,7 +15,8 @@
       font-size: 2rem;
     }
   }
-  &:hover &:focus {
+
+  &:hover, &:focus {
     outline: none;
     transform: translateY(-0.3rem);
     box-shadow: 0 1rem 2rem rgba($color-black, $alpha: 0.2);

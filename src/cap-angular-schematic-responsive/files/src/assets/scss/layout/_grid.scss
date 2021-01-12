@@ -2,6 +2,17 @@
   max-width: $grid-width;
   margin: 0 auto;
 
+  @include responsive(table-port){
+    max-width: 90rem;
+    margin: 0 auto;
+    padding: 0 10rem;
+  }
+  @include responsive(phone){
+    max-width: 50rem;
+    margin: 0 auto;
+    padding: 0 5rem;
+  }
+
   &:not(:last-child) {
     margin-bottom: $gutter-vertical;
     @include responsive(table-port){
@@ -9,13 +20,7 @@
     }
   }
 
-  @include responsive(table-port){
-    max-width: 90rem;
-  }
-  @include responsive(phone){
-    max-width: 50rem;
-    margin: 0 auto;
-  }
+  
 
   @include clearfix;
 
