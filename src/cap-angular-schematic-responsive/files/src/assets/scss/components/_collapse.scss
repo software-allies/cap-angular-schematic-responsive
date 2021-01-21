@@ -1,0 +1,43 @@
+.collapsible {
+ 
+  // color: #444;
+  cursor: pointer;
+  padding: 2.5rem 10rem;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  height: auto;
+  background-color: $color-gray-dark-transparent;
+  font-size: 1.5rem;
+  font-weight: 300;
+
+
+  /* Style the collapsible content. Note: hidden by default */
+  &__content {
+    display: none;
+    overflow: hidden;
+    text-align: left;
+    width: 100%;
+    font-size: 1.5rem;
+    padding: 3rem 2rem;
+  }
+}
+
+.collapse{
+  &__container{
+    margin: 0 auto;
+    max-width: 114rem;
+  }
+
+  &__title {
+    font-weight: 400;
+    width: 50%;
+    display: inline-block;
+  }
+  &__description {
+    font-weight: 200;
+    width: 50%;
+    display: inline-block;
+  }
+}

@@ -1,0 +1,46 @@
+.progress {
+  width: 100%;
+  background-color: transparent;
+  border-radius: 2rem;
+  // padding: .3rem .5rem;
+  &__bar {
+    height: 1.5rem;
+    background-color: $color-primary-light;
+    width: 30%;
+    border-radius: 0.5rem;
+    text-align: center;
+    position: relative;
+    animation: center-animate 1s ease-in;
+
+    &--lite {
+      height: .3rem;
+      background-color: $color-primary-light;
+      width: 30%;
+      border-radius: 0.5rem;
+      text-align: center;
+      position: relative;
+      animation: center-animate 1s ease-in;
+    }
+  }
+}
+.percentage {
+  color: $color-white;
+  position: absolute;
+  font-size: 1rem;
+  font-weight: 500;
+  top: -0.1rem;
+
+  &--lite{
+    text-align: center;
+    display: block;
+    width: 100%;
+  }
+}
+@keyframes center-animate {
+  0% {
+    transform: width(0);
+  }
+  100% {
+    transform: width(120);
+  }
+}
