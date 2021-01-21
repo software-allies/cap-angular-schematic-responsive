@@ -1,5 +1,5 @@
-.table-container{
-  overflow-x:auto;
+.table-container {
+  overflow-x: auto;
   border-collapse: collapse;
   border-radius: 1rem;
   padding: 3rem;
@@ -7,27 +7,32 @@
 }
 .table {
   text-align: left;
-  
+
   width: 100%;
   height: 100%;
   border: none;
   font-size: 1.5rem;
   background-image: linear-gradient(105deg, rgba($color-white, 0.9) 0%, rgba($color-white, 0.9) 100%);
   background-size: cover;
-  
-  @include responsive(table-port){
+
+  @include responsive(table-port) {
     font-size: 2rem;
   }
-  
+
+}
+
+.thead{
+  background-color: $color-blue-dark;
+
 }
 .head {
-  color: $color-black;
-
+  color: $color-white;
   &__title {
-    padding: 1rem 2rem;
+    padding: 2rem 3rem;
     text-transform: uppercase;
     border-bottom: 0.2rem solid white;
     font-weight: 500;
+    white-space: nowrap;
   }
 }
 .tbody {
@@ -36,17 +41,14 @@
     padding: 1.5rem;
     font-weight: 300;
 
-    &--link{
+    &--link {
       text-decoration: none;
       color: $color-black;
       cursor: pointer;
     }
-    
   }
   &:hover {
-    color: $color-black;
-    background-color:$color-blue-transparent;
+    // color: $color-w;
+    background-color:$color-gray-dark-transparent;
   }
-  
 }
-
