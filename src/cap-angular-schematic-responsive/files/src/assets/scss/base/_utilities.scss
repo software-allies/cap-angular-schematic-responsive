@@ -6,6 +6,10 @@
   text-align: center !important;
 }
 
+.u-end-text {
+  text-align: end !important;
+}
+
 .u-text-uppercase {
   text-transform: uppercase !important;
 }
@@ -46,4 +50,18 @@
 }
 .u-width-large {
   width: 80% !important;
+}
+
+.u-border-bottom-small {
+  border-bottom: 1px solid $color-black !important;
+}
+
+.u-shadow-small{
+  outline: none !important;
+  transform: translateY(-0.3rem) !important;
+  box-shadow: 0rem 0.5rem .5rem rgba($color-black, $alpha: 0.15) !important;
+}
+
+.u-full-width{
+  width: 100% !important;
 }

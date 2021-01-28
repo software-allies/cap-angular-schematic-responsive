@@ -1,7 +1,6 @@
 button {
   border: none;
 }
-
 .btn {
   &,
   &:link,
@@ -20,7 +19,8 @@ button {
     }
   }
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     outline: none;
     transform: translateY(-0.3rem);
     box-shadow: 0 1rem 2rem rgba($color-black, $alpha: 0.2);
@@ -36,6 +36,10 @@ button {
   &--white {
     background-color: $color-white;
     color: $color-black;
+  }
+  &--red {
+    background-color: $color-red;
+    color: $color-white;
   }
 }
 

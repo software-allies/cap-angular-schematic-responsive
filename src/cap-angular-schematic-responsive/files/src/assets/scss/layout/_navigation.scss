@@ -3,14 +3,14 @@
     display: none;
   }
 
-  &__logo-box{
+  &__logo-box {
     z-index: 7888;
     position: absolute;
-    top: .1rem;
+    top: 0.1rem;
     left: 1.6rem;
   }
 
-  &__logo{
+  &__logo {
     height: 8rem;
   }
   &__list {
@@ -29,15 +29,14 @@
     // border-bottom: .1rem solid $color-white;
 
     background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $color-white 50%);
-      background-size: 250%;
-      transition: all 0.2s ease-in;
+    background-size: 250%;
+    transition: all 0.2s ease-in;
     &:hover,
     &:active {
       background-position: 100%;
       color: $color-black;
     }
     display: inline-block;
-
   }
 
   &__link {
@@ -66,9 +65,8 @@
       color: $color-black;
     }
   }
-  
-  @include responsive(table-port){
 
+  @include responsive(table-port) {
     &__button {
       background-color: $color-white;
       height: 7rem;
@@ -80,7 +78,7 @@
       z-index: 2000;
       box-shadow: 0 1rem 3rem rgba($color-black, 0.15);
     }
-  
+
     &__background {
       height: 100%;
       width: 0;
@@ -89,33 +87,32 @@
       z-index: 1000;
       transition: all 0.3s cubic-bezier(0.85, 0, 0.15, 1);
     }
-  
+
     &__nav {
       height: 100vh;
       position: fixed;
       top: 0;
       left: 0;
       z-index: 1500;
-  
+
       opacity: 0;
       width: 0;
-  
+
       transition: all 0.8s cubic-bezier(0.52, -0.48, 0.27, 1.78);
-  
     }
-  
-    &__logo-box{
+
+    &__logo-box {
       z-index: 7888;
       position: absolute;
-      top: .1rem;
+      top: 0.1rem;
       right: 1.6rem;
       left: 80%;
     }
-  
-    &__logo{
+
+    &__logo {
       height: 8rem;
     }
-  
+
     &__list {
       // @include verticalHorizontalCenter;
       list-style: none;
@@ -126,24 +123,24 @@
       top: 10rem;
       width: 22rem;
     }
-  
+
     &__item {
       margin: 1rem;
-      border-bottom: .1rem solid $color-white;
+      border-bottom: 0.1rem solid $color-white;
       display: inherit;
       // width: 40%;
       // display: inline-block;
-  
+
       background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $color-white 50%);
-        background-size: 250%;
-        transition: all 0.2s ease-in;
+      background-size: 250%;
+      transition: all 0.2s ease-in;
       &:hover,
       &:active {
         background-position: 100%;
         color: $color-black;
       }
     }
-  
+
     &__link {
       &:link,
       &:visited {
@@ -157,13 +154,13 @@
         background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $color-white 50%);
         background-size: 250%;
         transition: all 0.2s ease-in;
-  
+
         span {
           display: inline-block;
           margin-left: 1rem;
         }
       }
-  
+
       &:hover,
       &:active {
         background-position: 100%;
@@ -172,16 +169,16 @@
     }
   }
 
-  @include responsive(phone){  
+  @include responsive(phone) {
     &__logo-box {
       z-index: 7888;
       position: absolute;
-      top: .1rem;
+      top: 0.1rem;
       right: 1.6rem;
       left: 75%;
     }
-  
-    &__logo{
+
+    &__logo {
       height: 8rem;
     }
   }
