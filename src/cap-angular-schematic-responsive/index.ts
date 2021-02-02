@@ -42,7 +42,7 @@ import {
   // addToNgModule
   // addIdToElement
 } from './cap-utils';
-import { addStyle } from './cap-utils/config';
+import { addStyle, addScripts } from './cap-utils/config';
 import { getAppName } from './cap-utils/package';
 /*import {
   addPackageJsonDependency,
@@ -152,6 +152,12 @@ function addStyles(): Rule {
     addStyle(host, './src/assets/webslidemenu/webslidemenu.scss');
     return host;
   };
+}
+
+function addScript(): Rule{
+  return(host: Tree) => {
+    addScripts(host, './src/assets/js/collapse.js')
+  }
 }
 
 function appendToStylesFile(path: string): Rule {
@@ -417,6 +423,7 @@ export function schematicResponsive(options: ComponentOptions): Rule {
         addElementsSchematic(),
         appendToStylesFile(files.styles),
         addStyles(),
+        addScript(),
         (options.removeAppComponentHtml) ? removeContentFromAppComponentHtml(files.appComponent) :  noop(),
         appendToAppComponentFile(files.appComponent, options),
         addHomeRoute(options)

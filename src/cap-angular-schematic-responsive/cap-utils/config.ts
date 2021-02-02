@@ -56,6 +56,19 @@ export function addStyle(host: Tree, stylePath: string) {
   }
 }
 
+export function addScripts(host: Tree, scriptPath: string) {
+  const config = readConfig(host);
+  const appConfig = getAngularAppConfig(config);
+  if (appConfig) {
+    appConfig.architect.build.options.scripts.push({
+     input: scriptPath
+    });
+    writeConfig(host, config);
+  } else {
+    console.log("Can't find an app.");
+  }
+}
+
 export function hasBootstrap(host: Tree): boolean {
   const config = readConfig(host);
   const appConfig = getAngularAppConfig(config);
