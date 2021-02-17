@@ -13,13 +13,16 @@
     transform: translate(-50%, -50%);
 }
 
+
 // Media query manager
 
 
 // 0px   - 600px   PHONE
 // 600px - 900px   TABLET
 // 900px - 1200px  TABLET LANDSCAPE
-// 1200PX - 1800px Desktop (normal style apply)
+// 1200PX - 1400px Desktop (normal style apply)
+// 1400px - 1600px desktop mid
+// 1600px - 1800px desktop mid
 // 1800px - INDETERMINATE BIG DESKTOP
 
 //Break point argument list
@@ -27,6 +30,8 @@
 // -table-port
 // -table-land 
 // -desktop
+// -desktop-mid
+// -desktop-large
 // -big-desktop
 
 // 1em = 16px
@@ -41,6 +46,12 @@
 
   @if $breakpoint == table-land {
     @media (max-width: 75em) { @content }; //1200px
+  }
+  @if $breakpoint == desktop-mid{
+    @media (max-width: 87.5em) { @content }; //1400px
+  }
+  @if $breakpoint == desktop-large {
+    @media (max-width: 100em) { @content }; //1600px
   }
 
   @if $breakpoint == big-desktop {

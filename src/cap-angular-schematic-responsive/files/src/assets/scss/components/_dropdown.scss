@@ -7,6 +7,10 @@
   width: 50%;
   text-align: center;
 
+  @include responsive(phone) {
+    width: 100%;
+  }
+
   &-content {
     display: none;
     position: absolute;

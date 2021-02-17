@@ -15,6 +15,7 @@
 
   &:not(:last-child) {
     margin-bottom: $gutter-vertical;
+    // padding: 0;
     @include responsive(table-port){
       margin-bottom: $gutter-vertical-small;
     }

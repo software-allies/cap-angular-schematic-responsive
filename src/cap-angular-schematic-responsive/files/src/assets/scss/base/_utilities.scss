@@ -59,9 +59,32 @@
 .u-shadow-small{
   outline: none !important;
   transform: translateY(-0.3rem) !important;
-  box-shadow: 0rem 0.5rem .5rem rgba($color-black, $alpha: 0.15) !important;
+  box-shadow: 0rem 0.5rem 2.5rem rgba($color-black, $alpha: 0.15) !important;
 }
 
 .u-full-width{
   width: 100% !important;
+}
+.u-full-width-phone {
+  @include responsive(phone) {
+    width: 100% !important;
+  }
+}
+
+.u-position-button-input-left {
+  @include responsive(phone) {
+    transform: translate(-50%, 0%);
+    width: 50% !important;
+    text-align: center;
+    margin-top: 2rem;
+  }
+}
+
+.u-position-button-input-right {
+  @include responsive(phone) {
+    transform: translate(0%, 0%);
+    width: 100% !important;
+    text-align: center;
+    margin-bottom: -1rem;
+  }
 }

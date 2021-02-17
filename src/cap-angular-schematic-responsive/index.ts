@@ -330,6 +330,34 @@ import { HomeComponent } from './home/home.component';`;
   };
 }
 
+function addCollapseFunctionality(): Rule {
+  return (host: Tree) => {
+    
+  const filePath = './src/assets/js/collapse.js'
+    // Add footer to end of file
+    const toAdd = 
+`setTimeout(() => {
+  const coll = document.getElementsByClassName("collapsible");
+  for (let i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function () {
+      this.classList.toggle("active");
+      let content = this.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    });
+  }
+
+}, 1000);`;
+      
+    host.overwrite(filePath, `${toAdd}`);
+
+    return host;
+  };
+}
+
 function addToEnvironments(options: ComponentOptions): Rule {
     return (host: Tree) => {
         addEnvironmentVar(host, '', options.path || '/src', 'apiUrl', 'http://localhost:4000/api/');
@@ -419,6 +447,7 @@ export function schematicResponsive(options: ComponentOptions): Rule {
         mergeWith(templateSource),
         updateIndexFile(files.index),
         updateBodyOfIndexFile(files.index),
+        addCollapseFunctionality(),
         // addBootstrapSchematic(),
         addElementsSchematic(),
         appendToStylesFile(files.styles),
