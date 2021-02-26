@@ -2,9 +2,12 @@
   overflow-x: auto;
   border-collapse: collapse;
   border-radius: 1rem;
-  padding: 3rem;
+  // padding: 3rem;
   box-shadow: 0 1.5rem 3rem rgba($color-black, 0.2);
+
+  width: 100%;
 }
+
 .table {
   text-align: left;
 
@@ -14,16 +17,10 @@
   font-size: 1.5rem;
   background-image: linear-gradient(105deg, rgba($color-white, 0.9) 0%, rgba($color-white, 0.9) 100%);
   background-size: cover;
-
-  @include responsive(table-port) {
-    font-size: 2rem;
-  }
-
 }
 
-.thead{
+.thead {
   background-color: $color-blue-dark;
-
 }
 .head {
   color: $color-white;
@@ -49,7 +46,6 @@
   }
   &:hover {
     // color: $color-w;
-    background-color:$color-gray-dark-transparent;
+    background-color: $color-gray-dark-transparent;
   }
 }
-

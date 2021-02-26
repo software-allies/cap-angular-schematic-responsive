@@ -3,42 +3,15 @@
   background-image: linear-gradient($color-black-light, $color-black-light),
     url(https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
   background-size: cover;
-  position: relative;
-
-  @include responsive(phone){
-    height: 90vh;
-  }
-
-  // &__logo-box {
-  //   position: absolute;
-  //   top: .1rem;
-  //   left: 1.6rem;
-  //   @include responsive(phone){
-  //     top: .1rem;
-  //     right: 1.6rem;
-  //     left: 80%
-  //   }
-  // }
-
-  // &__logo {
-  //   height: 8rem;
-    
-  // }
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
 
   &__text-box {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     text-align: center;
-  }
-
-  &__navigation {
-    position: absolute;
-    top: 2rem;
-    left: 60%;
-    font-size: 2rem;
-    font-weight: 400;
-    text-transform: uppercase;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

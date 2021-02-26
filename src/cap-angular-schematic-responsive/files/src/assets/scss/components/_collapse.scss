@@ -1,6 +1,4 @@
 .collapsible {
-
-  // color: #444;
   cursor: pointer;
   padding: 2.5rem 5rem;
   width: 100%;
@@ -12,63 +10,57 @@
   font-size: 1.5rem;
   font-weight: 300;
 
-  @include responsive(desktop-mid) {
-    padding: 2.5rem 2rem;
-  }
-  @include responsive(desktop-large) {
-    padding: 2.5rem 2rem;
-  }
-  @include responsive(table-land) {
-    padding: 2.5rem 2rem;
-  }
-  
-  @include responsive(table-port) {
-    padding: 2.5rem 12rem;
-  }
-  @include responsive(phone) {
-    padding: 2.5rem 7rem;
-    text-align: center;
-  }
-  
-
   /* Style the collapsible content. Note: hidden by default */
   &__content {
     display: none;
     overflow: hidden;
     text-align: left;
     width: 100%;
-    font-size: 1.5rem;
+    font-size: 2rem;
     padding: 3rem 2rem;
-    @include responsive(phone) {
-      padding: 3rem 0rem;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 1rem 2rem rgba($color-black, $alpha: 0.2);
+
+    @include responsive(table-port) {
+      flex-direction: column;
+    }
+
+    &--left {
+      width: 100%;
+      margin: 2rem 3rem;
+      align-self: stretch;
+      border-right: 2px solid $color-gray-dark;
+    }
+    &--right {
+      width: 100%;
+      margin: 2rem 3rem;
+      align-self: stretch;
     }
   }
 }
 
-.collapse{
-  &__container{
-    margin: 0 auto;
-    max-width: 114rem;
+.collapse {
+  &-container {
+    display: flex;
+    &:not(:last-child) {
+      margin-bottom: 3rem;
+    }
+
+    @include responsive(table-port) {
+      display: block;
+    }
   }
 
   &__title {
     font-weight: 400;
-    width: 50%;
-    display: inline-block;
-    @include responsive(phone) {
-      width: 100%;
-      text-align: center;
-    }
+    flex-basis: 25%;
+    // display: inline-block;
   }
   &__description {
+    // display: flex;
     font-weight: 200;
-    width: 50%;
-    display: inline-block;
-
-    @include responsive(phone) {
-      width: 100%;
-      text-align: center;
-      border-bottom: .1rem solid $color-black;
-    }
+    // width: 50%;
+    // display: inline-block;
   }
 }

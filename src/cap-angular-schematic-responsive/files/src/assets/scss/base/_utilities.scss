@@ -13,7 +13,7 @@
 .u-text-uppercase {
   text-transform: uppercase !important;
 }
-.u-margin-right-small{
+.u-margin-right-small {
   margin-right: 2rem !important;
 }
 
@@ -56,13 +56,12 @@
   border-bottom: 1px solid $color-black !important;
 }
 
-.u-shadow-small{
+.u-shadow-small {
   outline: none !important;
-  transform: translateY(-0.3rem) !important;
   box-shadow: 0rem 0.5rem 2.5rem rgba($color-black, $alpha: 0.15) !important;
 }
 
-.u-full-width{
+.u-full-width {
   width: 100% !important;
 }
 .u-full-width-phone {
@@ -86,5 +85,15 @@
     width: 100% !important;
     text-align: center;
     margin-bottom: -1rem;
+  }
+}
+.u-border-light{
+  border: .01rem solid $color-gray-dark !important;
+}
+
+.u-margin-input{
+  margin:0 1rem 0 2rem !important;
+  @include responsive(phone) {
+    margin:0 1rem 0 0rem !important;
   }
 }

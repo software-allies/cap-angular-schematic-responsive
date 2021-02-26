@@ -1,27 +1,26 @@
 .navigation {
-  &__checkbox {
-    display: none;
-  }
-
-  &__logo-box {
-    z-index: 7888;
-    position: absolute;
-    top: 0.1rem;
-    left: 1.6rem;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   &__logo {
     height: 8rem;
   }
+
+  &__nav {
+    // background-color: #fff;
+    // width: auto;
+    display: flex;
+    align-items: stretch;
+  }
+
   &__list {
-    // @include verticalHorizontalCenter;
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+    font-size: 3rem;
     list-style: none;
     text-align: left;
-    // width: 100%;
-    position: absolute;
-    right: 1rem;
-    // top: 10rem;
-    z-index: 1000;
   }
 
   &__item {
@@ -36,13 +35,12 @@
       background-position: 100%;
       color: $color-black;
     }
-    display: inline-block;
   }
-
   &__link {
     &:link,
     &:visited {
-      display: inline-block;
+      display: flex;
+      justify-content: center;
       font-size: 2.5rem;
       font-weight: 300;
       padding: 1rem 2rem;
@@ -54,8 +52,6 @@
       transition: all 0.2s ease-in;
 
       span {
-        display: inline-block;
-        margin-left: 1rem;
       }
     }
 
@@ -64,151 +60,5 @@
       background-position: 100%;
       color: $color-black;
     }
-  }
-
-  @include responsive(table-port) {
-    &__button {
-      background-color: $color-white;
-      height: 7rem;
-      width: 7rem;
-      border-radius: 50%;
-      position: fixed;
-      top: 1rem;
-      left: 1.5rem;
-      z-index: 2000;
-      box-shadow: 0 1rem 3rem rgba($color-black, 0.15);
-    }
-
-    &__background {
-      height: 100%;
-      width: 0;
-      position: fixed;
-      background-image: radial-gradient($color-primary-light, $color-secondary-dark);
-      z-index: 1000;
-      transition: all 0.3s cubic-bezier(0.85, 0, 0.15, 1);
-    }
-
-    &__nav {
-      height: 100vh;
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 1500;
-
-      opacity: 0;
-      width: 0;
-
-      transition: all 0.8s cubic-bezier(0.52, -0.48, 0.27, 1.78);
-    }
-
-    &__logo-box {
-      z-index: 7888;
-      position: absolute;
-      top: 0.1rem;
-      right: 1.6rem;
-      left: 80%;
-    }
-
-    &__logo {
-      height: 8rem;
-    }
-
-    &__list {
-      // @include verticalHorizontalCenter;
-      list-style: none;
-      text-align: left;
-      // width: 100%;
-      position: absolute;
-      left: 1rem;
-      top: 10rem;
-      width: 22rem;
-    }
-
-    &__item {
-      margin: 1rem;
-      border-bottom: 0.1rem solid $color-white;
-      display: inherit;
-      // width: 40%;
-      // display: inline-block;
-
-      background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $color-white 50%);
-      background-size: 250%;
-      transition: all 0.2s ease-in;
-      &:hover,
-      &:active {
-        background-position: 100%;
-        color: $color-black;
-      }
-    }
-
-    &__link {
-      &:link,
-      &:visited {
-        display: inline-block;
-        font-size: 2.5rem;
-        font-weight: 300;
-        padding: 1rem 2rem;
-        color: $color-white;
-        text-decoration: none;
-        text-transform: uppercase;
-        background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $color-white 50%);
-        background-size: 250%;
-        transition: all 0.2s ease-in;
-
-        span {
-          display: inline-block;
-          margin-left: 1rem;
-        }
-      }
-
-      &:hover,
-      &:active {
-        background-position: 100%;
-        color: $color-black;
-      }
-    }
-  }
-
-  @include responsive(phone) {
-    &__logo-box {
-      z-index: 7888;
-      position: absolute;
-      top: 0.1rem;
-      right: 1.6rem;
-      left: 75%;
-    }
-
-    &__logo {
-      height: 8rem;
-    }
-  }
-
-  &__checkbox:checked ~ &__background {
-    width: 25rem;
-  }
-
-  &__checkbox:checked ~ &__nav {
-    opacity: 1;
-    width: 100%;
-  }
-
-  &__icon {
-    &,
-    &::before,
-    &::after {
-      font-size: 3rem;
-      @include verticalHorizontalCenter;
-      display: inline-block;
-    }
-
-    &::before,
-    &::after {
-      content: "";
-    }
-  }
-
-  &__checkbox:checked + &__button ~ &__icon_x {
-    font-size: 3rem;
-    opacity: 1;
   }
 }

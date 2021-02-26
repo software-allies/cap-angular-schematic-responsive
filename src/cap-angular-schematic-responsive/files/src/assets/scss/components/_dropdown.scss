@@ -7,15 +7,12 @@
   width: 50%;
   text-align: center;
 
-  @include responsive(phone) {
-    width: 100%;
-  }
 
   &-content {
     display: none;
     position: absolute;
     top: 4rem;
-    left: -3rem;
+    left: 1rem;
     background-color: $color-white;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);

@@ -1,70 +1,67 @@
+.cards-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+
+  @include responsive(table-port) {
+    flex-direction: column;
+  }
+}
 .card {
-  perspective: 150rem;
-  -moz-perspective: 150rem;
-  position: relative;
+  // background-image: linear-gradient(to right bottom, $color-blue-transparent, $color-blue-dark-transparent),
+  //   url(https://cdn.pixabay.com/photo/2019/07/14/16/27/pen-4337521_1280.jpg);
+  // background-size: cover;
+  border-radius: 1.5rem;
+  box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
+  font-size: 1.5rem;
+  padding: 2rem 4rem;
+  margin: 2rem;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(to right bottom, $color-blue-transparent, $color-blue-dark-transparent);
+  transition: all 1s ease-out;
+  width: 100%;
+  align-self: stretch;
   height: 35rem;
-
-  &__side {
-    height: 50rem;
-    transition: all 0.8s ease;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    backface-visibility: hidden;
-    border-radius: 1.5rem;
-    overflow: hidden;
-    box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
-    height: 30rem;
-    &--front {
-      background-image: linear-gradient(to right bottom, $color-blue-transparent, $color-blue-dark-transparent),
-        url(https://cdn.pixabay.com/photo/2019/07/14/16/27/pen-4337521_1280.jpg);
-      background-size: cover;
-      // background-color: $color-black;
-    }
-    &--back {
-      background-image: linear-gradient(to right bottom, $color-primary-light, $color-secondary-dark);
-      transform: rotateY(180deg);
-    }
+  
+  @include responsive(table-port) {
+    margin-bottom: 2rem;
   }
 
-  &:hover &__side--front,
-  &:active &__side--front,
-  &:focus &__side--front {
-    transform: rotateY(-180deg);
+  &__title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: all 2s ease-out;
   }
-  &:hover &__side--back,
-  &:active &__side--back,
-  &:focus &__side--back {
-    transform: rotateY(0);
-  }
-
-  &__heading {
-    font-size: 2.8rem;
-    font-weight: 300;
-    color: $color-white;
-    position: absolute;
-    top: 17rem;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  &__description{
+    // display: none;
+    transition: all 1s ease-out;
+    opacity: 0;
+    display: none;
+    text-align: justify;
   }
 
-  &__icon {
-    position: absolute;
-    top: 12rem;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 5rem;
-    color: $color-white;
+  &:hover {
+    background-color: $color-primary-light;
   }
 
-  &__content {
-    font-size: 1.5rem;
-    color: $color-white;
-    padding: 3rem 1.5rem;
-    text-align: center;
-    @include responsive(table-port) {
-      font-size: 2rem;
-    }
+  &:hover &__title{
+    opacity: 0;
+    display: none;
+    
+  }
+
+  &:hover &__description{
+    opacity: 1;
+    display: flex;
+    transition: all 2s ease-out;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
 }

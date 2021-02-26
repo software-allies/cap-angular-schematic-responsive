@@ -13,10 +13,7 @@ button {
     transition: all 0.3s;
     border-radius: 1rem;
     position: relative;
-
-    @include responsive(phone) {
-      font-size: 2rem;
-    }
+   
   }
 
   &:hover,
@@ -49,22 +46,7 @@ button {
   color: $color-white;
   padding: 1rem 2rem;
   transition: all 0.3s ease-in-out;
-  position: absolute;
-  top: 22rem;
-  left: 6rem;
-  border-radius: 0.2rem;
-  @include responsive(table-port) {
-    font-size: 2rem;
-    position: absolute;
-    top: 20rem;
-    left: 37rem;
-  }
-  @include responsive(phone) {
-    font-size: 2rem;
-    position: absolute;
-    top: 20rem;
-    left: 17.5rem;
-  }
+  
   &:hover {
     color: $color-black;
     transform: translateY(-0.3rem);

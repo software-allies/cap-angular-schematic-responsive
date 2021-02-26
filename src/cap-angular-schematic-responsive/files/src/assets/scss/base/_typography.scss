@@ -74,16 +74,6 @@ body{
     font-size: 4.5rem;
     font-weight: 300;
     letter-spacing: 2rem;
-    @include responsive(table-port){
-      font-size: 4rem;
-    }
-    @include responsive(phone) {
-      letter-spacing: 0rem;
-    }
-
-    @include responsive(phone){
-      font-size: 3.5rem;
-    }
   }
 }
 

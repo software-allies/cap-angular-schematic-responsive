@@ -1,28 +1,89 @@
-.section-how-works {
-  background-color: $color-black;
-  padding: 10rem 0;
-}
+.container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 
+  &-images {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    @include responsive(table-land) {
+      flex-direction: column;
+    }
+  }
+  &-action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-self: stretch;
+    padding: 5rem 10rem;
+  }
+  &-search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+    flex: 1;
+
+    @include responsive(phone) {
+      flex-direction: column;
+    }
+
+    
+  }
+  &-table {
+    width: 100%;
+    padding: 5rem 10rem;
+  }
+}
+.container-input {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  align-self: stretch;
+
+  @include responsive(phone) {
+    margin-top: 2rem;
+  }
+}
 .section-feature {
   background-color: $color-white;
-  padding: 13rem 0;
+  // padding: 13rem 0;
+  padding: 15rem 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .section-works {
   background-image: linear-gradient(to right, $color-black-light, $color-black-light),
     url(https://cdn.pixabay.com/photo/2017/07/31/11/44/laptop-2557571_1280.jpg);
   background-size: cover;
-  padding: 10rem 0;
+  padding: 15rem 10rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .section-new {
-  padding: 20rem 0;
+  padding: 15rem 10rem;
   background-color: $color-white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .section-register {
-  padding: 15rem 0;
+  padding: 15rem 10rem;
   background-image: linear-gradient(to right bottom, $color-primary-light, $color-secondary-dark);
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .register {
@@ -36,35 +97,48 @@
     url(https://cdn.pixabay.com/photo/2017/04/24/13/37/architecture-2256489_1280.jpg);
   background-size: cover;
   border-radius: 1rem;
-  height: 60rem;
+  width: 100%;
   box-shadow: 0 1.5rem 3rem rgba($color-black, 0.2);
   &__form {
     padding: 6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    transition: all 1s ease-out;
+
+    @include responsive(table-land) {
+      flex-direction: column-reverse;
+      background-image: linear-gradient(
+          0deg,
+          rgba(255, 255, 255, 0.9) 0%,
+          rgba(255, 255, 255, 0.9) -15%,
+          rgba(53, 164, 251, 0.9) 50%,
+          rgba(3, 92, 163, 0.9) 112%
+        ),
+        url(https://cdn.pixabay.com/photo/2017/04/24/13/37/architecture-2256489_1280.jpg);
+      background-size: cover;
+      border-radius: 1rem;
+      width: 100%;
+      box-shadow: 0 1.5rem 3rem rgb(8 8 8 / 20%);
+    }
   }
 }
 
 .section-table {
   padding: 15rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   // background-image: linear-gradient(to left bottom, $color-secondary-dark,$color-primary-light);
-}
-
-.table-container {
-  // background-color: $color-white;
-  width: 100%;
-  padding: 0;
 }
 
 .collapse-section {
   padding: 10rem 10rem;
   margin-bottom: 20rem;
-}
-
-.upload-section {
-  padding: 10rem 10rem;
-  margin-bottom: 20rem;
-}
-
-.progress-bar-section {
-  padding: 2rem 3rem;
-  margin-bottom: 20rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
