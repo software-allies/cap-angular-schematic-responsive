@@ -1,4 +1,4 @@
-.container-cap {
+.container {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -18,7 +18,7 @@
     align-items: center;
     justify-content: center;
     align-self: stretch;
-    padding: 5rem 10rem;
+    padding: 5rem 0rem;
   }
   &-search {
     display: flex;
@@ -30,24 +30,23 @@
     @include responsive(phone) {
       flex-direction: column;
     }
-
-    
   }
   &-table {
     width: 100%;
-    padding: 5rem 10rem;
+    // padding: 5rem 10rem;
   }
-}
-.container-input {
-  display: flex;
-  flex: 1;
-  justify-content: flex-end;
-  align-self: stretch;
+  &-input {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    align-self: stretch;
 
-  @include responsive(phone) {
-    margin-top: 2rem;
+    @include responsive(phone) {
+      margin-top: 2rem;
+    }
   }
 }
+
 .section-feature {
   background-color: $color-white;
   // padding: 13rem 0;
@@ -126,7 +125,7 @@
 }
 
 .section-table {
-  padding: 15rem 0;
+  padding: 15rem 10rem;
   display: flex;
   justify-content: center;
   align-items: center;
