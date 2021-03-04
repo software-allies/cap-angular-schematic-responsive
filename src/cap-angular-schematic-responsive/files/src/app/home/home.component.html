@@ -284,12 +284,16 @@
         <span class="heading-primary--sub">platforms</span>
       </h1>
     </div>
-    <div class="navigation">
+
+    <div class="navigation-container" id="navbar">
       <div class="navigation__logo-box">
         <img src="../../assets/images/logo-white.png" alt="CAP" srcset="" class="navigation__logo">
       </div>
       <nav class="navigation__nav">
-        <ul class="navigation__list">
+        <div class="navigation__handler" (click)="openMenu()">
+          <i class="bi bi-list"></i>
+        </div>
+        <ul class="navigation__list" id="list-menu">
           <li class="navigation__item"><a href="" class="navigation__link">
               home
             </a>
@@ -320,68 +324,40 @@
       </nav>
     </div>
   </header>
-  <div class="container">
-    <section class="section-feature">
-      <h2 class="heading-secondary--light u-text-uppercase u-center-text u-margin-bottom-big">What is CAP?</h2>
-      <div class="cards-container">
-        <div class="card">
-          <div class="card__content">
-            <div class="card__title">
-              Angular
-            </div>
-            <div class="card__description">
-              Rapidly integrate authentication and authorization for web, mobile, and legacy
-              applications
-              so you can focus on your core business.
-              <a href="#" class="btn__text">Learn more</a>
-            </div>
-
-          </div>
+  <div class="container-cap">
+    <div class="wrapper">
+      <div class="card">
+        <img src="http://frontendlabepam.github.io/FL5/angular/assets/img/angular-js-logo.png" />
+        <div class="info">
+          <h1>Angular</h1>
+          <p>Template design with Angular </p>
+          <button>Read More</button>
         </div>
-        <div class="card">
-          <div class="card__content">
-            <div class="card__title">
-              Salesforce
-            </div>
-            <div class="card__description">
-              Rapidly integrate authentication and authorization for web, mobile, and legacy
-              applications
-              so you can focus on your core business.
-              <a href="#" class="btn__text">Learn more</a>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card__content">
-            <div class="card__title">
-              Loopback
-            </div>
-            <div class="card__description">
-              Rapidly integrate authentication and authorization for web, mobile, and legacy
-              applications
-              so you can focus on your core business.
-              <a href="#" class="btn__text">Learn more</a>
-            </div>
-
-          </div>
-        </div>
-        <div class="card">
-          <div class="card__content">
-            <div class="card__title">
-              AWS
-            </div>
-            <div class="card__description">
-              Rapidly integrate authentication and authorization for web, mobile, and legacy
-              applications
-              so you can focus on your core business.
-              <a href="#" class="btn__text">Learn more</a>
-            </div>
-          </div>
-        </div>
-
       </div>
-
-    </section>
+      <div class="card">
+        <img
+          src="https://www.salesforce.com/news/wp-content/uploads/sites/3/2020/10/Salesforce_Corporate_Logo_RGB.jpg" />
+        <div class="info">
+          <h1>Salesforce</h1>
+          <p>Lorem Ipsum is simply dummy text from the printing and typeseting industry</p>
+          <button>Read More</button>
+        </div>
+      </div>
+      <div class="card"><img src="https://seeklogo.com/images/L/loopback-logo-517982E646-seeklogo.com.png" />
+        <div class="info">
+          <h1>Loopback 4</h1>
+          <p>Integration and sincronization with loopback 3 and 4</p>
+          <button>Read More</button>
+        </div>
+      </div>
+      <div class="card"><img src="https://reztalkstech.com/wp-content/uploads/2020/03/s3.png" />
+        <div class="info">
+          <h1>AWS S3</h1>
+          <p>Amazon s3 services</p>
+          <button>Read More</button>
+        </div>
+      </div>
+    </div>
 
     <section class="section-works">
       <h2 class="heading-secondary--light u-text-uppercase u-center-text u-margin-bottom-big u-text-white">HOW DOES IT
@@ -641,7 +617,6 @@
         </div>
       </div>
     </section>
-
   </div>
 
 </div>

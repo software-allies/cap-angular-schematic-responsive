@@ -1,8 +1,28 @@
 .footer {
   background-image: linear-gradient(314.42deg, $color-blue-dark 0%, $color-black 100%);
-  padding: 5rem 0;
+  padding: 15rem 10rem;
   font-size: 1.7rem;
-  
+  display: flex;
+  justify-content: space-between;
+
+  @include responsive(table-port) {
+    flex-direction: column;
+  }
+
+  &-box-information {
+    flex: 0 0 40%;
+    padding: 1rem 2rem;
+  }
+  &-links {
+    flex: 0 0 30%;
+    padding: 1rem 2rem;
+  }
+
+  &-contact {
+    flex: 1;
+    padding: 1rem 2rem;
+  }
+
   &__title {
     font-size: 2.5rem;
     text-transform: uppercase;
@@ -10,9 +30,11 @@
     display: inline-block;
     color: $color-white;
     padding: 2rem 1rem;
+    // display: flex;
+    // justify-content: center;
   }
-  
-  &__navigation {
+
+  &__content {
     // padding-top: 2rem;
     padding: 2rem 1rem;
     border-top: 0.1px solid $color-white;
@@ -27,14 +49,13 @@
     }
     font-size: 1.75rem;
 
-    @include responsive(table-port){
+    @include responsive(table-port) {
       font-size: 2rem;
-
     }
   }
   &__link {
     color: $color-gray;
-    transition: all .3s ease-in;
+    transition: all 0.3s ease-in;
     &:link,
     :visited {
       text-decoration: none;
@@ -46,7 +67,8 @@
       color: $color-white;
     }
   }
-  &__form{
-    
-  }
+}
+.form__group--footer{
+  margin-bottom: 1rem;
+    width: 100%;
 }
