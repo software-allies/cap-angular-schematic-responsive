@@ -30,17 +30,19 @@
     @include responsive(phone) {
       flex-direction: column;
     }
+
+    
   }
   &-table {
     width: 100%;
     // padding: 5rem 10rem;
   }
-  &-input {
+  &-input{
     display: flex;
     flex: 1;
     justify-content: flex-end;
     align-self: stretch;
-
+  
     @include responsive(phone) {
       margin-top: 2rem;
     }
@@ -55,6 +57,10 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  @include responsive(phone) {
+    padding: 5rem 5rem;
+  }
 }
 
 .section-works {
@@ -66,6 +72,9 @@
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  @include responsive(phone) {
+    padding: 5rem 5rem;
+  }
 }
 
 .section-new {
@@ -74,6 +83,9 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+  @include responsive(phone) {
+    padding: 5rem 5rem;
+  }
 }
 
 .section-register {
@@ -83,6 +95,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  @include responsive(phone) {
+    padding: 5rem 5rem;
+  }
 }
 
 .register {
@@ -107,6 +122,7 @@
     transition: all 1s ease-out;
 
     @include responsive(table-land) {
+      padding: 3rem;
       flex-direction: column-reverse;
       background-image: linear-gradient(
           0deg,
@@ -130,14 +146,21 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  @include responsive(phone) {
+    padding: 5rem 5rem;
+  }
   // background-image: linear-gradient(to left bottom, $color-secondary-dark,$color-primary-light);
 }
 
 .collapse-section {
-  padding: 10rem 10rem;
+  padding: 15rem 10rem;
   margin-bottom: 20rem;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  @include responsive(phone) {
+    padding: 5rem 5rem;
+  }
 }

@@ -22,13 +22,16 @@
 
     @include responsive(phone) {
       
-      visibility: hidden;
-      opacity: 0;
+      // visibility: hidden;
+      // opacity: 0;
       background-color: $color-black-light;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
+      position: absolute;
+      left: -30rem;
+      transition: all 1s ease-in-out;
     }
   }
 

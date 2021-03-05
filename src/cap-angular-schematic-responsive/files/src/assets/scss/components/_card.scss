@@ -7,96 +7,71 @@
   @include responsive(table-port) {
     flex-direction: column;
   }
-  
 }
 .card {
-  // background-image: linear-gradient(to right bottom, $color-blue-transparent, $color-blue-dark-transparent),
-  //   url(https://cdn.pixabay.com/photo/2019/07/14/16/27/pen-4337521_1280.jpg);
-  // background-size: cover;
   border-radius: 1.5rem;
-  box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
+
   font-size: 1.5rem;
   padding: 2rem 4rem;
   margin: 2rem;
   font-size: 2rem;
   display: flex;
-  align-items: center;
   justify-content: center;
   background-image: linear-gradient(to right bottom, $color-blue-transparent, $color-blue-dark-transparent);
-  transition: all 1s ease-out;
+  transition: all 0.4s ease-out;
   width: 100%;
   align-self: stretch;
   height: 35rem;
 
+  position: relative;
+  align-items: flex-end;
+  box-shadow: 0 1.5rem 4rem rgba($color-black, 0.5);
+
   @include responsive(table-port) {
-    margin-bottom: 2rem;
+    margin: 0rem;
+    margin-bottom: 5rem;
   }
 
-  &__title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 1;
-    transition: all 2s ease-out;
-  }
   &__description {
-    // display: none;
-    transition: all 1s ease-out;
+    letter-spacing: 1px;
+    font-size: 15px;
+    margin-top: 8px;
+  }
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: scale-down;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 15px;
+    background: $color-white;
+  }
+  &__info {
+    position: absolute;
+    z-index: 3;
+    color: $color-white;
     opacity: 0;
-    display: none;
-    text-align: justify;
+    transform: translateY(30px);
+    transition: 0.5s;
+    // &:hover {
+    //   opacity: 1;
+    //   transform: translateY(0px);
+    // }
   }
 
   &:hover {
     background-color: $color-primary-light;
-  }
-
-  &:hover &__title {
-    opacity: 0;
-    display: none;
-  }
-
-  &:hover &__description {
-    opacity: 1;
-    display: flex;
-    transition: all 2s ease-out;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
-}
-
-.wrapper {
-  display: flex;
-  // width: 90%;
-  justify-content: space-around;
-  margin: 15rem 10rem;
-  @include responsive(table-port) {
-   flex-direction: column;
-  }
-}
-
-.card {
-  // width: 100%;
-  // height: 360px;
-  border-radius: 15px;
-  padding: 1.5rem;
-  background: white;
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  transition: 0.4s ease-out;
-  box-shadow: 0px 7px 10px rgba(black, 0.5);
-  &:hover {
-    transform: translateY(20px);
+    transform: translateY(5px);
     &:before {
       opacity: 1;
     }
-    .info {
-      opacity: 1;
-      transform: translateY(0px);
-    }
   }
+  &:hover &__info {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+
   &:before {
     content: "";
     position: absolute;
@@ -106,51 +81,22 @@
     width: 100%;
     height: 100%;
     border-radius: 15px;
-    background: rgba(black, 0.6);
+    background: rgba($color-black, 0.6);
     z-index: 2;
     transition: 0.5s;
     opacity: 0;
   }
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-radius: 15px;
-  }
-
-  .info {
-    position: relative;
-    z-index: 3;
-    color: white;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: 0.5s;
-  }
-  h1 {
-    margin: 0px;
-  }
-  p {
-    letter-spacing: 1px;
-    font-size: 15px;
-    margin-top: 8px;
-  }
-  button {
-    padding: 0.6rem;
-    outline: none;
-    border: none;
-    border-radius: 3px;
-    background: white;
-    color: black;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.4s ease;
-    &:hover {
-      background: dodgerblue;
-      color: white;
-    }
-  }
 }
 
+.wrapper {
+  display: flex;
+  // width: 90%;
+  justify-content: space-around;
+  padding: 15rem 10rem;
+  @include responsive(table-port) {
+    flex-direction: column;
+  }
+  @include responsive(phone) {
+    padding: 5rem 5rem;
+  }
+}

@@ -27,6 +27,9 @@
 
 .u-margin-bottom-big {
   margin-bottom: 8rem !important;
+  @include responsive(phone) {
+    margin-top: 4rem !important;
+  }
 }
 
 .u-margin-top-small {
@@ -39,6 +42,9 @@
 
 .u-margin-top-big {
   margin-top: 8rem !important;
+  @include responsive(phone) {
+    margin-top: 4rem !important;
+  }
 }
 
 .u-input-background-gray {
