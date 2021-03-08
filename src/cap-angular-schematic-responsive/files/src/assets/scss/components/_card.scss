@@ -48,16 +48,13 @@
     background: $color-white;
   }
   &__info {
+    padding: 1rem 2rem;
     position: absolute;
     z-index: 3;
     color: $color-white;
     opacity: 0;
     transform: translateY(30px);
     transition: 0.5s;
-    // &:hover {
-    //   opacity: 1;
-    //   transform: translateY(0px);
-    // }
   }
 
   &:hover {
@@ -90,7 +87,6 @@
 
 .wrapper {
   display: flex;
-  // width: 90%;
   justify-content: space-around;
   padding: 15rem 10rem;
   @include responsive(table-port) {

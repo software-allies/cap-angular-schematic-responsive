@@ -102,54 +102,51 @@
         </div>
     </div>
 </header> -->
-<div class="navigation">
-  <input type="checkbox" class="navigation__checkbox" id="navi-toggle">
-  <label for="navi-toggle" class="navigation__button">
-    <span class="navigation__icon">
-      <i class="fa fa-bars" aria-hidden="true"></i>
-    </span>
-  </label>
-  <div class="navigation__background"></div>
-  <div class="navigation__logo-box">
-    <img src="../../assets/images/cap-logo.png" alt="CAP" srcset="" class="navigation__logo">
-  </div>
-  <nav class="navigation__nav">
-    <ul class="navigation__list">
-      <li class="navigation__item"><a href="" class="navigation__link">
-          home
-        </a>
-      </li>
-      <li class="navigation__item"><a href="" class="navigation__link">
-          login
-          <span>
-            <i class="fa fa-caret-down" aria-hidden="true"></i>
-          </span>
-        </a>
-      </li>
-      <li class="navigation__item"><a href="" class="navigation__link">
-          Register
-          <span>
-            <i class="fa fa-caret-down" aria-hidden="true"></i>
-          </span>
-        </a>
-      </li>
-      <li class="navigation__item"><a href="" class="navigation__link">
-          Search
-          <span>
-            <i class="fa fa-search" aria-hidden="true"></i>
-          </span>
-        </a>
-      </li>
-
-    </ul>
-  </nav>
-</div>
-
 <header class="header">
   <div class="header__text-box">
     <h1 class="heading-primary">
       <span class="heading-primary--main">connect apps</span>
       <span class="heading-primary--sub">platforms</span>
     </h1>
+  </div>
+
+  <div class="navigation-container" id="navbar">
+    <div class="navigation__logo-box">
+      <img src="../../assets/images/logo-white.png" alt="CAP" srcset="" class="navigation__logo">
+    </div>
+    <nav class="navigation__nav" id="navbar">
+      <div class="navigation__handler" id="menu-handler" (click)="openMenu()">
+        <i class="bi bi-list icon__open" id="open"></i>
+        <i class="bi bi-x icon__cancel" id="cancel"></i>
+      </div>
+      <ul class="navigation__list" id="list-menu">
+        <li class="navigation__item"><a href="" class="navigation__link">
+            home
+          </a>
+        </li>
+        <li class="navigation__item"><a href="" class="navigation__link">
+            login
+            <span>
+              <i class="fa fa-caret-down" aria-hidden="true"></i>
+            </span>
+          </a>
+        </li>
+        <li class="navigation__item"><a href="" class="navigation__link">
+            Register
+            <span>
+              <i class="fa fa-caret-down" aria-hidden="true"></i>
+            </span>
+          </a>
+        </li>
+        <li class="navigation__item"><a href="" class="navigation__link">
+            Search
+            <span>
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </span>
+          </a>
+        </li>
+
+      </ul>
+    </nav>
   </div>
 </header>
