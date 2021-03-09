@@ -1,5 +1,5 @@
 
-@import './abstracts/functions';
+@import 'abstracts/functions';
 @import 'abstracts/mixins';
 @import 'abstracts/variables';
 
@@ -11,6 +11,7 @@
 @import 'components/button';
 @import 'components/card';
 @import 'components/collapse';
+@import 'components/container';
 @import 'components/dropdown';
 @import 'components/form';
 @import 'components/image';
@@ -22,5 +23,6 @@
 @import 'layout/grid';
 @import 'layout/header';
 @import 'layout/navigation';
+@import 'layout/section';
 
 @import './pages/home';

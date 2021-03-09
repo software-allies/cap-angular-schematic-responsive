@@ -38,6 +38,20 @@ export class HeaderComponent implements OnInit {
   public modalService: ModalService,
     private router: Router
   ) {
+  window.onscroll = function () { scrollFunction() };
+  function scrollFunction() {
+    let navbar = document.getElementById("navbar");
+    // navbar.clientWidth
+    if (window.pageYOffset === 0) {
+      navbar.style.backgroundColor = '';
+    } else {
+      navbar.style.top = `${window.scrollY}px`
+      navbar.style.position = 'relative';
+      navbar.style.backgroundColor = '#080808';
+      navbar.style.transition = 'all  .01s ease-in-out';
+    }
+  }
+
   // Check if the route is the root for set the dark menu style
   this.routerSubscription = router.events.subscribe((event: Event) => {
     if (event instanceof NavigationEnd) {

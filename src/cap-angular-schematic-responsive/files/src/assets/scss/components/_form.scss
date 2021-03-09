@@ -22,11 +22,10 @@
     margin-bottom: 1rem;
     width: 100%;
     padding: 1rem 2rem;
-
   }
   &__input {
     font-family: inherit;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: inherit;
     padding: 1rem 2rem;
     border-radius: 4px;
@@ -37,12 +36,14 @@
     display: block;
     transition: all 0.3s;
 
-    &-email{
-
+    &-email {
     }
 
     @include responsive(table-land) {
       width: 100%;
+    }
+    @include responsive(phone) {
+      font-size: 1.5rem;
     }
 
     &:focus {
@@ -61,12 +62,15 @@
 
   &__label {
     color: $color-black;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: 700;
     margin-left: 1rem;
     margin-top: 0.7rem;
     display: block;
     transition: all 0.3s;
+    @include responsive(phone) {
+      font-size: 1.5rem;
+    }
   }
 
   &__input:placeholder-shown + &__label {
@@ -75,4 +79,3 @@
     transform: translateY(-4rem);
   }
 }
-
