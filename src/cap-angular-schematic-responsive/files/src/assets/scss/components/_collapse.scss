@@ -9,9 +9,9 @@
   background-color: $color-gray-dark-transparent;
   font-size: 1.8rem;
   font-weight: 300;
-  @include responsive(table-port) {
-    font-size: 1.5rem;
-  }
+  // @include responsive(table-port) {
+  //   font-size: 1.5rem;
+  // }
   /* Style the collapsible content. Note: hidden by default */
   &__content {
     display: none;
