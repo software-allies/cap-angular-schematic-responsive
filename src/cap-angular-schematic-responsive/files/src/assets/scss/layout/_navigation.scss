@@ -7,7 +7,10 @@
     align-self: stretch;
     z-index: 99;
     top: 0;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     @include responsive(phone) {
       flex-direction: row-reverse;
       align-items: flex-start;
@@ -103,16 +106,12 @@
     // position: fixed;
     transition: all 1s ease-in-out;
     @include responsive(phone) {
-      // background: rgb(30, 59, 103, 1);
-      // background: linear-gradient(355deg, rgba(2, 0, 36, 1) 0%, rgba(0, 0, 0, 1) 0%, rgba(30, 59, 103, 1) 100%);
-      // border-radius: 50%;
-      // width: 6rem;
-      // height: 6rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 1rem 2rem;
       position: relative;
+      width: 10rem;
+      height: 8rem;
     }
   }
 }

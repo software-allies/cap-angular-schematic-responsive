@@ -37,6 +37,7 @@
       @include responsive(table-port) {
         width: auto;
         border: hidden;
+        font-size: 1.5rem;
       }
     }
     &--right {
@@ -45,6 +46,7 @@
       align-self: stretch;
       @include responsive(table-port) {
         width: auto;
+        font-size: 1.5rem;
       }
     }
   }
@@ -58,6 +60,7 @@
     }
     @include responsive(phone) {
       display: block;
+      font-size: 1.5rem;
     }
   }
 
