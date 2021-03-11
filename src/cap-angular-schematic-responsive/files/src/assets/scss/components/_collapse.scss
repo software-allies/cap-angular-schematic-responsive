@@ -1,17 +1,21 @@
 .collapsible {
-  cursor: pointer;
-  padding: 2.5rem 5rem;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  height: auto;
-  background-color: $color-gray-dark-transparent;
-  font-size: 1.8rem;
-  font-weight: 300;
-  // @include responsive(table-port) {
-  //   font-size: 1.5rem;
-  // }
+
+  &__button{
+    cursor: pointer;
+    padding: 2.5rem 5rem;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    height: auto;
+    background-color: $color-gray-dark-transparent;
+    font-size: 1.8rem;
+    font-weight: 300;
+    font-family: "Lato", sans-serif;
+    // @include responsive(table-port) {
+    //   font-size: 1.5rem;
+    // }
+  }
   /* Style the collapsible content. Note: hidden by default */
   &__content {
     display: none;
@@ -19,14 +23,14 @@
     text-align: left;
     width: 100%;
     font-size: 1.8rem;
-    padding: 3rem 2rem;
+    padding: 2rem 2rem;
     justify-content: space-around;
     align-items: center;
     box-shadow: 0 1rem 2rem rgba($color-black, $alpha: 0.2);
 
     @include responsive(table-port) {
       flex-direction: column;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
     }
 
     &--left {
@@ -55,9 +59,11 @@
 .collapse {
   &-container {
     display: flex;
+    font-size: 1.8rem;
     &:not(:last-child) {
       margin-bottom: 3rem;
     }
+   
     @include responsive(phone) {
       display: block;
       font-size: 1.5rem;
