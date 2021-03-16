@@ -78,6 +78,7 @@ function updateIndexFile(path: string): Rule {
       '<link media="screen" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap|Roboto:300,400,500&display=swap" rel="stylesheet" async defer>',
       '<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">',
       '<link rel="preconnect" href="https://fonts.gstatic.com">',
+      '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">',
       '<link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">',
       '<link media="screen" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" async defer>',
       '<script src="assets/webcomponentsjs/webcomponents-loader.js"></script>',

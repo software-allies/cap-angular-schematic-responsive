@@ -100,22 +100,29 @@ clickLink() {
 }
 
 openMenu() {
-  let navigationList = document.getElementById("list-menu") as HTMLElement
-  let handlerMenu = document.getElementById("menu-handler") as HTMLElement
-  let openIcon = document.getElementById("open") as HTMLElement
-  let cancelIcon = document.getElementById("cancel") as HTMLElement
+  //Declaring the variables to get the HTML elements by ID
+  let navigationList = document.getElementById("list-menu") as HTMLElement;
+  let handlerMenu = document.getElementById("menu-handler") as HTMLElement;
+  let openIcon = document.getElementById("open") as HTMLElement;
+  let cancelIcon = document.getElementById("cancel") as HTMLElement;
 
-  if (navigationList.style.left === '-30rem') {
-    navigationList.style.left = '0rem';
-    handlerMenu.style.left = '21rem';
+  console.log(navigationList.style.getPropertyValue('transition') === '');
+
+  navigationList.style.getPropertyValue('transition') === '' ? navigationList.style.transition = 'all 1s ease-in-out' : console.log('gg')
+  if (navigationList.style.left === '-30rem' || navigationList.style.getPropertyValue('left') === '') {
+    navigationList.style.transition = 'transition: all 1s ease-in-out';
     openIcon.style.display = 'none';
     cancelIcon.style.display = 'flex';
+    navigationList.style.left = '0rem';
+    handlerMenu.style.left = '21rem';
   } else {
     navigationList.style.left = '-30rem';
     handlerMenu.style.left = '0rem';
     cancelIcon.style.display = 'none';
     openIcon.style.display = 'flex';
+    navigationList.style.transition = 'transition: all 1s ease-in-out';
   }
+
 }
 
 }
