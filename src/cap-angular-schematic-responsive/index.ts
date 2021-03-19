@@ -44,11 +44,11 @@ import {
 } from './cap-utils';
 import { addStyle, addScripts } from './cap-utils/config';
 import { getAppName } from './cap-utils/package';
-/*import {
-  addPackageJsonDependency,
-  NodeDependency,
-  NodeDependencyType
-} from 'schematics-utilities';*/
+// import {
+  // addPackageJsonDependency,
+  // NodeDependency,
+  // NodeDependencyType
+// } from 'schematics-utilities';
 
 function updateBodyOfIndexFile(filePath: string): Rule {
     return (tree: Tree) => {
@@ -82,6 +82,7 @@ function updateIndexFile(path: string): Rule {
       '<link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">',
       '<link media="screen" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" async defer>',
       '<script src="assets/webcomponentsjs/webcomponents-loader.js"></script>',
+      '<script src="https://unpkg.com/@popperjs/core@2"></script>',
       '',
       '<!-- Facebook metas -->',
       '<meta property="fb:app_id" content="0123456789876543210">',
@@ -299,9 +300,9 @@ function addDeclarationToNgModule(options: ComponentOptions): Rule {
   };
 }
 
-// function addBootstrapSchematic() {
-//     return externalSchematic('cap-angular-schematic-bootstrap', 'ng-add', { version: "4.0.0", skipWebpackPlugin: true });
-// }
+function addBootstrapSchematic() {
+    return externalSchematic('cap-angular-schematic-bootstrap', 'ng-add', { version: "4.0.0", skipWebpackPlugin: true });
+}
 
 function addElementsSchematic() {
     return externalSchematic('@angular/elements', 'ng-add', {});
@@ -448,7 +449,7 @@ export function schematicResponsive(options: ComponentOptions): Rule {
         updateIndexFile(files.index),
         updateBodyOfIndexFile(files.index),
         addCollapseFunctionality(),
-        // addBootstrapSchematic(),
+        addBootstrapSchematic(),
         addElementsSchematic(),
         appendToStylesFile(files.styles),
         addStyles(),

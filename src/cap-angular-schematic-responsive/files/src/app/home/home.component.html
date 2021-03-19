@@ -275,7 +275,8 @@
 </section> -->
 
 
-<div class="container">
+<div class="section-container">
+
   <div class="wrapper">
 
     <div class="card">
@@ -283,7 +284,7 @@
       <div class="card__info">
         <h5 class="card__title">Angular</h5>
         <p class="card__description">Template design with Angular </p>
-        <button class="btn btn__card">Read More</button>
+        <button class="btn__card">Read More</button>
       </div>
     </div>
     <div class="card">
@@ -292,7 +293,7 @@
       <div class="card__info">
         <h5 class="card__title">Salesforce</h5>
         <p class="card__description">Lorem Ipsum is simply dummy text from the printing and typeseting industry</p>
-        <button class="btn btn__card">Read More</button>
+        <button class="btn__card">Read More</button>
       </div>
     </div>
     <div class="card">
@@ -300,7 +301,7 @@
       <div class="card__info">
         <h5 class="card__title">Loopback 4</h5>
         <p class="card__description">Integration and sincronization with loopback 3 and 4</p>
-        <button class="btn btn__card">Read More</button>
+        <button class="btn__card">Read More</button>
       </div>
     </div>
     <div class="card">
@@ -308,10 +309,11 @@
       <div class="card__info">
         <h5 class="card__title">AWS S3</h5>
         <p class="card__description">Amazon s3 services</p>
-        <button class="btn btn__card">Read More</button>
+        <button class="btn__card">Read More</button>
       </div>
     </div>
   </div>
+
 
   <section class="section-works">
     <h2 class="heading-secondary--light u-text-uppercase u-center-text u-margin-bottom-big u-text-white">HOW DOES IT
@@ -399,8 +401,7 @@
     <div class="container-table">
       <div class="table-container">
 
-        <table id="..." class="table" cellspacing="0" cellpadding="0">
-          <!-- Table header -->
+        <table id="table" class="table" cellspacing="0" cellpadding="0">
           <thead class="thead">
             <tr class="head">
               <th scope="col" id="..." class="head__title">Account Name</th>
@@ -409,7 +410,6 @@
               <th scope="col" id="..." class="head__title">Actions</th>
             </tr>
           </thead>
-          <!-- Table body -->
           <tbody>
             <tr class="tbody">
               <th scope="col" id="..." class="tbody__content">
@@ -418,17 +418,24 @@
               <th scope="col" id="..." class="tbody__content">-</th>
               <th scope="col" id="..." class="tbody__content">-</th>
               <th scope="col" id="..." class="tbody__content">
-                <div class="dropdown">
-                  <!-- <span>Mouse over me</span> -->
+                <!-- <div class="dropdown">
                   <i class="bi bi-caret-down-fill"></i>
                   <div class="dropdown-content">
                     <a href="" class="dropdown-content__item">Edit</a>
                     <a href="" class="dropdown-content__item">Update</a>
                     <a href="" class="dropdown-content__item">Delete</a>
-                    <!-- <p>Edit</p>
-                    <p>Update</p>
-                    <p>Delete</p> -->
                   </div>
+                </div> -->
+                <div class="dropdown">
+                  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                  </a>
+
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  </ul>
                 </div>
               </th>
             </tr>
@@ -499,132 +506,42 @@
   </section>
 
   <section class="collapse-section">
-    <button type="button" class="collapsible__button">Open Collapsible</button>
-    <div class="collapsible__content">
-      <div class="collapsible__content--left">
-        <div class="collapse-container">
-          <div class="collapse__title">
-            Private
-          </div>
-          <div class="collapse__description">
-            false
-          </div>
+    <a class="collapsible__button" data-bs-toggle="collapse" href="#collapse1" role="button" aria-expanded="false"
+      aria-controls="collapse1">
+      Link with href
+    </a>
+    <div class="collapse" id="collapse1">
+      <div class="row p-5">
+        <div class="col-sm-12 col-md-3">
+          <strong class="m-r-2">
+            Title
+          </strong>
         </div>
-        <div class="collapse-container">
-          <div class="collapse__title">
-            Account Name
-          </div>
-          <div class="collapse__description">
-            Abalone Construction (Western) Inc
-          </div>
+        <div class="col-sm-12 col-md-3">sit amet nisl purus in mollis nunc sed id semper</div>
+        <div class="col-sm-12 col-md-3">
+          <strong>
+            Title
+          </strong>
         </div>
-        <div class="collapse-container">
-          <div class="collapse__title">
-            Account Name
-          </div>
-          <div class="collapse__description">
-            Abalone Construction (Western) Inc
-          </div>
-        </div>
+        <div class="col-sm-12 col-md-3">sit amet nisl purus in mollis nunc sed id semper</div>
       </div>
-      <div class="collapsible__content--right">
-        <div class="collapse-container">
-          <div class="collapse__title">
-            Account Name
-          </div>
-          <div class="collapse__description">
-            Abalone Construction (Western) Inc
-          </div>
+      <div class="row p-5">
+        <div class="col-sm-12 col-md-3">
+          <strong>
+            Title
+          </strong>
         </div>
-        <div class="collapse-container">
-          <div class="collapse__title">
-            Private
-          </div>
-          <div class="collapse__description">
-            false
-          </div>
+        <div class="col-sm-12 col-md-3">sit amet nisl purus in mollis nunc sed id semper</div>
+        <div class="col-sm-12 col-md-3">
+          <strong>
+            Title
+          </strong>
         </div>
-        <div class="collapse-container">
-          <div class="collapse__title">
-            Account Name
-          </div>
-          <div class="collapse__description">
-            Abalone Construction (Western) Inc
-          </div>
-        </div>
-        <div class="collapse-container">
-          <div class="collapse__title">
-            Account Name
-          </div>
-          <div class="collapse__description">
-            Abalone Construction (Western) Inc
-          </div>
-        </div>
-        <div class="collapse-container">
-          <div class="collapse__title">
-            Account Name
-          </div>
-          <div class="collapse__description">
-            Abalone Construction (Western) Inc
-          </div>
-        </div>
+        <div class="col-sm-12 col-md-3">sit amet nisl purus in mollis nunc sed id semper</div>
       </div>
+
     </div>
   </section>
-
-  <!-- <section class="section-upload">
-    <div class="r" *ngIf="selectedFile">
-      <div class="col col-md-6">
-        <div class="card">
-          <img id="image" src="" class="card-img-top">
-          <div class="card-body">
-            <div class="row">
-              <div class="col">
-                <div class="progress my-3">
-                  <div class="progress-bar" role="progressbar" [style.width]="progressBar + '%'" aria-valuenow="25"
-                    aria-valuemin="0" aria-valuemax="100">{{progressBar}}%</div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col">
-                <div class="input-group mb-3">
-                  <div class="custom-file">
-
-                    <input type="file" name="file" accept="image/*" id="file" class="custom-file-input"
-                      (change)="selectFile($event)" id="file" aria-describedby="inputGroupFileAddon01"
-                      [disabled]="progressBar === 100">
-                    <label class="custom-file-label" for="file">Choose file</label>
-                  </div>
-                </div>
-                <button class="btn btn-primary btn-block" [disabled]="!selectedFile || progressBar === 100"
-                  (click)="upload()">Upload</button>
-                <button class="btn btn-danger btn-block" [disabled]="!isComplete" (click)="cleanData()">Clean
-                  data</button>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="" *ngIf="!selectedFile">
-      <div class="col col-md-6">
-        <div class="card">
-          <div class="imageNotFound">Photo</div>
-          <div class="card-body">
-            <div class="custom-file my-3">
-              <input type="file" class="custom-file-input" name="file" accept="image/*" id="file"
-                (change)="selectFile($event)">
-              <label class="custom-file-label" for="customFile">Choose file</label>
-            </div>
-            <button class="btn btn-primary btn-block" [disabled]="!selectedFile" (click)="upload()">Upload</button>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </section> -->
 
   <section class="section-upload">
     <div class="upload__image">

@@ -1,6 +1,5 @@
 .collapsible {
-
-  &__button{
+  &__button {
     cursor: pointer;
     padding: 2.5rem 5rem;
     width: 100%;
@@ -9,72 +8,38 @@
     outline: none;
     height: auto;
     background-color: $color-gray-dark-transparent;
-    font-size: 1.8rem;
+    font-size: 1.8rem !important;
     font-weight: 300;
     font-family: "Lato", sans-serif;
-    // @include responsive(table-port) {
-    //   font-size: 1.5rem;
-    // }
+    text-decoration: none;
+    color: $color-black;
+    @include responsive(table-port) {
+      font-size: 1.8rem !important;
+    }
+
+    &:hover{
+      color: $color-black;
+    }
   }
   /* Style the collapsible content. Note: hidden by default */
   &__content {
-    display: none;
-    overflow: hidden;
-    text-align: left;
-    width: 100%;
-    font-size: 1.8rem;
+    padding: 1rem;
+    transition: all 1s ease-out;
     padding: 2rem 2rem;
-    justify-content: space-around;
-    align-items: center;
+    font-size: 1.8rem !important;
     box-shadow: 0 1rem 2rem rgba($color-black, $alpha: 0.2);
 
     @include responsive(table-port) {
-      flex-direction: column;
-      font-size: 1.5rem;
-    }
-
-    &--left {
-      width: 100%;
-      margin: 2rem 3rem;
-      align-self: stretch;
-      border-right: 2px solid $color-gray-dark;
-      @include responsive(table-port) {
-        width: auto;
-        border: hidden;
-        font-size: 1.5rem;
-      }
-    }
-    &--right {
-      width: 100%;
-      margin: 2rem 3rem;
-      align-self: stretch;
-      @include responsive(table-port) {
-        width: auto;
-        font-size: 1.5rem;
-      }
+      font-size: 1.8rem !important;
     }
   }
 }
 
-.collapse {
-  &-container {
-    display: flex;
-    font-size: 1.8rem;
-    &:not(:last-child) {
-      margin-bottom: 3rem;
-    }
-   
-    @include responsive(phone) {
-      display: block;
-      font-size: 1.5rem;
-    }
-  }
-
-  &__title {
-    font-weight: 400;
-    flex-basis: 25%;
-  }
-  &__description {
-    font-weight: 200;
+#collapse1{
+  box-shadow: 0 1rem 2rem rgba($color-black, $alpha: 0.2);
+  padding: 2rem;
+  font-size: 1.8rem !important;
+  @include responsive(table-port) {
+    font-size: 1.8rem !important;
   }
 }

@@ -44,4 +44,10 @@
 .dropdown:focus .dropdown-content {
   display: inline-block;
   color: $color-black;
+  font-size: 1.8rem !important;
+}
+
+
+.dropdown-menu{
+  font-size: 1.8rem;
 }

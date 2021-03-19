@@ -20,9 +20,10 @@ button {
   }
 
   &__card {
-    font-size: 1.8rem;
+    font-size: 1.8rem !important;
     background-color: $color-white;
     padding: 1rem 2rem;
+    border-radius: 1rem;
     @include responsive(phone) {
       font-size: 1.5rem;
     }
