@@ -449,7 +449,7 @@ export function schematicResponsive(options: ComponentOptions): Rule {
         updateIndexFile(files.index),
         updateBodyOfIndexFile(files.index),
         addCollapseFunctionality(),
-        addBootstrapSchematic(),
+        // addBootstrapSchematic(),
         addElementsSchematic(),
         appendToStylesFile(files.styles),
         addStyles(),
