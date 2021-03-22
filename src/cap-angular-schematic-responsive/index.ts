@@ -300,9 +300,9 @@ function addDeclarationToNgModule(options: ComponentOptions): Rule {
   };
 }
 
-function addBootstrapSchematic() {
-    return externalSchematic('cap-angular-schematic-bootstrap', 'ng-add', { version: "4.0.0", skipWebpackPlugin: true });
-}
+// function addBootstrapSchematic() {
+//     return externalSchematic('cap-angular-schematic-bootstrap', 'ng-add', { version: "4.0.0", skipWebpackPlugin: true });
+// }
 
 function addElementsSchematic() {
     return externalSchematic('@angular/elements', 'ng-add', {});
