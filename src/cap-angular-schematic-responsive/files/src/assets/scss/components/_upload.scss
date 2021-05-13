@@ -57,15 +57,13 @@
 }
 
 
+//CAP FILE
 
 .files-upload__container {
-  display: flex;
+  padding: 3rem;
   font-size: 1.8rem;
-  width: 50%;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-self: stretch;
-  margin: 0 1rem;
+  border-radius: 2rem;
+  box-shadow: 0 1.5rem 3rem rgba($color-black, 0.2); 
 }
 .file {
   &__visor {
@@ -162,14 +160,21 @@
 .upload {
   &__container {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    width: 100%;
   }
   &__button {
     position: relative;
     text-align: center;
-    width: 30%;
+    // width: 30%;
     color: $color-white;
     background-image: linear-gradient(120deg, $color-primary-light 0%, $color-blue-transparent 100%);
     cursor: pointer;
   }
+}
+
+.list-container{
+  margin: 2rem 0;
+  overflow-x: auto;
+  width: 100%;
 }

@@ -150,3 +150,12 @@
   }
 }
 
+.upload-section {
+  padding: 10rem 10rem;
+  margin-bottom: 20rem;
+
+  @include responsive(phone) {
+    font-size: 1.5rem;
+    padding: 5rem 5rem;
+  }
+}
