@@ -1,6 +1,6 @@
-<header>
+<!-- <header> -->
     <!-- Mobile Header -->
-    <div class="wsmobileheader clearfix ">
+    <!-- <div class="wsmobileheader clearfix ">
         <a role="link" id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>
         <a routerLink="/">
             <span class="smllogo"><img src="assets/images/angular-logo.png" width="170" alt="<%= title %> Logo" title="<%= title %> Logo" loading="lazy"></span>
@@ -8,23 +8,23 @@
         <a role="link" class="callusbtn cursor" (click)="clickLink(); this.modalService.open('searchModal');">
             <i class="fa fa-search" aria-hidden="true"></i>
         </a>
-    </div>
+    </div> -->
     <!-- Mobile Header -->
 
-    <div class="wsmainfull clearfix" [ngClass]="isTheHome ? 'dark clearnav' : ''">
+    <!-- <div class="wsmainfull clearfix" [ngClass]="isTheHome ? 'dark clearnav' : ''">
         <div class="wsmainwp clearfix">
             <div class="desktoplogo">
                 <a routerLink="/">
                     <img src="assets/images/angular-logo.png" alt="<%= title %> Logo"  title="<%= title %> Logo" loading="lazy">
                 </a>
-            </div>
+            </div> -->
             <!--Main Menu HTML Code-->
-            <nav id="nav" class="wsmenu clearfix dark">
+            <!-- <nav id="nav" class="wsmenu clearfix dark">
                 <ul class="wsmenu-list">
                     <li aria-haspopup="true">
-                        <a routerLink="/home" (click)="clickLink();">
+                        <a routerLink="/home" (click)="clickLink();"> -->
                             Home <!--<span class="fa fa-angle-down"></span>-->
-                        </a>
+                        <!-- </a> -->
                         <!-- 
                         <div class="wsmegamenu clearfix">
                             <div class="container-fluid">
@@ -42,9 +42,9 @@
                             </div>
                         </div> 
                         -->
-                    </li>
-                    <% if(sfcore) { %>
-                    <li *ngIf="this.stateService.state.isLogged">
+                    <!-- </li> -->
+                    <!-- <% if(sfcore) { %> -->
+                    <!-- <li *ngIf="this.stateService.state.isLogged">
                         <a routerLink="/account" (click)="clickLink();">
                             Account
                         </a>
@@ -63,10 +63,10 @@
                         <a routerLink="/opportunity" (click)="clickLink();">
                             Opportunity
                         </a>
-                    </li>
-                    <% } %>
-                    <% if(auth) { %>
-                    <li *ngIf="!this.stateService.state.isLogged">
+                    </li> -->
+                    <!-- <% } %>
+                    <% if(auth) { %> -->
+                    <!-- <li *ngIf="!this.stateService.state.isLogged">
                         <a routerLink="/auth/login" (click)="clickLink();">
                             <i class="fa fa-user"></i>
                             Login
@@ -101,4 +101,71 @@
             </nav>
         </div>
     </div>
+</header> -->
+<header class="header">
+  <div class="header__text-box">
+    <h1 class="heading-primary">
+      <span class="heading-primary--main">connect apps</span>
+      <span class="heading-primary--sub">platforms</span>
+    </h1>
+  </div>
+
+  <div class="navigation-container" id="navbar">
+    <div class="navigation__logo-box">
+      <img src="../../assets/images/logo-white.png" alt="CAP" srcset="" class="navigation__logo">
+    </div>
+    <nav class="navigation__nav" id="navbar">
+      <div class="navigation__handler" id="menu-handler" (click)="openMenu()">
+        <i class="bi bi-list icon__open" id="open"></i>
+        <i class="bi bi-x icon__cancel" id="cancel"></i>
+      </div>
+      <ul class="navigation__list" id="list-menu">
+        <li class="navigation__item"><a href="" class="navigation__link">
+            home
+          </a>
+        </li>
+        <li class="navigation__item"><a href="" class="navigation__link">
+            login
+            <span>
+              <i class="fa fa-caret-down" aria-hidden="true"></i>
+            </span>
+          </a>
+        </li>
+        <li class="navigation__item"><a href="" class="navigation__link">
+            Register
+            <span>
+              <i class="fa fa-caret-down" aria-hidden="true"></i>
+            </span>
+          </a>
+        </li>
+        <li class="navigation__item"><a href="" class="navigation__link">
+            Search
+            <span>
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </span>
+          </a>
+        </li>
+        <li class="navigation__item">
+          <a href="" class="navigation__link">
+            Account
+          </a>
+        </li>
+        <li class="navigation__item">
+          <a href="" class="navigation__link">
+            Contact
+          </a>
+        </li>
+        <li class="navigation__item">
+          <a href="" class="navigation__link">
+            Lead
+          </a>
+        </li>
+        <li class="navigation__item">
+          <a href="" class="navigation__link">
+            Opportunity
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </header>

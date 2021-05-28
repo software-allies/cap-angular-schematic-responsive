@@ -1,0 +1,45 @@
+.collapsible {
+  &__button {
+    cursor: pointer;
+    padding: 2.5rem 5rem;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    height: auto;
+    background-color: $color-gray-dark-transparent;
+    font-size: 1.8rem !important;
+    font-weight: 300;
+    font-family: "Lato", sans-serif;
+    text-decoration: none;
+    color: $color-black;
+    @include responsive(table-port) {
+      font-size: 1.8rem !important;
+    }
+
+    &:hover{
+      color: $color-black;
+    }
+  }
+  /* Style the collapsible content. Note: hidden by default */
+  &__content {
+    padding: 1rem;
+    transition: all 1s ease-out;
+    padding: 2rem 2rem;
+    font-size: 1.8rem !important;
+    box-shadow: 0 1rem 2rem rgba($color-black, $alpha: 0.2);
+
+    @include responsive(table-port) {
+      font-size: 1.8rem !important;
+    }
+  }
+}
+
+#collapse1{
+  box-shadow: 0 1rem 2rem rgba($color-black, $alpha: 0.2);
+  padding: 2rem;
+  font-size: 1.8rem !important;
+  @include responsive(table-port) {
+    font-size: 1.8rem !important;
+  }
+}

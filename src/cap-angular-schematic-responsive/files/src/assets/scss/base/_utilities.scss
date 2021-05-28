@@ -1,0 +1,105 @@
+.u-text-white {
+  color: $color-white !important;
+}
+
+.u-center-text {
+  text-align: center !important;
+}
+
+.u-end-text {
+  text-align: end !important;
+}
+
+.u-text-uppercase {
+  text-transform: uppercase !important;
+}
+.u-margin-right-small {
+  margin-right: 2rem !important;
+}
+
+.u-margin-bottom-small {
+  margin-bottom: 2rem !important;
+}
+
+.u-margin-bottom-medium {
+  margin-bottom: 4rem !important;
+}
+
+.u-margin-bottom-big {
+  margin-bottom: 8rem !important;
+  @include responsive(phone) {
+    margin-top: 4rem !important;
+  }
+}
+
+.u-margin-top-small {
+  margin-top: 2rem !important;
+}
+
+.u-margin-top-medium {
+  margin-top: 4rem !important;
+}
+
+.u-margin-top-big {
+  margin-top: 8rem !important;
+  @include responsive(phone) {
+    margin-top: 4rem !important;
+  }
+}
+
+.u-input-background-gray {
+  background-color: rgba($color-gray-dark, 0.9) !important;
+}
+
+.u-in-line-block {
+  display: inline-block !important;
+}
+.u-width-large {
+  width: 80% !important;
+}
+
+.u-border-bottom-small {
+  border-bottom: 1px solid $color-black !important;
+}
+
+.u-shadow-small {
+  outline: none !important;
+  box-shadow: 0rem 0.5rem 2.5rem rgba($color-black, $alpha: 0.15) !important;
+}
+
+.u-full-width {
+  width: 100% !important;
+}
+.u-full-width-phone {
+  @include responsive(phone) {
+    width: 100% !important;
+  }
+}
+
+.u-position-button-input-left {
+  @include responsive(phone) {
+    transform: translate(-50%, 0%);
+    width: 50% !important;
+    text-align: center;
+    margin-top: 2rem;
+  }
+}
+
+.u-position-button-input-right {
+  @include responsive(phone) {
+    transform: translate(0%, 0%);
+    width: 100% !important;
+    text-align: center;
+    margin-bottom: -1rem;
+  }
+}
+.u-border-light{
+  border: .01rem solid $color-gray-dark !important;
+}
+
+.u-margin-input{
+  margin:0 1rem 0 2rem !important;
+  @include responsive(phone) {
+    margin:0 1rem 0 0rem !important;
+  }
+}

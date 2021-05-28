@@ -1,0 +1,71 @@
+button {
+  border: none;
+}
+.btns {
+  &,
+  &:link,
+  &:visited {
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1rem 2.5rem;
+    display: inline-block;
+    transition: all 0.3s;
+    border-radius: 1rem;
+    position: relative;
+
+    @include responsive(phone) {
+      font-size: 1.5rem;
+    }
+  }
+
+  &__card {
+    font-size: 1.8rem !important;
+    background-color: $color-white;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    @include responsive(phone) {
+      font-size: 1.5rem;
+    }
+  }
+
+  &__text {
+    text-decoration: underline;
+    font-size: 1.8rem;
+    color: $color-white;
+    padding: 1rem 2rem;
+    transition: all 0.3s ease-in-out;
+    @include responsive(phone) {
+      font-size: 1.5rem;
+    }
+    &:hover {
+      color: $color-black;
+      transform: translateY(-0.3rem);
+      background-color: $color-white;
+      box-shadow: 0 1rem 2rem rgba($color-black, $alpha: 0.2);
+    }
+  }
+
+  &:hover,
+  &:focus {
+    outline: none;
+    transform: translateY(-0.3rem);
+    box-shadow: 0 1rem 2rem rgba($color-black, $alpha: 0.2);
+  }
+  &:active {
+    transform: translateY(-0.1rem);
+    box-shadow: 0 0.5rem 1rem rgba($color-black, $alpha: 0.2);
+  }
+  &--blue {
+    background-color: #35a4fb;
+    color: $color-white;
+  }
+  &--white {
+    background-color: $color-white;
+    color: $color-black;
+  }
+  &--red {
+    background-color: $color-red;
+    color: $color-white;
+  }
+}
