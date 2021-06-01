@@ -53,18 +53,14 @@ import { getAppName } from './cap-utils/package';
 
 function updateBodyOfIndexFile(filePath: string): Rule {
   return (tree: Tree) => {
-
     const toAddBegin =
       `
 <div class="container-fluid p-0">`;
-
     const toAddFinal =
       `</div>
 `;
-
     const component = getFileContent(tree, filePath);
     tree.overwrite(filePath, component.replace(`<body>`, `<body id="app">${toAddBegin}`));
-
     const componentAfter = getFileContent(tree, filePath);
     tree.overwrite(filePath, componentAfter.replace(`</body>`, `${toAddFinal}</body>`));
   }
@@ -74,10 +70,9 @@ function updateIndexFile(path: string): Rule {
   /** Appends the given element HTML fragment to the `<head>` element of the specified HTML file. */
   return (host: Tree) =>
     cap_utilities.addLinkStyleToHTMLHead(host, [
-      '<link media="screen href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap|Roboto:300,400,500&display=swap" rel="stylesheet" async defer>',
-      '<link media="screen href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" async defer>',
       '<link media="screen" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap|Roboto:300,400,500&display=swap" rel="stylesheet" async defer>',
-      '<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">',
+      '<link media="screen" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" async defer>',
+      '<link media="screen" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap|Roboto:300,400,500&display=swap" rel="stylesheet" async defer>',
       '<link rel="preconnect" href="https://fonts.gstatic.com">',
       '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">',
       '<link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">',
@@ -121,12 +116,10 @@ function appendToAppComponentFile(filePath: string, options: ComponentOptions): 
       cap_utilities.appendToStartFile(host, filePath, content);
     }
 
-    const content = `<!-- <app-header></app-header> -->`;
+    const content = `<app-header></app-header>`;
     cap_utilities.appendToStartFile(host, filePath, content);
-
-    // Add footer to end of file
     const toAdd =
-      `<!-- <app-footer></app-footer> -->
+      `<app-footer></app-footer>
 <app-loading-screen></app-loading-screen>
 <app-modal #searchModal id="searchModal">
   <div>
@@ -136,12 +129,11 @@ function appendToAppComponentFile(filePath: string, options: ComponentOptions): 
 
     const component = getFileContent(host, filePath);
     host.overwrite(filePath, `${component}${toAdd}`);
-
     return host;
   };
 }
 
-function addStyles(): Rule {
+/*function addStyles(): Rule {
   return (host: Tree) => {
     cap_utilities.addStylesToAngularJSON(host,
       [
@@ -150,7 +142,7 @@ function addStyles(): Rule {
       ])
     return host;
   };
-}
+}*/
 
 function addScript(): Rule {
   return (host: Tree) => {
@@ -416,7 +408,7 @@ export function schematicResponsive(options: ComponentOptions): Rule {
         addBootstrapSchematic(),
         addElementsSchematic(),
         appendToStylesFile(files.styles),
-        addStyles(),
+        // addStyles(),
         addScript(),
         (options.removeAppComponentHtml) ? removeContentFromAppComponentHtml(files.appComponent) : noop(),
         appendToAppComponentFile(files.appComponent, options),
