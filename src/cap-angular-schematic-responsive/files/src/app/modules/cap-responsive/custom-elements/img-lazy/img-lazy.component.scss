@@ -1,0 +1,62 @@
+
+@keyframes shimmer {
+    0% {
+      background-position: -468px 0;
+    }
+    100% {
+      background-position: 468px 0;
+    }
+  }
+  
+  .bg {
+    height: 200px;
+    width: 100%;
+    padding-top: calc(1080 / 1920 * 100%);
+    margin: auto;
+    animation: shimmer 1s linear 0s infinite forwards;
+    background: #d0d3da;
+    background-image: linear-gradient(
+      to right,
+      #d0d3da 0%,
+      #e9ebee 20%,
+      #d0d3da 40%,
+      #d0d3da 100%
+    );
+    background-repeat: no-repeat;
+    position: relative;
+  }
+  
+  figure {
+    padding: 0;
+    margin: 0;
+  }
+  
+  figcaption {
+    padding: 13px 25px;
+    font-size: 14px;
+    text-align: left;
+    @media (min-width: 768px) and (max-width: 990px){ 
+      padding: 13px 5px;
+    }
+    @media (min-width: 0px) and (max-width: 270px){ 
+        padding: 13px 5px;
+    }
+    .header {
+      text-align: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      line-height: 16px;
+      height: 48px; 
+      -webkit-line-clamp: 3; 
+      -webkit-box-orient: vertical;
+    }
+  }
+
+  .hidden {
+    display: none !important;
+    padding: 0;
+    margin: 0;
+    height: 0;
+  }
+  

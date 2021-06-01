@@ -1,0 +1,158 @@
+.navigation {
+  &-container {
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+    z-index: 99;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    @include responsive(table-land) {
+      flex-direction: row-reverse;
+      align-items: flex-start;
+    }
+    
+  }
+  &-submenu {
+    // background-color: red;
+    position: fixed;
+    top: 10rem;
+    list-style: none;
+  }
+  &__logo {
+    height: 8rem;
+  }
+
+  &__list {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    will-change: transform;
+    // transition: visibility 0s, opacity 0.5s linear;
+
+    @include responsive(table-land) {
+      // background: rgb(2, 0, 36);
+      background-image: linear-gradient(314.42deg, $color-blue-dark 0%, $color-black 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      position: relative;
+      left: -30rem;
+      transition: all 1s ease-in-out;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+    }
+    &-submenu {
+      font-size: 1.2rem;
+      background-color: red;
+    }
+  }
+
+  &__nav {
+    @include responsive(table-land) {
+      top: 10rem;
+      z-index: 100;
+    }
+  }
+
+  &__item {
+    margin: 1rem;
+
+    background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $color-white 50%);
+    background-size: 250%;
+    transition: all 0.2s ease-in;
+    &:hover,
+    &:active {
+      background-position: 100%;
+      color: $color-black;
+    }
+
+    @include responsive(table-land) {
+      align-self: stretch;
+      margin: 0;
+    }
+  }
+
+  &__link {
+    &:link,
+    &:visited {
+      display: flex;
+      justify-content: center;
+      align-self: stretch;
+      align-items: center;
+      font-size: 1.5rem;
+      font-weight: 300;
+      padding: 1rem 2rem;
+      color: $color-white;
+      text-decoration: none;
+      text-transform: uppercase;
+      background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $color-white 50%);
+      background-size: 250%;
+      transition: all 0.2s ease-in;
+
+      span {
+        display: inline-block;
+        margin-left: 1rem;
+      }
+
+      @include responsive(table-land) {
+        padding: 3rem 5rem;
+      }
+    }
+
+    &:hover,
+    &:active {
+      background-position: 100%;
+      color: $color-black;
+    }
+  }
+
+  &__handler {
+    display: none;
+    font-size: 4rem;
+    color: $color-white;
+    // position: fixed;
+    transition: all 1s ease-in-out;
+    @include responsive(table-land) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      width: 10rem;
+      height: 8rem;
+    }
+  }
+
+  &__sub-menu {
+    font-size: inherit;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 10rem;
+    background-color: red;
+    font-size: 2.5rem;
+    font-weight: 300;
+  }
+}
+
+.icon {
+  transition: all 1s ease-in-out;
+  &__open {
+    display: flex;
+  }
+  &__cancel {
+    display: none;
+  }
+}
+
+.sub-menu {
+  &__item {
+  }
+  &__link {
+  }
+}

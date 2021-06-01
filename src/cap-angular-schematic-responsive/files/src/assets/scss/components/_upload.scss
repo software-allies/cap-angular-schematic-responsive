@@ -1,0 +1,180 @@
+.upload {
+  &__image {
+    background-color: $color-gray-dark-transparent;
+    height: auto;
+    // margin: 3rem 5rem;
+    object-fit: fill;
+  }
+  &__actions {
+    margin-top: 1rem;
+  }
+  &__input {
+    // color: transparent;
+    position: relative;
+    width: 100%;
+    &::-webkit-file-upload-button {
+      visibility: hidden;
+    }
+
+    &:before {
+      content: "Select your file(s)";
+      display: inline-block;
+      background: linear-gradient(to top left, $color-primary-light 0%, $color-secondary-dark 100%);
+      padding: 1rem 3rem;
+      outline: none;
+      white-space: nowrap;
+      -webkit-user-select: none;
+      cursor: pointer;
+      color: $color-white;
+      font-weight: 300;
+      font-size: 2rem;
+      font-family: "Lato", sans-serif;
+      width: 100%;
+      text-align: center;
+      // @include verticalHorizontalCenter;
+    }
+
+    &:hover,
+    :before {
+      border-color: transparent;
+    }
+
+    // &:active,
+    // :before {
+    //   background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+    // }
+  }
+  &__title {
+  }
+}
+
+.image {
+  &__element {
+    height: auto;
+    width: 100%;
+    object-fit: fill;
+  }
+}
+
+
+//CAP FILE
+
+.files-upload__container {
+  padding: 3rem;
+  font-size: 1.8rem;
+  border-radius: 2rem;
+  box-shadow: 0 1.5rem 3rem rgba($color-black, 0.2); 
+}
+.file {
+  &__visor {
+    display: none;
+  }
+  &__list {
+    display: flex;
+    max-height: 25rem;
+    flex-direction: column;
+    &:not(:last-child) {
+      border-bottom: 0.2rem solid $color-gray;
+    }
+  }
+  &__icon {
+    margin: 0rem 2rem;
+  }
+  &__container {
+    display: inherit;
+    align-items: center;
+    justify-content: space-between;
+    &:hover {
+      background-image: linear-gradient(120deg, $color-gray-dark-transparent 0%, $color-white-light 100%);
+    }
+  }
+  &__pagination {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+  }
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 2rem;
+  }
+  &__name {
+    margin-left: 3rem;
+    max-width: 40rem;
+    min-width: 20rem;
+  }
+  &__options {
+    display: inherit;
+    justify-content: space-around;
+  }
+  &__btn {
+    font-size: 1.8rem;
+    margin: 0 0.5rem;
+    text-decoration: none;
+  }
+
+  &__btn--link {
+    &:link,
+    &:visited {
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 1rem 2.5rem;
+      display: inline-block;
+      transition: all 0.3s;
+      border-radius: 1rem;
+      position: relative;
+
+      @include responsive(phone) {
+        font-size: 2rem;
+      }
+    }
+
+    &:hover,
+    &:focus {
+      outline: none;
+      transform: translateY(-0.3rem);
+      box-shadow: 0 1rem 2rem rgba($color-black, $alpha: 0.2);
+    }
+    &:active {
+      transform: translateY(-0.1rem);
+      box-shadow: 0 0.5rem 1rem rgba($color-black, $alpha: 0.2);
+    }
+  }
+  &__list--empty{
+    display: flex;
+    justify-content: center;
+    font-size: 1.8rem;
+  }
+}
+
+.spinner{
+  font-size: 1.8rem;
+  margin-top: 1.5rem;
+  color: $color-white;
+}
+
+.input__file {
+  display: none;
+}
+.upload {
+  &__container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  &__button {
+    position: relative;
+    text-align: center;
+    // width: 30%;
+    color: $color-white;
+    background-image: linear-gradient(120deg, $color-primary-light 0%, $color-blue-transparent 100%);
+    cursor: pointer;
+  }
+}
+
+.list-container{
+  margin: 2rem 0;
+  overflow-x: auto;
+  width: 100%;
+}

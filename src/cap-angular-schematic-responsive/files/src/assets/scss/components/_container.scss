@@ -1,0 +1,48 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+
+  &-images {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    @include responsive(table-land) {
+      flex-direction: column;
+    }
+  }
+  &-action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-self: stretch;
+    padding: 5rem 0rem;
+  }
+  &-search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+    flex: 1;
+
+    @include responsive(phone) {
+      flex-direction: column;
+    }
+  }
+  &-table {
+    width: 100%;
+    // padding: 5rem 10rem;
+  }
+  &-input {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    align-self: stretch;
+
+    @include responsive(phone) {
+      margin-top: 2rem;
+    }
+  }
+}

@@ -1,0 +1,85 @@
+<header id="header" class="header">
+  <div id="header__text-box" class="header__text-box">
+    <h1 class="heading-primary">
+      <span class="heading-primary--main">connect apps</span>
+      <span class="heading-primary--sub">platforms</span>
+    </h1>
+  </div>
+  <div class="navigation-container" id="navbar">
+    <div class="navigation__logo-box">
+      <img routerLink="/" src="../../assets/images/logo-white.png" alt="CAP" srcset="" class="navigation__logo">
+    </div>
+    <nav class="navigation__nav" id="navbar">
+      <div class="navigation__handler" id="menu-handler" (click)="openMenu()">
+        <i class="bi bi-list icon__open" id="open"></i>
+        <i class="bi bi-x icon__cancel" id="cancel"></i>
+      </div>
+      <ul class="navigation__list" id="list-menu">
+        <li class="navigation__item">
+          <a routerLink="/" class="navigation__link">
+            home
+          </a>
+        </li>
+        <% if(sfcore) { %>
+        <li *ngIf="this.stateService.state.isLogged" class="navigation__item">
+          <a routerLink="/account" class="navigation__link">
+            Account
+          </a>
+        </li>
+        <li *ngIf="this.stateService.state.isLogged" class="navigation__item">
+          <a routerLink="/contact" class="navigation__link">
+            Contact
+          </a>
+        </li>
+        <li *ngIf="this.stateService.state.isLogged" class="navigation__item">
+          <a routerLink="/lead" class="navigation__link">
+            Lead
+          </a>
+        </li>
+        <li *ngIf="this.stateService.state.isLogged" class="navigation__item">
+          <a routerLink="/opportunity"class="navigation__link">
+            Opportunity
+          </a>
+        </li>
+        <% } %>
+        <% if(auth) { %>
+        <li *ngIf="!this.stateService.state.isLogged" class="navigation__item">
+          <a routerLink="/auth/login" class="navigation__link">
+            login
+            <!-- <span>
+              <i class="fa fa-caret-down" aria-hidden="true"></i>
+            </span> -->
+          </a>
+        </li>
+        <li *ngIf="!this.stateService.state.isLogged" class="navigation__item">
+          <a routerLink="/auth/register" class="navigation__link">
+            Register
+            <!-- <span>
+              <i class="fa fa-caret-down" aria-hidden="true"></i>
+            </span> -->
+          </a>
+        </li>
+        <li *ngIf="this.stateService.state.isLogged" class="navigation__item">
+          <a routerLink="/" (click)="this.authenticationService.signOut()" class="navigation__link">
+            <i class="fa fa-user"></i>
+            Log out
+          </a>
+        </li>
+        <li *ngIf="this.stateService.state.isLogged" class="navigation__item">
+          <a routerLink="/auth/profile" class="navigation__link">
+            <i class="fa fa-user"></i>
+            Profile
+          </a>
+        </li>
+        <% } %>
+        <li class="navigation__item">
+          <a href="" class="navigation__link">
+            <span>
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

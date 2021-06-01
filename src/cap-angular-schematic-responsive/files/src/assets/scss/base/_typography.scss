@@ -1,0 +1,82 @@
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  // font-size: 16px;
+  line-height: 1.7;
+  color: $color-black;
+}
+.heading-primary {
+  color: $color-white;
+  text-transform: uppercase;
+  backface-visibility: hidden;
+  // margin-bottom: 50px;
+  margin-top: 6rem;
+
+  &--main {
+    display: block;
+
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+
+    font-weight: 400;
+    font-size: 5rem;
+    letter-spacing: 2.5rem;
+
+    @include responsive(phone) {
+      letter-spacing: 2rem;
+    }
+  }
+
+  &--sub {
+    display: block;
+    font-weight: 300;
+    font-size: 5rem;
+    letter-spacing: 2rem;
+    animation: moveInRight 1s ease-out;
+    @include responsive(phone) {
+      letter-spacing: 0.5rem;
+    }
+  }
+}
+
+.heading-secondary {
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 400;
+  display: inline-block;
+  background-image: linear-gradient(to right, $color-white, $color-primary-light);
+  -webkit-background-clip: text;
+  color: transparent;
+
+  &--light {
+    font-size: 4.5rem;
+    font-weight: 300;
+    letter-spacing: 2rem;
+
+    @include responsive(phone) {
+      // font-size: 2.5rem;
+      letter-spacing: 1rem;
+      text-align: center;
+    }
+  }
+}
+
+.heading-tertiary {
+  font-size: 2.5rem;
+  font-weight: 300;
+
+  @include responsive(phone) {
+    font-size: 3rem;
+  }
+}
+
+.paragraph {
+  font-size: 1.8rem;
+  &:not(:last-child) {
+    margin-bottom: 3rem;
+  }
+  @include responsive(phone) {
+    font-size: 1.5rem;
+  }
+}

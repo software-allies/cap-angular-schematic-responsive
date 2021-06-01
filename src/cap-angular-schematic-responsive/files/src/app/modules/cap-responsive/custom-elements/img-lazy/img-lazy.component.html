@@ -1,0 +1,12 @@
+<div class="wrapper">
+    <div *ngIf="!state.loaded" class="bg"></div>
+    <figure *ngIf="state.visible">
+        <img *ngIf="width" [hidden]="!state.loaded" [width]="width" [height]="height" (load)="onLoad()" [src]="src" [alt]="alt" [title]="alt"/>
+        <img *ngIf="!width" [hidden]="!state.loaded" class="img-fluid" (load)="onLoad()" [src]="src" [alt]="alt" [title]="alt"/>
+        <figcaption [ngClass]="{'hidden': !caption}">
+            <span class="header">
+                <ng-content select=".header"></ng-content>
+            </span>
+        </figcaption>
+    </figure>
+</div>
