@@ -21,3 +21,4 @@ yarn-error.log*
 # Do not ignore this file
 !src/**/webcomponents-loader.js
 !src/**/webslidemenu.js
+!src/**/collapse.js
