@@ -10,8 +10,8 @@ body {
   text-transform: uppercase;
   backface-visibility: hidden;
   // margin-bottom: 50px;
-  margin-top: 6rem;
-
+  // margin-top: 6rem;
+  margin-top: 10rem;
   &--main {
     display: block;
 
@@ -55,7 +55,7 @@ body {
     letter-spacing: 2rem;
 
     @include responsive(phone) {
-      // font-size: 2.5rem;
+      font-size: 3.5rem;
       letter-spacing: 1rem;
       text-align: center;
     }

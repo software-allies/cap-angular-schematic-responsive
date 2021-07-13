@@ -66,6 +66,6 @@ button {
   }
   &--red {
     background-color: $color-red;
-    color: $color-white;
+    color: $color-white!important;
   }
 }

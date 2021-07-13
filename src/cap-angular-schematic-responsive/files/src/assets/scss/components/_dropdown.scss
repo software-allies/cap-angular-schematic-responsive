@@ -49,5 +49,9 @@
 
 
 .dropdown-menu{
-  font-size: 1.8rem;
+  font-size: 1.8rem!important;
+  border-radius:1rem!important;
+  li{
+    border-bottom:1px solid #dee2e6;
+  }
 }

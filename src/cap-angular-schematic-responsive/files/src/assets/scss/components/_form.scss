@@ -19,25 +19,21 @@
   }
 
   &__group:not(:last-child) {
-    margin-bottom: 1rem;
     width: 100%;
-    padding: 1rem 2rem;
+    padding: 0.5rem 2rem;
   }
   &__input {
     font-family: inherit;
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     color: inherit;
-    padding: 1rem 2rem;
+    padding: 1rem 1.5rem;
     border-radius: 4px;
     background-color: rgba($color-white, 0.9);
     border: none;
     border-bottom: 3px solid transparent;
-    width: 70%;
+    width: 80%;
     display: block;
     transition: all 0.3s;
-
-    &-email {
-    }
 
     @include responsive(table-land) {
       width: 100%;
@@ -62,12 +58,22 @@
 
   &__label {
     color: $color-black;
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     font-weight: 700;
     margin-left: 1rem;
-    margin-top: 0.7rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1.2rem;
     display: block;
     transition: all 0.3s;
+    @include responsive(phone) {
+      font-size: 1.5rem;
+    }
+  }
+
+  &__label__spacing {
+    margin-top: 0.5rem;
+    margin-bottom: 1.2rem;
+    display: block;
     @include responsive(phone) {
       font-size: 1.5rem;
     }
@@ -76,6 +82,59 @@
   &__input:placeholder-shown + &__label {
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-4rem);
+    transform: translateX(-4rem);
+  }
+
+  &__label__error {
+    color: #dc3545;
+    width: 100%;
+    border-radius: 1rem;
+    border: 1px solid #dc3545;
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-align: center;
+    display: block;
+    border-style: solid;
+    padding: 0rem 2rem;
+    // width: 80%;
+    // margin: 1rem 0rem;;
+    // transition: visibility 0s, opacity 0.5s linear;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 600ms, visibility 600ms;
+    @include responsive(phone) {
+      font-size: 1.5rem;
+    }
+  }
+
+  &__label__succeses {
+    color: $color-primary-light;
+    width: 100%;
+    border-radius: 1rem;
+    border: 1px solid $color-primary-light;
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-align: center;
+    display: block;
+    border-style: solid;
+    padding: 0rem 2rem;
+    // width: 80%;
+    // margin: 1rem 0rem;;
+    // transition: visibility 0s, opacity 0.5s linear;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 600ms, visibility 600ms;
+    @include responsive(phone) {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.form-group{
+  textarea.form-control,
+  option.form-control,
+  input.form-control,
+  select.form-control{
+    font-size:1.6rem!important;
   }
 }
