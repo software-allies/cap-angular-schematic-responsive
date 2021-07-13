@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, HostListener } from '@angular/core';
 import { ModalService } from '../modules/cap-responsive/components/modal/modal.service';
 import { Subscription } from 'rxjs';
 import { Router, NavigationEnd, Event } from '@angular/router';
@@ -20,7 +20,8 @@ export class HeaderComponent implements OnInit {
 
   routerSubscription: Subscription;
   isTheHome = true;
-  
+  showMenu = false;
+
   constructor(
     <% if (auth) { %>
     public authenticationService: AuthenticationService,
@@ -29,32 +30,21 @@ export class HeaderComponent implements OnInit {
     public modalService: ModalService,
     private router: Router
   ) {
-    let scrolling = false;
-    window.onscroll = function () { scrolling = true };
-
-    setInterval(() => {
-      if (scrolling) {
-        scrolling = false;
-        let navbar = document.getElementById("navbar");
-        if (window.pageYOffset === 0) {
-          navbar.style.backgroundColor = '';
-        } else {
-          navbar.style.backgroundColor = '#080808';
-          navbar.style.transition = 'all .2s ease-in-out';
-        }
-      }
-    }, 100);
-
+    <% if (auth && authService === 'auth0') { %>
+    this.run();
+    <% } %>
     this.routerSubscription = this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         if (event.url === '/' || event.url === '/home') {
           const header = document.querySelector('#header') as HTMLElement;
-          header.style.height = "50vh";
+          header.style.height = "35rem";
+          // header.style.height = "50vh";
           const headerTitle = document.querySelector('#header__text-box') as HTMLElement;
           headerTitle.style.display = "block";
         } else {
           const header = document.querySelector('#header') as HTMLElement;
-          header.style.height = "10vh";
+          // header.style.height = "10vh";
+          header.style.height = "8rem";
           const headerTitle = document.querySelector('#header__text-box') as HTMLElement;
           headerTitle.style.display = "none";
         }
@@ -63,6 +53,23 @@ export class HeaderComponent implements OnInit {
 }
 
   ngOnInit() { }
+
+  <% if (auth && authService === 'auth0') { %>
+  async run() { this.showMenu = await this.authenticationService.initialLoading();}
+  async logOut() { this.authenticationService.signOutAux() }
+  <% } %>
+  @HostListener('window:scroll', ['$event']) getScrollHeight(event) {
+    // console.log(window.pageYOffset, event);
+    setInterval(() => {
+        let navbar = document.getElementById("navbar");
+        if (window.pageYOffset === 0) {
+          navbar.style.backgroundColor = '';
+        } else {
+          navbar.style.backgroundColor = '#080808';
+          navbar.style.transition = 'all .2s ease-in-out';
+        }
+    }, 100);
+  }
 
   openMenu() {
     //Declaring the variables to get the HTML elements by ID
