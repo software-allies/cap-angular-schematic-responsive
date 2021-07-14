@@ -28,7 +28,8 @@
 .u-margin-bottom-big {
   margin-bottom: 8rem !important;
   @include responsive(phone) {
-    margin-top: 4rem !important;
+    margin-top: 2rem !important;
+    margin-bottom: 4rem !important;
   }
 }
 

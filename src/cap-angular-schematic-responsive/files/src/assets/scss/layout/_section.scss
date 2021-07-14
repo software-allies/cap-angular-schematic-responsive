@@ -65,7 +65,7 @@
     align-items: center;
     flex-direction: column;
     @include responsive(phone) {
-      padding: 5rem 5rem;
+      padding: 2rem 2rem;
     }
   }
   &-upload {

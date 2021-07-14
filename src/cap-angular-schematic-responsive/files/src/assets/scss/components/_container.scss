@@ -19,6 +19,9 @@
     justify-content: center;
     align-self: stretch;
     padding: 5rem 0rem;
+    @include responsive(phone) {
+      padding: 2rem 0rem;
+    }
   }
   &-search {
     display: flex;
